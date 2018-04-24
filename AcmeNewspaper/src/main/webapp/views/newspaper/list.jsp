@@ -8,6 +8,14 @@
 <%@taglib prefix="lib" tagdir="/WEB-INF/tags/myTagLib" %>
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
+<security:authorize access="hasRole('AGENT')">
+	<div class="btn-group btn-group-justified" style="margin-bottom:20px">
+		<a class="btn btn-primary" href="newspaper/list.do"><spring:message code="advertisement.newspaper.list.all"/></a>
+		<a class="btn btn-primary" href="agent/advertisement/list.do?advertised=true"><spring:message code="advertisement.newspaper.list.true"/></a>
+		<a class="btn btn-primary" href="agent/advertisement/list.do?advertised=false"><spring:message code="advertisement.newspaper.list.false"/></a>
+	</div>	
+</security:authorize>
+
 <jstl:if test="${requestUri eq 'newspaper/list.do' }">
 	<form action="newspaper/list.do">
 	  <div class="input-group col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" style="margin-bottom:15px">

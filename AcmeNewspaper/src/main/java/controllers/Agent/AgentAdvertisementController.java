@@ -31,9 +31,9 @@ public class AgentAdvertisementController {
 	
 	
 	@RequestMapping(value="/list",method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam(required=false,defaultValue="true") Boolean advertised) {
+	public ModelAndView list(@RequestParam(required=true) Boolean advertised) {
 		ModelAndView result;
-		result = new ModelAndView("advertisement/list");
+		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers",advertised ? newspaperService.findMyAdvertisedNewspapers() : newspaperService.findMyNotAdvertisedNewspapers());
 		result.addObject("requestUri", "agent/advertisement/list.do");
 		return result;
