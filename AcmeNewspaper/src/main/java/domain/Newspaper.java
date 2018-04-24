@@ -107,6 +107,7 @@ public class Newspaper extends DomainEntity {
 	private Collection<Subscription> subscriptionss;
 	private Collection<Article> articless;
 	private User user;
+	private Collection<Advertisement> advertisements;
 
 	@NotNull
 	@Valid
@@ -140,6 +141,19 @@ public class Newspaper extends DomainEntity {
 	public void setUser(final User user) {
 		this.user = user;
 	}
+
+	@NotNull
+	@Valid
+	@OneToMany(mappedBy = "newspaper")
+	public Collection<Advertisement> getAdvertisements() {
+		return advertisements;
+	}
+
+	public void setAdvertisements(Collection<Advertisement> advertisements) {
+		this.advertisements = advertisements;
+	}
+	
+	
 
 
 }
