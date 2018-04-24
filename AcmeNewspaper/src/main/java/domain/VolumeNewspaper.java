@@ -4,7 +4,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-public class VolumeNewspaper {
+public class VolumeNewspaper extends DomainEntity{
 	
 	private Volume volume;
 	private Newspaper newspaper;
