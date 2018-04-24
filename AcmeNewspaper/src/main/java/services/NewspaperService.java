@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.NewspaperRepository;
+import domain.Agent;
 import domain.Article;
 import domain.Newspaper;
 import domain.Subscription;
@@ -30,6 +31,8 @@ public class NewspaperService {
 	private ArticleService articleService;
 	@Autowired
 	private Validator validator;
+	@Autowired
+	private AgentService agentService;
 
 	//Supporting Services -------------------
 
@@ -58,6 +61,10 @@ public class NewspaperService {
 
 	public Collection<Newspaper> findAll() {
 		return this.newspaperRepository.findAll();
+	}
+	
+	public Collection<Newspaper> findAllNotInappropriate() {
+		return this.newspaperRepository.findAllNotInappropriate();
 	}
 
 	public Newspaper save(final Newspaper newspaper) {
@@ -142,5 +149,20 @@ public class NewspaperService {
 
 	public Double getRatioOfSubscribersVersusCustomersTotal(){
 		return newspaperRepository.getRatioOfSubscribersVersusCustomersTotal();
+	}
+
+	public Collection<Newspaper> findMyAdvertisedNewspapers() {
+		Agent a = agentService.findByPrincipal();
+		Assert.notNull(a);
+		return newspaperRepository.findMyAdvertisedNewspapers(a);
+	}
+
+	public Collection<Newspaper> findMyNotAdvertisedNewspapers() {
+		Agent a = agentService.findByPrincipal();
+		Assert.notNull(a);
+		Collection<Newspaper> advertised = newspaperRepository.findMyAdvertisedNewspapers(a);
+		Collection<Newspaper> result = findAllNotInappropriate();
+		result.removeAll(advertised);
+		return result;
 	}
 }

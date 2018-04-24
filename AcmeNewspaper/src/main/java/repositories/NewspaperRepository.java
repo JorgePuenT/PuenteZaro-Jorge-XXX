@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import domain.Agent;
 import domain.Newspaper;
 import domain.User;
 
@@ -15,6 +16,9 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select n from Newspaper n where (n.title like %?1% or n.description like %?1%) and  n.inappropriate = false")
 	Collection<Newspaper> findByKeyword(String keyword);
+	
+	@Query("select n from Newspaper n where n.inappropriate = false")
+	Collection<Newspaper> findAllNotInappropriate();
 
 	@Query("select n from Newspaper n where n.user = ?1 AND (n.publicationDate > CURRENT_TIMESTAMP)")
 	Collection<Newspaper> findMyNonPublished(User user);
@@ -51,4 +55,7 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 	//The ratio of subscribers per private newspaper versus the total number of customers.
 	@Query("select coalesce(count(n)*1.0/(select count(n2)*1.0 from Newspaper n2 where n2.isPrivate=true ),0) from Newspaper n where n.isPrivate=false")
 	Double getRatioOfSubscribersVersusCustomersTotal();
+
+	@Query("select distinct(a.newspaper) from Advertisement a where a.agent = ?1")
+	Collection<Newspaper> findMyAdvertisedNewspapers(Agent a);
 }

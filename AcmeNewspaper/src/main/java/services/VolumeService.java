@@ -29,7 +29,7 @@ public class VolumeService {
 	public Volume create() {
 		Volume res = new Volume();
 		
-		res.setVolumeNewspaper(new ArrayList<VolumeNewspaper>());
+		res.setVolumeNewspapers(new ArrayList<VolumeNewspaper>());
 		res.setSubscriptions(new ArrayList<Subscription>());
 		
 		return res;

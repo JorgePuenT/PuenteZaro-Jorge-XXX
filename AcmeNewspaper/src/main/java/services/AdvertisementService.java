@@ -1,6 +1,8 @@
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.AdvertisementRepository;
 import domain.Advertisement;
+import domain.Agent;
 import domain.Newspaper;
 
 @Service
@@ -44,6 +47,15 @@ public class AdvertisementService {
 		}
 
 		public Advertisement save(final Advertisement advertisement) {
+			Agent agent = agentService.findByPrincipal();
+			Assert.notNull(agent);
+			advertisement.setAgent(agent);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			int month = cal.get(Calendar.MONTH)+1; //Current month(Month starts in 0)
+			int year = cal.get(Calendar.YEAR);
+			Assert.isTrue(advertisement.getCreditCard().getExpirationYear() >= year);
+			if(advertisement.getCreditCard().getExpirationYear() == year)Assert.isTrue(advertisement.getCreditCard().getExpirationMonth() > month);
 			return this.advertisementRepository.save(advertisement);
 		}
 		
