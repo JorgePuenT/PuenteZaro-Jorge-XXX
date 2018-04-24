@@ -35,7 +35,7 @@ public class AgentAdvertisementController {
 		ModelAndView result;
 		result = new ModelAndView("advertisement/list");
 		result.addObject("newspapers",advertised ? newspaperService.findMyAdvertisedNewspapers() : newspaperService.findMyNotAdvertisedNewspapers());
-		result.addObject("requestUri", "user/advertisement/list.do");
+		result.addObject("requestUri", "agent/advertisement/list.do");
 		return result;
 	}
 	
@@ -80,7 +80,7 @@ public class AgentAdvertisementController {
 		result = new ModelAndView("advertisement/edit");
 		result.addObject("newspapers", newspapers);
 		result.addObject("advertisement", advertisement);
-		result.addObject("actionUri", "user/advertisement/edit.do");
+		result.addObject("actionUri", "agent/advertisement/edit.do");
 		result.addObject("message", message);
 		return result;
 	}
