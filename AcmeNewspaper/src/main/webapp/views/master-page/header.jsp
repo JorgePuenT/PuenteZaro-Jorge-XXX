@@ -116,6 +116,7 @@
 			<security:authorize access="isAnonymous()">
 				<li><a href="register/user.do"><span class="glyphicon glyphicon-user"></span> <spring:message code="master.page.registerUser" /> &nbsp;</a></li>
 				<li><a href="register/customer.do"><span class="glyphicon glyphicon-user"></span> <spring:message code="master.page.registerCustomer" /> &nbsp;</a></li>
+				<li><a href="register/agent.do"><span class="glyphicon glyphicon-user"></span> <spring:message code="master.page.registerAgent" /> &nbsp;</a></li>
 				<li><a  href="security/login.do"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="master.page.login" /> &nbsp; </a></li>
 			</security:authorize>
 		</ul>

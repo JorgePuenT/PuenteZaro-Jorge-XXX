@@ -21,5 +21,7 @@
 		<value>/views/chirp/messages</value>
 		<value>/views/subscription/messages</value>
 		<value>/views/admin/messages</value>
+		<value>/views/agent/messages</value>
+		<value>/views/advertisement/messages</value>
 	</util:list>
 </beans>

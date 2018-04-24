@@ -1143,6 +1143,10 @@
 				<ref bean="article8"/>
 			</list>
 		</property>
+		<property name="advertisements">
+			<list>
+			</list>
+		</property>
 
 	</bean>
 
@@ -1171,6 +1175,10 @@
 				<ref bean="article5" />
 			</list>
 		</property>
+		<property name="advertisements">
+			<list>
+			</list>
+		</property>
 
 	</bean>
 
@@ -1194,6 +1202,10 @@
 			<list>
 				<ref bean="article1" />
 				<ref bean="article2" />
+			</list>
+		</property>
+		<property name="advertisements">
+			<list>
 			</list>
 		</property>
 
@@ -1221,6 +1233,10 @@
 				<ref bean="article6" />
 			</list>
 		</property>
+		<property name="advertisements">
+			<list>
+			</list>
+		</property>
 
 	</bean>
 	
@@ -1242,6 +1258,10 @@
 		<property name="articless">
 			<list>
 				<ref bean="article7"/>
+			</list>
+		</property>
+		<property name="advertisements">
+			<list>
 			</list>
 		</property>
 

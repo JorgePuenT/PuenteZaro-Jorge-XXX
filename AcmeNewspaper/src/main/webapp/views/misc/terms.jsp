@@ -83,5 +83,5 @@
 		</strong> <br/>
 		&emsp;<spring:message code="profile.action.1.10.1" /><br/>
 	</div>
-
+</p>
 </div>

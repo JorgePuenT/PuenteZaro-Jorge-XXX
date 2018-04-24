@@ -56,5 +56,5 @@
 		&emsp;<spring:message code="profile.action.3.1.2" /><br/>
 		&emsp;<spring:message code="profile.action.3.1.3" /><br/>
 	</div>
-	
+</p>	
 </div>

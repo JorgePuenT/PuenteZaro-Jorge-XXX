@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AgentService;
 import services.CustomerService;
 import services.UserService;
+import domain.Agent;
 import domain.Customer;
 import domain.User;
 
@@ -23,6 +25,8 @@ public class RegisterController extends AbstractController {
 	private UserService		userService;
 	@Autowired
 	private CustomerService	customerService;
+	@Autowired
+	private AgentService	agentService;
 
 
 	//USER
@@ -88,7 +92,40 @@ public class RegisterController extends AbstractController {
 			}
 		return result;
 	}
+	
+	
+	//Agent
 
+	//Create Edit GET
+	@RequestMapping(value = "agent", method = RequestMethod.GET)
+	public ModelAndView createAgent() {
+		ModelAndView result;
+		try {
+			result = this.newEditModelAndViewAgent(agentService.create());
+		} catch (Throwable oops) {
+			result = new ModelAndView("redirect:list.do");
+		}
+		return result;
+	}
+
+	//Save Delete POST
+	@RequestMapping(value = "agent", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveAgent(@Valid final Agent agent, final BindingResult binding) {
+		ModelAndView result;
+		if (binding.hasErrors())
+			result = this.newEditModelAndViewAgent(agent);
+		else
+			try {
+				agentService.save(agent);
+				result = new ModelAndView("redirect:/");
+			} catch (Throwable oops) {
+				oops.printStackTrace();
+				result = this.newEditModelAndViewAgent(agent);
+				result.addObject("message", "user.commitError");
+			}
+		return result;
+	}
+	
 	//AUXILIARES
 
 	protected ModelAndView newEditModelAndViewUser(final User user) {
@@ -118,6 +155,21 @@ public class RegisterController extends AbstractController {
 		result.addObject("customer", customer);
 		result.addObject("message", message);
 		result.addObject("actionUri", "customer/save.do");
+		return result;
+	}
+	
+	protected ModelAndView newEditModelAndViewAgent(final Agent agent) {
+		ModelAndView result;
+		result = this.newEditModelAndViewAgent(agent, null);
+		return result;
+	}
+
+	protected ModelAndView newEditModelAndViewAgent(final Agent agent, final String message) {
+		ModelAndView result;
+		result = new ModelAndView("register/agent");
+		result.addObject("agent", agent);
+		result.addObject("message", message);
+		result.addObject("actionUri", "agent/save.do");
 		return result;
 	}
 

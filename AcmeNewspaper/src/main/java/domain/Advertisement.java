@@ -18,6 +18,7 @@ public class Advertisement extends DomainEntity{
 	private String bannerUrl;
 	private String targetUrl;
 	private CreditCard creditCard;
+	private Boolean inappropriate;
 	
 	@NotBlank
 	public String getTitle() {
@@ -58,6 +59,15 @@ public class Advertisement extends DomainEntity{
 		this.creditCard = creditCard;
 	}
 	
+	@NotNull
+	public Boolean getInappropriate() {
+		return inappropriate;
+	}
+
+	public void setInappropriate(Boolean inappropriate) {
+		this.inappropriate = inappropriate;
+	}
+
 	private Agent agent;
 	private Newspaper newspaper;
 
@@ -68,13 +78,13 @@ public class Advertisement extends DomainEntity{
 		return agent;
 	}
 
-	@Valid
-	@NotNull
-	@ManyToOne(optional=false)
 	public void setAgent(Agent agent) {
 		this.agent = agent;
 	}
 
+	@Valid
+	@NotNull
+	@ManyToOne(optional=false)
 	public Newspaper getNewspaper() {
 		return newspaper;
 	}
