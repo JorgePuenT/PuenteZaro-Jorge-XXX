@@ -38,7 +38,7 @@ public class CustomerSubscriptionController extends AbstractController {
 		try {
 			if (customerService.isSubscribed(newspaperService.findOne(newspaperId)))
 				throw new Exception("Already subscribed");
-			Subscription subscription = subscriptionService.create(newspaperId);
+			Subscription subscription = subscriptionService.create(newspaperId,null);
 			result = newEditModelAndView(subscription);
 		} catch (Throwable oops) {
 			result = new ModelAndView("redirect:/");
