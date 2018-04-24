@@ -18,6 +18,7 @@ import security.UserAccountService;
 import domain.Chirp;
 import domain.Newspaper;
 import domain.User;
+import domain.Volume;
 
 @Service
 @Transactional
@@ -47,6 +48,7 @@ public class UserService {
 		Collection<User> follows = new ArrayList<User>();
 		Collection<User> followedBy = new ArrayList<User>();
 		Collection<Chirp> chirps = new ArrayList<Chirp>();
+		Collection<Volume> volumes = new ArrayList<Volume>();
 
 		res.setEmailss(emailss);
 		res.setAddressess(addressess);
@@ -55,6 +57,7 @@ public class UserService {
 		res.setFollows(follows);
 		res.setFollowedBy(followedBy);
 		res.setChirps(chirps);
+		res.setVolumes(volumes);
 
 		//UserAccount
 		UserAccount userAccount = new UserAccount();

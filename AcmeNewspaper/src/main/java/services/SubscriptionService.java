@@ -29,17 +29,23 @@ public class SubscriptionService {
 	private Validator				validator;
 	@Autowired
 	private NewspaperService		newspaperService;
+	@Autowired
+	private VolumeService 			volumeService;
 
 
 	//Supporting Services -------------------
 
 	//CRUD Methods -------------------------
 
-	public Subscription create(int newspaperId) {
+	public Subscription create(Integer newspaperId, Integer volumeId) {
 		Assert.isTrue(newspaperId > 0);
 		Assert.isTrue(newspaperService.findOne(newspaperId) instanceof domain.Newspaper);
+		Assert.isTrue(newspaperId!=null || volumeId!=null);
 		Subscription res = new Subscription();
-		res.setNewspaper(newspaperService.findOne(newspaperId));
+		if(volumeId==null)
+			res.setNewspaper(newspaperService.findOne(newspaperId));
+		else
+			res.setVolume(volumeService.findOne(volumeId));
 		return res;
 	}
 
@@ -56,7 +62,11 @@ public class SubscriptionService {
 
 	public Subscription save(final Subscription subscription) {
 		Assert.notNull(subscription);
-		Assert.isTrue(!customerService.isSubscribed(subscription.getNewspaper()));
+		if(subscription.getNewspaper()!=null)
+			Assert.isTrue(!customerService.isSubscribed(subscription.getNewspaper()));
+		else
+			Assert.isTrue(!customerService.isSubscribedVolume(subscription.getVolume()));
+			
 
 		//Comprobación fecha
 		Date cardDate = new Date();
