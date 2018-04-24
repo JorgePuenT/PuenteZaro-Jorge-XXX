@@ -12,78 +12,76 @@
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1" />
-		</strong></br>
+		</strong><br/>
 		&emsp;<spring:message code="profile.action.1.1" />
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.2" />
-		</strong></br>
-		&emsp;<spring:message code="profile.action.1.2.1" /></br>
-		&emsp;<spring:message code="profile.action.1.2.2" /></br>
-		&emsp;<spring:message code="profile.action.1.2.3" /></br>
+		</strong><br/>
+		&emsp;<spring:message code="profile.action.1.2.1" /><br/>
+		&emsp;<spring:message code="profile.action.1.2.2" /><br/>
+		&emsp;<spring:message code="profile.action.1.2.3" /><br/>
 	</div>
 	<div class="well"> 
 		<strong>
 			<spring:message code="profile.action.1.3" />
-		</strong></br>
-		&emsp;<spring:message code="profile.action.1.3.1" /></br>
-		&emsp;<spring:message code="profile.action.1.3.2" /></br>
+		</strong><br/>
+		&emsp;<spring:message code="profile.action.1.3.1" /><br/>
+		&emsp;<spring:message code="profile.action.1.3.2" /><br/>
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.4" />
-		</strong></br>
-		&emsp;<spring:message code="profile.action.1.4.1" /></br>
-		&emsp;<spring:message code="profile.action.1.4.2" /></br>
-		&emsp;<spring:message code="profile.action.1.4.3" /></br>
+		</strong><br/>
+		&emsp;<spring:message code="profile.action.1.4.1" /><br/>
+		&emsp;<spring:message code="profile.action.1.4.2" /><br/>
+		&emsp;<spring:message code="profile.action.1.4.3" /><br/>
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.5" />
-		</strong> </br>
-		&emsp;<spring:message code="profile.action.1.5.1" /></br>
-		&emsp;<spring:message code="profile.action.1.5.2" /></br>
-		&emsp;<spring:message code="profile.action.1.5.3" /></br>
-		&emsp;<spring:message code="profile.action.1.5.4" /></br>
-		&emsp;<spring:message code="profile.action.1.5.5" /></br>
-		&emsp;<spring:message code="profile.action.1.5.6" /></br>
-		&emsp;<spring:message code="profile.action.1.5.7" /></br>
+		</strong> <br/>
+		&emsp;<spring:message code="profile.action.1.5.1" /><br/>
+		&emsp;<spring:message code="profile.action.1.5.2" /><br/>
+		&emsp;<spring:message code="profile.action.1.5.3" /><br/>
+		&emsp;<spring:message code="profile.action.1.5.4" /><br/>
+		&emsp;<spring:message code="profile.action.1.5.5" /><br/>
+		&emsp;<spring:message code="profile.action.1.5.6" /><br/>
+		&emsp;<spring:message code="profile.action.1.5.7" /><br/>
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.6" />
-		</strong> </br>
-		&emsp;<spring:message code="profile.action.1.6.1" /></br>
-		&emsp;<spring:message code="profile.action.1.6.2" /></br>
+		</strong> <br/>
+		&emsp;<spring:message code="profile.action.1.6.1" /><br/>
+		&emsp;<spring:message code="profile.action.1.6.2" /><br/>
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.7" />
-		</strong> </br>
-		&emsp;<spring:message code="profile.action.1.7.1" /></br>
-		<spring:message code="profile.action.1.7.2" /></br>
+		</strong> <br/>
+		&emsp;<spring:message code="profile.action.1.7.1" /><br/>
+		<spring:message code="profile.action.1.7.2" /><br/>
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.8" />
-		</strong> </br>
-		&emsp;<spring:message code="profile.action.1.8.1" /></br>
-		&emsp;<spring:message code="profile.action.1.8.2" /></br>
+		</strong> <br/>
+		&emsp;<spring:message code="profile.action.1.8.1" /><br/>
+		&emsp;<spring:message code="profile.action.1.8.2" /><br/>
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.9" />
-		</strong> </br>
-		&emsp;<spring:message code="profile.action.1.9.1" /></br>
+		</strong> <br/>
+		&emsp;<spring:message code="profile.action.1.9.1" /><br/>
 	</div>
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.1.10" />
-		</strong> </br>
-		&emsp;<spring:message code="profile.action.1.10.1" /></br>
+		</strong> <br/>
+		&emsp;<spring:message code="profile.action.1.10.1" /><br/>
 	</div>
-
-</p>
 
 </div>
