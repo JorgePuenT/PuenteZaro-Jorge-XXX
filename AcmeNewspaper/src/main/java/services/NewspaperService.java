@@ -14,6 +14,7 @@ import repositories.NewspaperRepository;
 import domain.Article;
 import domain.Newspaper;
 import domain.Subscription;
+import domain.VolumeNewspaper;
 
 @Service
 @Transactional
@@ -40,6 +41,7 @@ public class NewspaperService {
 
 		res.setArticless(new ArrayList<Article>());
 		res.setSubscriptionss(new ArrayList<Subscription>());
+		res.setVolumeNewspapers(new ArrayList<VolumeNewspaper>());
 
 		res.setInappropriate(false);
 		Assert.isTrue(userService.findByPrincipal() instanceof domain.User);

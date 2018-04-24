@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import domain.Customer;
 import domain.Newspaper;
+import domain.Volume;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
@@ -16,5 +17,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	@Query("select count(s) from Subscription s where s.newspaper = ?1 and s.customer = ?2")
 	int isSubscribed(Newspaper newspaper,Customer principal);
+
+	@Query("select count(s) from Subscription s where s.volume = ?1 and s.customer = ?2")
+	int isSubscribedVolume(Volume volume, Customer findByPrincipal);
 
 }

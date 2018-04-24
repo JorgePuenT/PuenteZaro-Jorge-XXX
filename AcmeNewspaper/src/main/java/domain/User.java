@@ -24,6 +24,7 @@ public class User extends Actor {
 	private Collection<User> follows;
 	private Collection<User> followedBy;
 	private Collection<Chirp> chirps;
+	private Collection<Volume> volumes;
 
 	@NotNull
 	@Valid
@@ -69,5 +70,17 @@ public class User extends Actor {
 		this.chirps = chirps;
 	}
 
+	@NotNull
+	@Valid
+	@OneToMany(mappedBy="user")
+	public Collection<Volume> getVolumes() {
+		return volumes;
+	}
+
+	public void setVolumes(Collection<Volume> volumes) {
+		this.volumes = volumes;
+	}
+
+	
 
 }

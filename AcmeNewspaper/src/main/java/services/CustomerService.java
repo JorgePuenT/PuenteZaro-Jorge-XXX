@@ -18,6 +18,7 @@ import security.UserAccountService;
 import domain.Customer;
 import domain.Newspaper;
 import domain.Subscription;
+import domain.Volume;
 
 @Service
 @Transactional
@@ -99,6 +100,10 @@ public class CustomerService {
 
 	public boolean isSubscribed(final Newspaper newspaper) {
 		return this.customerRepository.isSubscribed(newspaper,this.findByPrincipal()) > 0 ? true : false;
+	}
+
+	public boolean isSubscribedVolume(Volume volume) {
+		return this.customerRepository.isSubscribedVolume(volume,this.findByPrincipal()) > 0 ? true : false;
 	}
 
 }

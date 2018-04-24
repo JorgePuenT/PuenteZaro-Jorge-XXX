@@ -108,6 +108,7 @@ public class Newspaper extends DomainEntity {
 	private Collection<Article> articless;
 	private User user;
 	private Collection<Advertisement> advertisements;
+	private Collection<VolumeNewspaper> volumeNewspapers;
 
 	@NotNull
 	@Valid
@@ -151,6 +152,17 @@ public class Newspaper extends DomainEntity {
 
 	public void setAdvertisements(Collection<Advertisement> advertisements) {
 		this.advertisements = advertisements;
+	}
+
+	@NotNull
+	@Valid
+	@OneToMany(mappedBy = "newspaper")
+	public Collection<VolumeNewspaper> getVolumeNewspapers() {
+		return volumeNewspapers;
+	}
+
+	public void setVolumeNewspapers(Collection<VolumeNewspaper> volumeNewspapers) {
+		this.volumeNewspapers = volumeNewspapers;
 	}
 	
 	
