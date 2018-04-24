@@ -14,12 +14,12 @@
 		<font size="6">
 			<spring:message code="profile.action.2" />
 		</font>
-		</strong></br>
+		</strong><br/>
 
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.2.1" />
-		</strong></br>
+		</strong><br/>
 	
 		&emsp;<spring:message code="profile.action.2.1.1" />
 	</div>
@@ -27,17 +27,17 @@
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.2.2" />
-		</strong></br>
-		&emsp;<spring:message code="profile.action.2.2.1" /></br>
-		&emsp;<spring:message code="profile.action.2.2.2" /></br>
+		</strong><br/>
+		&emsp;<spring:message code="profile.action.2.2.1" /><br/>
+		&emsp;<spring:message code="profile.action.2.2.2" /><br/>
 	</div>
 	
 	<div class="well"> 
 		<strong>
 			<spring:message code="profile.action.2.3" />
-		</strong></br>
-		&emsp;<spring:message code="profile.action.2.3.1" /></br>
-		&emsp;<spring:message code="profile.action.2.3.2" /></br>
+		</strong><br/>
+		&emsp;<spring:message code="profile.action.2.3.1" /><br/>
+		&emsp;<spring:message code="profile.action.2.3.2" /><br/>
 	</div>
 	
 	
@@ -45,19 +45,16 @@
 		<font size="6">
 			<spring:message code="profile.action.3" />
 			</font>
-		</strong></br>
+		</strong><br/>
 	
 	
 	<div class="well">
 		<strong>
 			<spring:message code="profile.action.3.1" />
-		</strong></br>
-		&emsp;<spring:message code="profile.action.3.1.1" /></br>
-		&emsp;<spring:message code="profile.action.3.1.2" /></br>
-		&emsp;<spring:message code="profile.action.3.1.3" /></br>
+		</strong><br/>
+		&emsp;<spring:message code="profile.action.3.1.1" /><br/>
+		&emsp;<spring:message code="profile.action.3.1.2" /><br/>
+		&emsp;<spring:message code="profile.action.3.1.3" /><br/>
 	</div>
 	
-
-</p>
-
 </div>
