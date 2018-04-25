@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AdvertisementService;
 import services.ArticleService;
 import services.ChirpService;
 import services.NewspaperService;
@@ -29,6 +30,8 @@ public class AdminController extends AbstractController {
 	private ChirpService chirpService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AdvertisementService advertisementService;
 
 	//Constructor
 	public AdminController() {
@@ -38,7 +41,7 @@ public class AdminController extends AbstractController {
 	@RequestMapping("/article/inappropriate")
 	public ModelAndView setArticleInappropriate(@RequestParam(required=true) final int articleId){
 		articleService.markAsInappropriate(articleId);
-		return new ModelAndView("redirect: ../../../../article/list.do");
+		return new ModelAndView("redirect:list.do");
 	}
 
 	@RequestMapping("/article/taboo-list")
@@ -58,7 +61,7 @@ public class AdminController extends AbstractController {
 	@RequestMapping("/newspaper/inappropriate")
 	public ModelAndView setNewspaperInappropriate(@RequestParam(required=true) final int newspaperId){
 		newspaperService.markAsInappropriate(newspaperId);
-		return new ModelAndView("redirect: ../../../../newspaper/list.do");
+		return new ModelAndView("redirect:list.do");
 	}
 
 	@RequestMapping("/newspaper/taboo-list")
@@ -77,7 +80,7 @@ public class AdminController extends AbstractController {
 	@RequestMapping("/chirp/inappropriate")
 	public ModelAndView setChirpInappropriate(@RequestParam(required=true) final int chirpId){
 		chirpService.markAsInappropriate(chirpId);
-		return new ModelAndView("redirect:taboo-list.do");
+		return new ModelAndView("redirect:list.do");
 	}
 
 
@@ -105,6 +108,38 @@ public class AdminController extends AbstractController {
 			res = new ModelAndView("redirect:/");
 		}
 		return res;
+	}
+	
+	@RequestMapping("/advertisement/taboo-list")
+	public ModelAndView listInappropriateAdvertisements(){
+		ModelAndView res ;
+		try{
+			res = new ModelAndView("advertisement/list");
+			res.addObject("advertisements",advertisementService.findAllTaboo());
+			res.addObject("requestUri", "admin/advertisement/taboo-list.do");
+		} catch(Throwable oops) {
+			res = new ModelAndView("redirect:/");
+		}
+		return res;
+	}
+
+	@RequestMapping("/advertisement/list")
+	public ModelAndView listAdvertisementsAdmin() {
+		ModelAndView res;
+		try{
+			res = new ModelAndView("advertisement/list");
+			res.addObject("advertisements",advertisementService.findAll());
+			res.addObject("requestUri", "admin/advertisement/list.do");
+		} catch(Throwable oops) {
+			res = new ModelAndView("redirect:/");
+		}
+		return res;
+	}
+	
+	@RequestMapping("/advertisement/inappropriate")
+	public ModelAndView setAdvertisementInappropriate(@RequestParam(required=true) final int advertisementId){
+		advertisementService.markAsInappropriate(advertisementId);
+		return new ModelAndView("redirect:list.do");
 	}
 
 	@RequestMapping("/dashboard")
@@ -139,6 +174,8 @@ public class AdminController extends AbstractController {
 			ratios.add(newspaperService.getRatioOfPublicOverPrivateNewspapers());
 			ratios.add(newspaperService.getRatioOfSubscribersVersusCustomersTotal());
 			ratios.add(userService.getAvgRatioOfNewspapersPerPublisher());
+			ratios.add(advertisementService.getRatioWithTaboo());
+			ratios.add(newspaperService.getRatioAdvertisedNewspapers());
 			result.addObject("ratios",ratios);
 
 			List<Newspaper> newspapersOverAvg = new ArrayList<Newspaper>(newspaperService.getNewspapersOverAvg());

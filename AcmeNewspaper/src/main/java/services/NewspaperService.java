@@ -165,8 +165,13 @@ public class NewspaperService {
 		Collection<Newspaper> result = findAllNotInappropriate();
 		result.removeAll(advertised);
 		return result;
+	}	
+	
+	public Double getRatioAdvertisedNewspapers(){
+		Double res = newspaperRepository.getRatioAdvertisedNewspapers();
+		return res == null ? 0 : res;
 	}
-
+	
 	public Object findNewspapersForVolume(Volume volume) {
 		return newspaperRepository.findNewspapersForVolume(volume);
 	}
