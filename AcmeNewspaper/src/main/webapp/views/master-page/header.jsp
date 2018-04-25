@@ -69,6 +69,7 @@
 				<button onClick="javascript:window.location.href = 'user/newspaper/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.newspaper.new" /></button>
 				<button onClick="javascript:window.location.href = 'user/article/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.article.new" /></button>
 				<button onClick="javascript:window.location.href = 'user/chirp/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.chirp.new" /></button>
+				<button onClick="javascript:window.location.href = 'user/volume/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.volume.new" /></button>
 								
 
 			</security:authorize>
