@@ -38,6 +38,7 @@
 		<security:intercept-url pattern="/systemConfig/**" access="hasRole('ADMIN')"/>
 		<security:intercept-url pattern="/user/**" access="hasRole('USER')"/>
 		<security:intercept-url pattern="/customer/**" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/agent/**" access="hasRole('AGENT')"/>
 
 		<security:intercept-url pattern="/register/**" access="isAnonymous()" requires-channel="https"/>
 		<security:intercept-url pattern="/newspaper/**" access="permitAll"/>
