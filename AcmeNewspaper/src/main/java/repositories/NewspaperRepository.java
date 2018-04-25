@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import domain.Agent;
 import domain.Newspaper;
 import domain.User;
+import domain.Volume;
 
 @Repository
 public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
@@ -61,4 +62,7 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 	
 	@Query("select coalesce(count(n)/(select count(n2)*1.0 from Newspaper n2 where n2.advertisements.size = 0),0) from Newspaper n where n.advertisements.size > 0")
 	Double getRatioAdvertisedNewspapers();
+
+	@Query("select v.newspaper from VolumeNewspaper v where v.newspaper.inappropriate=false and v.volume=?1")
+	Collection<Volume> findNewspapersForVolume(Volume volume);
 }
