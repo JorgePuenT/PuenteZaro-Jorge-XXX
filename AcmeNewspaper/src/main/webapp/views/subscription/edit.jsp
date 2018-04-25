@@ -12,7 +12,7 @@
 	<jstl:set var='model' value='subscription' scope='request'/>
 	
 		<!-- Hidden Attributes -->
-		<lib:input name="newspaper" type="hidden" />
+		<lib:input name="newspaper,volume" type="hidden" />
 		
 		
 		<!-- Hidden Attributes -->

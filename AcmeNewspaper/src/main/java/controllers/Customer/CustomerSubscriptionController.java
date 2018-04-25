@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import services.CustomerService;
 import services.NewspaperService;
 import services.SubscriptionService;
+import services.VolumeService;
+import utilities.internal.SchemaPrinter;
 import controllers.AbstractController;
 import domain.Subscription;
 
@@ -25,6 +27,8 @@ public class CustomerSubscriptionController extends AbstractController {
 	private CustomerService		customerService;
 	@Autowired
 	private NewspaperService	newspaperService;
+	@Autowired
+	private VolumeService		volumeService;
 
 
 	//Constructor
@@ -32,13 +36,23 @@ public class CustomerSubscriptionController extends AbstractController {
 		super();
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam(required = true) final int newspaperId) {
+	public ModelAndView create(@RequestParam(required = false) final Integer newspaperId,
+			@RequestParam(required = false) final Integer volumeId) {
 		ModelAndView result;
 		try {
-			if (customerService.isSubscribed(newspaperService.findOne(newspaperId)))
+			if (newspaperId!=null && customerService.isSubscribed(newspaperService.findOne(newspaperId)))
 				throw new Exception("Already subscribed");
-			Subscription subscription = subscriptionService.create(newspaperId,null);
+			if (volumeId!=null && customerService.isSubscribedVolume(volumeService.findOne(volumeId)))
+				throw new Exception("Already subscribed");
+			if (newspaperId == null && volumeId == null)
+				throw new Exception("Wrong direction");
+			Subscription subscription;
+			if(volumeId==null)
+				subscription = subscriptionService.create(newspaperId,null);
+			else
+				subscription = subscriptionService.create(null, volumeId);
 			result = newEditModelAndView(subscription);
 		} catch (Throwable oops) {
 			result = new ModelAndView("redirect:/");
@@ -50,13 +64,22 @@ public class CustomerSubscriptionController extends AbstractController {
 	public ModelAndView save(final Subscription subscription, final BindingResult binding) {
 		ModelAndView result;
 		Subscription validated = subscriptionService.reconstruct(subscription, binding);
+		SchemaPrinter.print(validated);
 		if (binding.hasErrors())
 			result = newEditModelAndView(validated);
 		else
 			try {
+				SchemaPrinter.print(1);
 				subscriptionService.save(validated);
-				result = new ModelAndView("redirect:/newspaper/display.do?newspaperId=" + validated.getNewspaper().getId());
+				SchemaPrinter.print(2);
+				if(validated.getNewspaper()!=null)
+					result = new ModelAndView("redirect:/newspaper/display.do?newspaperId=" + validated.getNewspaper().getId());
+				else {
+					SchemaPrinter.print(3);
+					result = new ModelAndView("redirect:/volume/display.do?volumeId=" + validated.getVolume().getId());
+				}		
 			} catch (Throwable oops) {
+				oops.printStackTrace();
 				result = newEditModelAndView(validated);
 				result.addObject("message", "subscription.commitError");
 			}

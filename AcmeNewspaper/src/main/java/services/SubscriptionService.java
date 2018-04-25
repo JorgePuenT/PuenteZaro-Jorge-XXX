@@ -38,14 +38,13 @@ public class SubscriptionService {
 	//CRUD Methods -------------------------
 
 	public Subscription create(Integer newspaperId, Integer volumeId) {
-		Assert.isTrue(newspaperId > 0);
-		Assert.isTrue(newspaperService.findOne(newspaperId) instanceof domain.Newspaper);
 		Assert.isTrue(newspaperId!=null || volumeId!=null);
 		Subscription res = new Subscription();
 		if(volumeId==null)
 			res.setNewspaper(newspaperService.findOne(newspaperId));
-		else
+		else{
 			res.setVolume(volumeService.findOne(volumeId));
+		}
 		return res;
 	}
 

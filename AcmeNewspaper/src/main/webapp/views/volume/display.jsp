@@ -14,19 +14,26 @@
 
 
 <div class="container col-sm-8 col-sm-offset-2 well">
+
+	
+	<security:authorize access="hasRole('CUSTOMER')">
+		<jstl:if test="${not isSubscribed}">
+			<a class="btn btn-primary btn-block" href="customer/subscription/create.do?volumeId=${volume.id}"><spring:message code="volume.subscribe"/></a>
+		</jstl:if>
+	</security:authorize>
+	
 	<div class="col-sm-12">
 	
 	<h1 style="text-align:center;"><jstl:out value="${volume.title}. (${volume.year})" /></h1>	
-	<h2 style="text-align:right;"><small><jstl:out value="${volume.description}" /></small></h2>&nbsp;
+	<h2 style="text-align:center;"><small><jstl:out value="${volume.description}" /></small></h2>&nbsp;
 	
 	</div>
 </div>
 
 
-<div class="container col-sm-8 col-sm-offset-2 well">
-	<h1 style="text-align:center;"><spring:message code="volume.newspapers"/></h1>
-</div>
+
 <div class="col-sm-10 col-sm-offset-1 well">
+	<h1 style="text-align:center;"><spring:message code="volume.newspapers"/></h1>
 	<display:table pagesize="6" class="displaytag" keepStatus="true" name="newspapers" requestURI="${requestUri}" id="row">
 		<display:setProperty name="paging.banner.onepage" value=""/>
 	    <display:setProperty name="paging.banner.placement" value="bottom"/>
