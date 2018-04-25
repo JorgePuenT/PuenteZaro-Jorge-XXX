@@ -36,5 +36,9 @@
 		<bean class="converters.AgentToStringConverter"/>
 		<bean class="converters.StringToAdvertisementConverter"/>
 		<bean class="converters.AdvertisementToStringConverter"/>
+		<bean class="converters.StringToVolumeConverter"/>
+		<bean class="converters.VolumeToStringConverter"/>
+		<bean class="converters.StringToVolumeNewspaperConverter"/>
+		<bean class="converters.VolumeNewspaperToStringConverter"/>
 	</util:list>
 </beans>

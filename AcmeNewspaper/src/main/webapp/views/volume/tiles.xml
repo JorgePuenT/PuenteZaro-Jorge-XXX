@@ -9,4 +9,8 @@
 		<put-attribute name="title" value="Volume list" />
 		<put-attribute name="body" value="/views/volume/list.jsp" />
 	</definition>
+	<definition name="volume/display" extends="master.page">
+		<put-attribute name="title" value="Volume display" />
+		<put-attribute name="body" value="/views/volume/display.jsp" />
+	</definition>
 </tiles-definitions>
