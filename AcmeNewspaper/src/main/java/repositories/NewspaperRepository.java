@@ -58,4 +58,7 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select distinct(a.newspaper) from Advertisement a where a.agent = ?1")
 	Collection<Newspaper> findMyAdvertisedNewspapers(Agent a);
+	
+	@Query("select coalesce(count(n)/(select count(n2)*1.0 from Newspaper n2 where n2.advertisements.size = 0),0) from Newspaper n where n.advertisements.size > 0")
+	Double getRatioAdvertisedNewspapers();
 }

@@ -165,4 +165,10 @@ public class NewspaperService {
 		result.removeAll(advertised);
 		return result;
 	}
+	
+	
+	public Double getRatioAdvertisedNewspapers(){
+		Double res = newspaperRepository.getRatioAdvertisedNewspapers();
+		return res == null ? 0 : res;
+	}
 }

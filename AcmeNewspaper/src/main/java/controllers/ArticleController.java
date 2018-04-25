@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AdvertisementService;
 import services.ArticleService;
 import services.CustomerService;
+import domain.Advertisement;
 import domain.Article;
 
 @Controller
@@ -23,6 +25,8 @@ public class ArticleController extends AbstractController {
 	private ArticleService	articleService;
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private AdvertisementService advertisementService;
 
 
 	//Constructor
@@ -62,11 +66,13 @@ public class ArticleController extends AbstractController {
 		ModelAndView result;
 		try{
 			Article a = articleService.findOne(articleId);
+			Advertisement ad = advertisementService.getRandomNonInappropriateForNewspaper(a.getNewspaper());
 			if(!articleService.isPublished(a)) throw new Exception();
 			if(a.getNewspaper().getIsPrivate())
 				if(!customerService.isSubscribed(a.getNewspaper())) throw new Exception();
 			result = new ModelAndView("article/display");
 			result.addObject("article",a);
+			result.addObject("advertisement",ad);
 			result.addObject("followUps",a.getFollowUps());
 			result.addObject("requestUri", "article/display.do");
 		}catch(Throwable oops){
