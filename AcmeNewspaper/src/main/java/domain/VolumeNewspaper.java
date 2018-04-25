@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 @Access(AccessType.PROPERTY)
 public class VolumeNewspaper extends DomainEntity{

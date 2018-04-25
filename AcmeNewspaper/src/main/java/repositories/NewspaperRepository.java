@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import domain.Agent;
 import domain.Newspaper;
 import domain.User;
+import domain.Volume;
 
 @Repository
 public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
@@ -58,4 +59,7 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select distinct(a.newspaper) from Advertisement a where a.agent = ?1")
 	Collection<Newspaper> findMyAdvertisedNewspapers(Agent a);
+
+	@Query("select v.newspaper from VolumeNewspaper v where v.newspaper.inappropriate=false and v.volume=?1")
+	Collection<Volume> findNewspapersForVolume(Volume volume);
 }
