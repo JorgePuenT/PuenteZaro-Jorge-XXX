@@ -78,7 +78,7 @@
 
 
 <div class="col-sm-10 col-sm-offset-1 well">
-<display:table pagesize="5" class="displaytag" keepStatus="true" name="ratios" id="row3">
+<display:table pagesize="7" class="displaytag" keepStatus="true" name="ratios" id="row3">
 	 <display:caption> 
 	 	<spring:message code='admin.title3'/>
 	 </display:caption>
@@ -98,6 +98,12 @@
 		</jstl:when>
 		<jstl:when test="${row3_rowNum == 5}">
 			<spring:message code="admin.query16"/>
+		</jstl:when>
+		<jstl:when test="${row3_rowNum == 6}">
+			<spring:message code="admin.query17"/>
+		</jstl:when>
+		<jstl:when test="${row3_rowNum == 7}">
+			<spring:message code="admin.query18"/>
 		</jstl:when>
 	</jstl:choose>
 </display:column>

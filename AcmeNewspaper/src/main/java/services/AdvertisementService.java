@@ -1,8 +1,10 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,12 +68,24 @@ public class AdvertisementService {
 			this.advertisementRepository.save(a);
 		}
 
-		public Collection<Newspaper> findAllTaboo() {
+		public Collection<Advertisement> findAllTaboo() {
 			return advertisementRepository.findAllTaboo();
 		}
 		
 		public void flush(){
 			advertisementRepository.flush();
+		}
+		
+		public Double getRatioWithTaboo(){
+			Double res = advertisementRepository.getRatioWithTaboo();
+			return res == null ? 0 : res;
+		}
+		
+		public Advertisement getRandomNonInappropriateForNewspaper(Newspaper newspaper){
+			List<Advertisement> advertisements = new ArrayList<Advertisement>(advertisementRepository.getNonInappropriateForNewspaper(newspaper));
+			if(advertisements.isEmpty()) return null;
+			Advertisement res = advertisements.get((int)Math.round(Math.random()*advertisements.size()-1));
+			return res;
 		}
 		
 		
