@@ -1,6 +1,8 @@
 
 package security;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +49,17 @@ public class UserAccountService {
 	public UserAccount save(UserAccount ua) {
 		Assert.notNull(ua);
 		return userAccountRepository.save(ua);
+	}
+	
+	public Collection<UserAccount> findAll(){
+		return userAccountRepository.findAll();
+	}
+	
+	public Boolean usernameAvailable(String username) {
+		Boolean res = false;
+		if (userAccountRepository.usernameCount(username) == 0)
+			res = true;
+		return res;
 	}
 
 

@@ -94,6 +94,12 @@
 		<ul class="nav navbar-nav navbar-right">
 		
 			<!-- Language Buttons -->
+			<security:authorize access="isAuthenticated()">
+				<li style="margin-right:5px">
+					<button onClick="javascript:window.location.href = 'profile/message/list.do'" class="btn navbar-btn btn-primary" >&nbsp; <span class="glyphicon glyphicon-envelope"></span> &nbsp;</button>
+				</li>
+			</security:authorize>
+			
 			<li class="btn-group">	
 				<button onClick="javascript:window.location.href = '?language=en'" class="btn navbar-btn btn-info" >en</button>
 				<button onClick="javascript:window.location.href = '?language=es'" class="btn navbar-btn btn-info" >es</button>
