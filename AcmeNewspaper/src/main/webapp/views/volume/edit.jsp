@@ -25,7 +25,9 @@
 		<lib:input type="text" name='description'/>
 		
 		<div id="app">
+			<h2><spring:message code="volume.newspapers"/></h2>
 			<div class="well col-md-6">
+				<h4><spring:message code="volume.newspapers.all"/></h4>
 				<ol>
 					<li v-for="item in allNP">
 						<a v-on:click="left(item.id)">{{ item.name }}</a>
@@ -33,9 +35,10 @@
 				</ol>
 			</div>
 			<div class="well col-md-6">
+				<h4><spring:message code="volume.newspapers.selected"/></h4>
 				<ol>
-					<li v-for="item2 in selectedNP">
-						<a v-on:click="right(item2.id)">{{ item2.name }}</a>
+					<li v-for="item in selectedNP">
+						<a v-on:click="right(item.id)">{{ item.name }}</a>
 					</li>
 				</ol>
 		</div>
@@ -66,19 +69,19 @@
 				selectedNP:[],		
 			},
 			methods: {
-				left: function (i) {
-					console.log(1);
+				left: function (id) {
+					console.log(id);
 					for(var i=0; i< this.allNP.length; i++){
-						if(this.allNP[i].id == i){
+						if(this.allNP[i].id == id){
 							this.selectedNP.push(this.allNP[i]);
 							this.allNP.splice(i,1);
 						}
 					}
 				},
-				right: function (i) {
-					console.log(2);
+				right: function (id) {
+					console.log(id);
 					for(var i=0; i< this.selectedNP.length; i++){
-						if(this.selectedNP[i].id == i){
+						if(this.selectedNP[i].id == id){
 							this.allNP.push(this.selectedNP[i]);
 							this.selectedNP.splice(i,1);
 						}
