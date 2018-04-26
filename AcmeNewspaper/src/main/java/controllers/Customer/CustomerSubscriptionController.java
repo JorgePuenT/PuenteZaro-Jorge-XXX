@@ -64,6 +64,7 @@ public class CustomerSubscriptionController extends AbstractController {
 	public ModelAndView save(final Subscription subscription, final BindingResult binding) {
 		ModelAndView result;
 		Subscription validated = subscriptionService.reconstruct(subscription, binding);
+		SchemaPrinter.print(validated);
 		if (binding.hasErrors())
 			result = newEditModelAndView(validated);
 		else

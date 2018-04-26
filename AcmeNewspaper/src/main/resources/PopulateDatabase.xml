@@ -1168,9 +1168,9 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
-				<ref bean="volumeNewspaper1" />
+				<ref bean="volume1" />
 			</list>
 		</property>
 
@@ -1205,7 +1205,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1238,7 +1238,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1271,7 +1271,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1302,7 +1302,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1314,19 +1314,15 @@
 		<property name="description" value="Descripcion" />
 		<property name="year" value="2016" />
 		<property name="user" ref="user1"/>
-		<property name="volumeNewspapers">
+		<property name="newspapers">
 			<list>
-				<ref bean="volumeNewspaper1" />
+				<ref bean="newspaper1" />
 			</list>
 		</property>
 		<property name="subscriptions">
 			<list>
 			</list>
 		</property>
-	</bean>
-	<bean id="volumeNewspaper1" class="domain.VolumeNewspaper">
-		<property name="volume" ref="volume1"/>
-		<property name="newspaper" ref="newspaper1"/>
 	</bean>
 
 </beans>

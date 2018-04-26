@@ -16,7 +16,6 @@ import domain.Article;
 import domain.Newspaper;
 import domain.Subscription;
 import domain.Volume;
-import domain.VolumeNewspaper;
 
 @Service
 @Transactional
@@ -45,7 +44,7 @@ public class NewspaperService {
 
 		res.setArticless(new ArrayList<Article>());
 		res.setSubscriptionss(new ArrayList<Subscription>());
-		res.setVolumeNewspapers(new ArrayList<VolumeNewspaper>());
+		res.setVolumes(new ArrayList<Volume>());
 
 		res.setInappropriate(false);
 		Assert.isTrue(userService.findByPrincipal() instanceof domain.User);
@@ -170,9 +169,5 @@ public class NewspaperService {
 	public Double getRatioAdvertisedNewspapers(){
 		Double res = newspaperRepository.getRatioAdvertisedNewspapers();
 		return res == null ? 0 : res;
-	}
-	
-	public Object findNewspapersForVolume(Volume volume) {
-		return newspaperRepository.findNewspapersForVolume(volume);
 	}
 }

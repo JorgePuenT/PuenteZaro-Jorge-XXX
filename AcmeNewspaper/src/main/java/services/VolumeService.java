@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.VolumeRepository;
+import domain.Newspaper;
 import domain.Subscription;
 import domain.Volume;
-import domain.VolumeNewspaper;
 
 @Service
 @Transactional
@@ -37,7 +37,7 @@ public class VolumeService {
 		Volume res = new Volume();
 
 		res.setUser(userService.findByPrincipal());
-		res.setVolumeNewspapers(new ArrayList<VolumeNewspaper>());
+		res.setNewspapers(new ArrayList<Newspaper>());
 		res.setSubscriptions(new ArrayList<Subscription>());
 
 		return res;
