@@ -40,5 +40,9 @@
 		<bean class="converters.VolumeToStringConverter"/>
 		<bean class="converters.StringToVolumeNewspaperConverter"/>
 		<bean class="converters.VolumeNewspaperToStringConverter"/>
+		<bean class="converters.StringToFolderConverter"/>
+		<bean class="converters.FolderToStringConverter"/>
+		<bean class="converters.StringToMessageConverter"/>
+		<bean class="converters.MessageToStringConverter"/>
 	</util:list>
 </beans>

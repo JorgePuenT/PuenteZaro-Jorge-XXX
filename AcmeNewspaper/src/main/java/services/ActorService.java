@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,8 +11,10 @@ import org.springframework.util.Assert;
 
 import repositories.ActorRepository;
 import security.LoginService;
+import security.UserAccount;
 import security.UserAccountService;
 import domain.Actor;
+import domain.Admin;
 
 @Service
 @Transactional
@@ -44,6 +48,10 @@ public class ActorService {
 		}
 		return this.actorRepository.save(actor);
 	}
+	
+	public Collection<Actor> findAll(){
+		return actorRepository.findAll();
+	}
 
 
 	//Other Business Methods --------------------------------
@@ -55,6 +63,22 @@ public class ActorService {
 		} catch(Throwable oops){
 			res = false;
 		}
+		return res;
+	}
+	
+	public Actor findByUserAccount(UserAccount userAccount) {
+		Assert.notNull(userAccount);
+		Actor res;
+		res = actorRepository.findByUserAccount(userAccount.getId());
+		return res;
+	}
+
+	public Actor findByPrincipal() {
+		Actor res;
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Assert.notNull(userAccount);
+		res = findByUserAccount(userAccount);
 		return res;
 	}
 
