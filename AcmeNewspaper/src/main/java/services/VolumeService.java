@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -44,9 +45,18 @@ public class VolumeService {
 	}
 
 	public Volume save(Volume volume) {
-		Assert.isTrue(volume.getId()==0);
-		volume.setYear(new Date().getYear());
-		return volumeRepository.save(volume);
+		if(volume.getId()==0){
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			int year = cal.get(Calendar.YEAR);
+			volume.setYear(year);
+		}
+		Volume res = volumeRepository.save(volume);
+		cleanVolumeNewspaperRelationship(res.getId());
+		for(Newspaper n : res.getNewspapers()){
+			n.getVolumes().add(res);
+		}
+		return res;
 	}
 
 	public Double getAvgOfNewspapersPerVolume() {
@@ -56,6 +66,10 @@ public class VolumeService {
 	public Double getRatioOfSubscriptionsVolumesVersusNewspapers() {
 		Double res = volumeRepository.getRatioOfSubscriptionsVolumesVersusNewspapers();
 		return res == null ? 0 : res;
+	}
+	
+	public void cleanVolumeNewspaperRelationship(int volumeId){
+		volumeRepository.cleanVolumeNewspaperRelationship(volumeId);
 	}
 
 }

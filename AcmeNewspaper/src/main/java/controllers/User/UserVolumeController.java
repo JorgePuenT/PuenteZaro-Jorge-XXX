@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.NewspaperService;
 import services.UserService;
 import services.VolumeService;
+import utilities.internal.SchemaPrinter;
 import controllers.AbstractController;
 import domain.Newspaper;
 import domain.Volume;
@@ -66,6 +67,7 @@ public class UserVolumeController extends AbstractController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Volume volume, final BindingResult binding) {
+		SchemaPrinter.print(volume);
 		ModelAndView result;
 		System.out.println(binding);
 		if (binding.hasErrors())
@@ -91,7 +93,7 @@ public class UserVolumeController extends AbstractController {
 		ModelAndView result;
 		Collection<Newspaper> newspapers = userService.findByPrincipal().getNewspapers();
 		result = new ModelAndView("volume/edit");
-		result.addObject("newspapers", newspapers);
+		result.addObject("allNewspapers", newspapers);
 		result.addObject("volume", volume);
 		result.addObject("actionUri", "user/volume/edit.do");
 		result.addObject("message", message);

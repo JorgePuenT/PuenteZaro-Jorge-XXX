@@ -8,7 +8,7 @@
 <%@taglib prefix="lib" tagdir="/WEB-INF/tags/myTagLib" %>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-<input type="hidden" id="newspapers" value='${newspapers}' />
+
 
 <div class="well col-md-8 col-md-offset-2">
 
@@ -16,9 +16,9 @@
 	<form:form action="user/volume/save.do" modelAttribute="volume">
 		<jstl:set var='model' value='volume' scope='request'/>		
 		
-		<lib:input type="hidden" name="id"/>		
+		<lib:input type="hidden" name="id,version"/>		
 		<lib:input type="hidden" name="year"/>
-		<lib:input type="hidden" name="volumeNewspapers"/>
+		<lib:input type="hidden" name="newspapers"/>
 		<lib:input type="hidden" name="user"/>
 		<lib:input type="hidden" name="subscriptions"/>
 		<lib:input type="text" name='title'/>
@@ -58,7 +58,7 @@
 			el: '#app',
 			data: {
 				allNP: [
-					<jstl:forEach items="${newspapers}" var="item">
+					<jstl:forEach items="${allNewspapers}" var="item">
 						{
 							id : '${item.id}',
 							version : '${item.version}',
@@ -97,7 +97,24 @@
 			template: '<li>{{prop.name}}</li>'
 		}); */
 		
+		$('#volume').submit(function(){
+			var list = "";
+			for(var i=0; i< app.selectedNP.length; i++){
+				list += app.selectedNP[i].id;
+				if(i != app.selectedNP.length-1) list+=",";
+			}
+			$('#newspapers').val(list);
+			return true;
+		});
 		
+		$(function(){
+			if($('#newspapers').val().length > 0){
+				var newspapersId = $('#newspapers').val().split(",");
+				$.each(newspapersId,function(key,val){
+					app.left(val);
+				});
+			}
+		});
 		
 		
 		

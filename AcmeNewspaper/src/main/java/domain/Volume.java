@@ -50,7 +50,7 @@ public class Volume extends DomainEntity{
 
 	@Valid
 	@NotNull
-	@ManyToMany(mappedBy="volumes")
+	@ManyToMany()
 	public Collection<Newspaper> getNewspapers() {
 		return newspapers;
 	}
