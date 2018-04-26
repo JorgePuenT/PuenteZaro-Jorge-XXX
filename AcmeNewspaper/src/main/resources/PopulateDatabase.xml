@@ -167,6 +167,15 @@
 				<value>+34617179563</value>
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder1"/>
+				<ref bean="folder2"/>
+				<ref bean="folder3"/>
+				<ref bean="folder4"/>
+				<ref bean="folder5"/>
+			</list>
+		</property>
 	</bean>
 
 
@@ -223,6 +232,15 @@
 				<ref bean="volume1" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder6"/>
+				<ref bean="folder7"/>
+				<ref bean="folder8"/>
+				<ref bean="folder9"/>
+				<ref bean="folder10"/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="user2" class="domain.User">
@@ -272,6 +290,15 @@
 		</property>
 		<property name="volumes">
 			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder11"/>
+				<ref bean="folder12"/>
+				<ref bean="folder13"/>
+				<ref bean="folder14"/>
+				<ref bean="folder15"/>
 			</list>
 		</property>
 	</bean>
@@ -325,6 +352,15 @@
 			<list>
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder16"/>
+				<ref bean="folder17"/>
+				<ref bean="folder18"/>
+				<ref bean="folder19"/>
+				<ref bean="folder20"/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="user4" class="domain.User">
@@ -372,6 +408,15 @@
 			<list>
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder21"/>
+				<ref bean="folder22"/>
+				<ref bean="folder23"/>
+				<ref bean="folder24"/>
+				<ref bean="folder25"/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="user5" class="domain.User">
@@ -416,6 +461,15 @@
 			<list>
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder26"/>
+				<ref bean="folder27"/>
+				<ref bean="folder28"/>
+				<ref bean="folder29"/>
+				<ref bean="folder30"/>
+			</list>
+		</property>
 	</bean>
 
 	<!-- CUSTOMER 5 -->
@@ -447,6 +501,15 @@
 				<ref bean="subscription3" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder31"/>
+				<ref bean="folder32"/>
+				<ref bean="folder33"/>
+				<ref bean="folder34"/>
+				<ref bean="folder35"/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="customer2" class="domain.Customer">
@@ -476,6 +539,15 @@
 				<ref bean="subscription5" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder36"/>
+				<ref bean="folder37"/>
+				<ref bean="folder38"/>
+				<ref bean="folder39"/>
+				<ref bean="folder40"/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="customer3" class="domain.Customer">
@@ -501,6 +573,15 @@
 		<property name="subscriptionss">
 			<list>
 
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder41"/>
+				<ref bean="folder42"/>
+				<ref bean="folder43"/>
+				<ref bean="folder44"/>
+				<ref bean="folder45"/>
 			</list>
 		</property>
 
@@ -532,6 +613,15 @@
 				<ref bean="subscription8" />
 			</list>
 		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder46"/>
+				<ref bean="folder47"/>
+				<ref bean="folder48"/>
+				<ref bean="folder49"/>
+				<ref bean="folder50"/>
+			</list>
+		</property>
 
 	</bean>
 
@@ -558,6 +648,15 @@
 		<property name="subscriptionss">
 			<list>
 				<ref bean="subscription7" />
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder51"/>
+				<ref bean="folder52"/>
+				<ref bean="folder53"/>
+				<ref bean="folder54"/>
+				<ref bean="folder55"/>
 			</list>
 		</property>
 
@@ -1168,9 +1267,9 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
-				<ref bean="volumeNewspaper1" />
+				<ref bean="volume1" />
 			</list>
 		</property>
 
@@ -1205,7 +1304,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1238,7 +1337,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1271,7 +1370,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1302,7 +1401,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="volumeNewspapers">
+		<property name="volumes">
 			<list>
 			</list>
 		</property>
@@ -1314,9 +1413,9 @@
 		<property name="description" value="Descripcion" />
 		<property name="year" value="2016" />
 		<property name="user" ref="user1"/>
-		<property name="volumeNewspapers">
+		<property name="newspapers">
 			<list>
-				<ref bean="volumeNewspaper1" />
+				<ref bean="newspaper1" />
 			</list>
 		</property>
 		<property name="subscriptions">
@@ -1324,9 +1423,832 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="volumeNewspaper1" class="domain.VolumeNewspaper">
-		<property name="volume" ref="volume1"/>
-		<property name="newspaper" ref="newspaper1"/>
-	</bean>
 
+	<!-- Folders -->
+	<bean id="folder1" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder2" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder3" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder4" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder5" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder6" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder7" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder8" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder9" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder10" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder11" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder12" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder13" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder14" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder15" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder16" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder17" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder18" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder19" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder20" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder21" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder22" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder23" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder24" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder25" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder26" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder27" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder28" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder29" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder30" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder31" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder32" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder33" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder34" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder35" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder36" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder37" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder38" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder39" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder40" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder41" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder42" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder43" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder44" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder45" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder46" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder47" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder48" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder49" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder50" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder51" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder52" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder53" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder54" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder55" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 </beans>

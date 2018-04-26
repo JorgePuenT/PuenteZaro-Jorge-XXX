@@ -55,7 +55,7 @@ public class VolumeController {
 		} catch (Throwable oops) {
 		}
 		res.addObject("volume", volume);
-		res.addObject("newspapers",newspaperService.findNewspapersForVolume(volume));
+		res.addObject("newspapers",volume.getNewspapers());
 		res.addObject("requestUri", "volume/display.do");
 		return res;
 	}

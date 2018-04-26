@@ -69,13 +69,11 @@ public class CustomerSubscriptionController extends AbstractController {
 			result = newEditModelAndView(validated);
 		else
 			try {
-				SchemaPrinter.print(1);
 				subscriptionService.save(validated);
-				SchemaPrinter.print(2);
 				if(validated.getNewspaper()!=null)
 					result = new ModelAndView("redirect:/newspaper/display.do?newspaperId=" + validated.getNewspaper().getId());
 				else {
-					SchemaPrinter.print(3);
+					subscriptionService.createSubscriptionsFromVolume(validated.getVolume(),validated.getCreditCard());
 					result = new ModelAndView("redirect:/volume/display.do?volumeId=" + validated.getVolume().getId());
 				}		
 			} catch (Throwable oops) {

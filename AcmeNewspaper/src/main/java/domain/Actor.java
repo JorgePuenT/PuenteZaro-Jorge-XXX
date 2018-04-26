@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -92,6 +93,7 @@ public abstract class Actor extends DomainEntity {
 
 	//Relationships----------------
 	private UserAccount userAccount;
+	private Collection<Folder> folders;
 
 	@NotNull
 	@Valid
@@ -102,6 +104,17 @@ public abstract class Actor extends DomainEntity {
 
 	public void setUserAccount(final UserAccount userAccount) {
 		this.userAccount = userAccount;
+	}
+
+	@NotNull
+	@Valid
+	@OneToMany()
+	public Collection<Folder> getFolders() {
+		return folders;
+	}
+
+	public void setFolders(Collection<Folder> folders) {
+		this.folders = folders;
 	}
 
 
