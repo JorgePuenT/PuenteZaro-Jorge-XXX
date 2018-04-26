@@ -15,7 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.SubscriptionRepository;
+import utilities.internal.SchemaPrinter;
+import domain.CreditCard;
 import domain.Subscription;
+import domain.Volume;
+import domain.VolumeNewspaper;
 
 @Service
 @Transactional
@@ -89,5 +93,16 @@ public class SubscriptionService {
 		subscription.setCustomer(customerService.findByPrincipal());
 		validator.validate(subscription, binding);
 		return subscription;
+	}
+
+	public void createSubscriptionsFromVolume(Volume volume,CreditCard cc) {
+		for(VolumeNewspaper v: volume.getVolumeNewspapers())
+			if(!customerService.isSubscribed(v.getNewspaper())) {
+				Subscription s = create(v.getNewspaper().getId(),null);
+				s.setCreditCard(cc);
+				s.setCustomer(customerService.findByPrincipal());
+				save(s);
+			}
+				
 	}
 }

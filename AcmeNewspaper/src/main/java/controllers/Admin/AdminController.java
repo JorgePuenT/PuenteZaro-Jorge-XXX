@@ -15,6 +15,7 @@ import services.ArticleService;
 import services.ChirpService;
 import services.NewspaperService;
 import services.UserService;
+import services.VolumeService;
 import controllers.AbstractController;
 import domain.Newspaper;
 
@@ -32,6 +33,8 @@ public class AdminController extends AbstractController {
 	private UserService userService;
 	@Autowired
 	private AdvertisementService advertisementService;
+	@Autowired
+	private VolumeService volumeService;
 
 	//Constructor
 	public AdminController() {
@@ -159,6 +162,7 @@ public class AdminController extends AbstractController {
 			avgs.add(userService.getStatsOfChirpsPerUser()[0]);
 			avgs.add(newspaperService.getArticleAvgForPrivateNewspapers());
 			avgs.add(newspaperService.getArticleAvgForPublicNewspapers());
+			avgs.add(volumeService.getAvgOfNewspapersPerVolume());
 			result.addObject("avgs",avgs);
 
 			List<Double> stddevs = new ArrayList<Double>();
@@ -176,6 +180,7 @@ public class AdminController extends AbstractController {
 			ratios.add(userService.getAvgRatioOfNewspapersPerPublisher());
 			ratios.add(advertisementService.getRatioWithTaboo());
 			ratios.add(newspaperService.getRatioAdvertisedNewspapers());
+			ratios.add(volumeService.getRatioOfSubscriptionsVolumesVersusNewspapers());
 			result.addObject("ratios",ratios);
 
 			List<Newspaper> newspapersOverAvg = new ArrayList<Newspaper>(newspaperService.getNewspapersOverAvg());

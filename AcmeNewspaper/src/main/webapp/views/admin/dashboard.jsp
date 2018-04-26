@@ -11,7 +11,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="col-sm-10 col-sm-offset-1 well">
-<display:table pagesize="9" class="displaytag" keepStatus="true" name="avgs" id="row">
+<display:table pagesize="10" class="displaytag" keepStatus="true" name="avgs" id="row">
 	 <display:caption> 
 	 	<spring:message code='admin.title1'/>
 	 </display:caption>
@@ -43,6 +43,9 @@
 		</jstl:when>
 		<jstl:when test="${row_rowNum == 9}">
 			<spring:message code="admin.query14"/>
+		</jstl:when>
+		<jstl:when test="${row_rowNum == 10}">
+			<spring:message code="admin.query19"/>
 		</jstl:when>
 	</jstl:choose>	
 </display:column>
@@ -78,7 +81,7 @@
 
 
 <div class="col-sm-10 col-sm-offset-1 well">
-<display:table pagesize="7" class="displaytag" keepStatus="true" name="ratios" id="row3">
+<display:table pagesize="8" class="displaytag" keepStatus="true" name="ratios" id="row3">
 	 <display:caption> 
 	 	<spring:message code='admin.title3'/>
 	 </display:caption>
@@ -104,6 +107,9 @@
 		</jstl:when>
 		<jstl:when test="${row3_rowNum == 7}">
 			<spring:message code="admin.query18"/>
+		</jstl:when>
+		<jstl:when test="${row3_rowNum == 8}">
+			<spring:message code="admin.query20"/>
 		</jstl:when>
 	</jstl:choose>
 </display:column>

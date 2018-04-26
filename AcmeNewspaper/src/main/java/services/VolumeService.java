@@ -49,5 +49,13 @@ public class VolumeService {
 		return volumeRepository.save(volume);
 	}
 
+	public Double getAvgOfNewspapersPerVolume() {
+		return volumeRepository.getAvgOfNewspapersPerVolume();
+	}
+	
+	public Double getRatioOfSubscriptionsVolumesVersusNewspapers() {
+		Double res = volumeRepository.getRatioOfSubscriptionsVolumesVersusNewspapers();
+		return res == null ? 0 : res;
+	}
 
 }
