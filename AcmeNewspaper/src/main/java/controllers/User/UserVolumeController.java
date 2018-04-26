@@ -1,6 +1,8 @@
 
 package controllers.User;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import services.NewspaperService;
 import services.UserService;
 import services.VolumeService;
 import controllers.AbstractController;
+import domain.Newspaper;
 import domain.Volume;
 
 @Controller
@@ -86,7 +89,9 @@ public class UserVolumeController extends AbstractController {
 
 	protected ModelAndView newEditModelAndView(final Volume volume, final String message) {
 		ModelAndView result;
+		Collection<Newspaper> newspapers = userService.findByPrincipal().getNewspapers();
 		result = new ModelAndView("volume/edit");
+		result.addObject("newspapers", newspapers);
 		result.addObject("volume", volume);
 		result.addObject("actionUri", "user/volume/edit.do");
 		result.addObject("message", message);
