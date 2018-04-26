@@ -61,16 +61,29 @@
 		<ul class="nav navbar-nav">	
 					
 			<li><a href="newspaper/list.do"><spring:message code="master.page.newspaper.list" /></a></li>
-			<li><a href="article/list.do"><spring:message code="master.page.article.list" /></a></li>
+			<li><a href="volume/list.do"><spring:message code="master.page.volume.list" /></a></li>
+			<security:authorize access="hasRole('USER')">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="master.page.article.list" />
+					<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="article/list.do"><spring:message code="master.page.article.list" /></a></li>
+							<li><a href="user/article/list.do"><spring:message code="master.page.myArticle.list" /></a></li>
+						</ul>
+				</li>
+			</security:authorize>
+			<security:authorize access="!hasRole('USER')">
+				<li><a href="article/list.do"><spring:message code="master.page.article.list" /></a></li>
+			</security:authorize>
 			<li><a href="user-list.do"><spring:message code="master.page.actor.list" /></a></li>
 			<security:authorize access="hasRole('USER')">
 				<li><a href="user/chirp/timeline.do"><spring:message code="master.page.chirp.list" /></a></li>
-				<li><a href="user/article/list.do"><spring:message code="master.page.myArticle.list" /></a></li>
-				<button onClick="javascript:window.location.href = 'user/newspaper/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.newspaper.new" /></button>
-				<button onClick="javascript:window.location.href = 'user/article/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.article.new" /></button>
-				<button onClick="javascript:window.location.href = 'user/chirp/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.chirp.new" /></button>
-				<button onClick="javascript:window.location.href = 'user/volume/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.volume.new" /></button>
-
+				<li class="btn-group">
+					<button onClick="javascript:window.location.href = 'user/newspaper/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.newspaper.new" /></button>
+					<button onClick="javascript:window.location.href = 'user/article/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.article.new" /></button>
+					<button onClick="javascript:window.location.href = 'user/chirp/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.chirp.new" /></button>
+					<button onClick="javascript:window.location.href = 'user/volume/create.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.volume.new" /></button>
+				</li>
 			</security:authorize>
 			
 			<security:authorize access="hasRole('AGENT')">
@@ -81,10 +94,16 @@
 			<security:authorize access="hasRole('ADMIN')">
 				<li><a href="admin/chirp/list.do"><spring:message code="master.page.chirp.list" /></a></li>
 				<li><a href="admin/advertisement/list.do"><spring:message code="master.page.advertisement.list" /></a></li>
-				<li><a href="admin/article/taboo-list.do"><spring:message code="master.page.article.list.taboo" /></a></li>
-				<li><a href="admin/newspaper/taboo-list.do"><spring:message code="master.page.newspaper.list.taboo" /></a></li>
-				<li><a href="admin/chirp/taboo-list.do"><spring:message code="master.page.chirp.list.taboo" /></a></li>
-				<li><a href="admin/advertisement/taboo-list.do"><spring:message code="master.page.advertisement.list.taboo" /></a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="master.page.taboo" />
+					<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="admin/article/taboo-list.do"><spring:message code="master.page.article.list.taboo" /></a></li>
+							<li><a href="admin/newspaper/taboo-list.do"><spring:message code="master.page.newspaper.list.taboo" /></a></li>
+							<li><a href="admin/chirp/taboo-list.do"><spring:message code="master.page.chirp.list.taboo" /></a></li>
+							<li><a href="admin/advertisement/taboo-list.do"><spring:message code="master.page.advertisement.list.taboo" /></a></li>
+						</ul>
+				</li>
 				<li><a href="systemConfig/edit.do"><spring:message code="master.page.systemConfig" /></a></li>
 				<li><a href="admin/dashboard.do"><spring:message code="master.page.dashboard" /></a></li>
 			</security:authorize>
