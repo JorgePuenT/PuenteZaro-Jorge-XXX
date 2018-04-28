@@ -153,6 +153,45 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userAccount16" class="security.UserAccount">
+		<property name="username" value="agent1" />
+		<property name="password" value="83a87fd756ab57199c0bb6d5e11168cb" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount17" class="security.UserAccount">
+		<property name="username" value="agent2" />
+		<property name="password" value="b1a4a6b01cc297d4677c4ca6656e14d7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount18" class="security.UserAccount">
+		<property name="username" value="agent3" />
+		<property name="password" value="6f097a447415dd5030d579a9051165f0" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+
+			</list>
+		</property>
+	</bean>
 
 	<!-- ADMIN -->
 
@@ -660,6 +699,92 @@
 			</list>
 		</property>
 
+	</bean>
+	
+	<!-- AGENT -->
+	
+	<bean id="agent1" class="domain.Agent">
+		<property name="userAccount" ref="userAccount16" />
+		<property name="name" value="John" />
+		<property name="surnames" value="Wick Reeves" />
+		<property name="emailss" value="johwicree@correo.com" />
+		<property name="addressess" value="Calle Falsa 123 1"/>
+		<property name="phoness">
+			<list>
+				<value>+34618179563</value>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder56"/>
+				<ref bean="folder57"/>
+				<ref bean="folder58"/>
+				<ref bean="folder59"/>
+				<ref bean="folder60"/>
+			</list>
+		</property>
+		
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement1" />
+				<ref bean="advertisement2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="agent2" class="domain.Agent">
+		<property name="userAccount" ref="userAccount17" />
+		<property name="name" value="Ruben" />
+		<property name="surnames" value="Rubius OMG" />
+		<property name="emailss" value="rubrubomg@correo.com" />
+		<property name="addressess" value="Calle Falsa 123 2"/>
+		<property name="phoness">
+			<list>
+				<value>+34618149563</value>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder61"/>
+				<ref bean="folder62"/>
+				<ref bean="folder63"/>
+				<ref bean="folder64"/>
+				<ref bean="folder65"/>
+			</list>
+		</property>
+		
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="agent3" class="domain.Agent">
+		<property name="userAccount" ref="userAccount18" />
+		<property name="name" value="Lolito" />
+		<property name="surnames" value="Fernandez" />
+		<property name="emailss" value="lolfer@correo.com" />
+		<property name="addressess" value="Calle Falsa 123 3"/>
+		<property name="phoness">
+			<list>
+				<value>+34618179561</value>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder66"/>
+				<ref bean="folder67"/>
+				<ref bean="folder68"/>
+				<ref bean="folder69"/>
+				<ref bean="folder70"/>
+			</list>
+		</property>
+		
+		<property name="advertisements">
+			<list>
+			</list>
+		</property>
 	</bean>
 
 	<!-- SUBSCRIPTION 8 -->
@@ -1265,6 +1390,8 @@
 		</property>
 		<property name="advertisements">
 			<list>
+				<ref bean="advertisement1"/>
+				<ref bean="advertisement2"/>
 			</list>
 		</property>
 		<property name="volumes">
@@ -1302,6 +1429,7 @@
 		</property>
 		<property name="advertisements">
 			<list>
+				<ref bean="advertisement2"/>
 			</list>
 		</property>
 		<property name="volumes">
@@ -1422,6 +1550,38 @@
 			<list>
 			</list>
 		</property>
+	</bean>
+	
+	<!-- Advertisements 2 -->
+	
+	<bean id="advertisement1" class="domain.Advertisement">
+		<property name="title" value="Advertisement 1" />
+		<property name="bannerUrl" value="https://cms-assets.tutsplus.com/uploads/users/127/posts/19971/image/3_1.jpg" />
+		<property name="targetUrl" value="https://s-media-cache-ak0.pinimg.com/originals/39/dc/42/39dc420df80ccb5f9dbb6f06b2394542.png" />
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="inappropriate" value="false"/>
+		<property name="agent" ref ="agent1"/>
+		<property name="newspaper" ref="newspaper1"/>
+	</bean>
+	
+	<bean id="advertisement2" class="domain.Advertisement">
+		<property name="title" value="Advertisement 2" />
+		<property name="bannerUrl" value="https://www.ponferradahoy.com/wp-content/uploads/2018/01/fortnite.jpg" />
+		<property name="targetUrl" value="http://www.dicetowernews.com/wp-content/uploads/2018/01/target.png" />
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="inappropriate" value="false"/>
+		<property name="agent" ref ="agent1"/>
+		<property name="newspaper" ref="newspaper1"/>
+	</bean>
+	
+	<bean id="advertisement3" class="domain.Advertisement">
+		<property name="title" value="Advertisement 3" />
+		<property name="bannerUrl" value="https://vignette.wikia.nocookie.net/zeldaeu/images/b/b1/Zelda.png/revision/latest?cb=20170416190604" />
+		<property name="targetUrl" value="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Target_logo.svg/1200px-Target_logo.svg.png" />
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="inappropriate" value="false"/>
+		<property name="agent" ref ="agent2"/>
+		<property name="newspaper" ref="newspaper2"/>
 	</bean>
 
 	<!-- Folders -->
@@ -2236,6 +2396,233 @@
 		</property>
 	</bean>
 	<bean id="folder55" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder56" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder57" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder58" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder59" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder60" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="folder61" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder62" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder63" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder64" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder65" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="folder66" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder67" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder68" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder69" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder70" class="domain.Folder">
 		<property name="name" value="Spambox" />
 		<property name="system" value="true" />
 		<property name="parent">
