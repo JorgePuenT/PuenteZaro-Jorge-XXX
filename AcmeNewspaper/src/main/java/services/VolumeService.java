@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import repositories.VolumeRepository;
 import domain.Newspaper;
 import domain.Subscription;
+import domain.User;
 import domain.Volume;
 
 @Service
@@ -45,13 +46,34 @@ public class VolumeService {
 	}
 
 	public Volume save(Volume volume) {
+		Assert.notNull(volume);
+		
+		User logged = userService.findByPrincipal();
+		
+		//Creador es el logueado
+		Assert.isTrue(volume.getUser().equals(logged));
+		
+		//Que los newspapers sean propios
+		for(Newspaper n : volume.getNewspapers()){
+			n.getUser().equals(logged);
+		}
+		
 		if(volume.getId()==0){
+			//Seteo del año
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
 			int year = cal.get(Calendar.YEAR);
 			volume.setYear(year);
+		} else {
+			//Al modificar que sea el que lo ha creado
+			Volume db = this.findOne(volume.getId());
+			Assert.isTrue(db.getUser().equals(volume.getUser()));
 		}
+		
+		
+		
 		Volume res = volumeRepository.save(volume);
+		
 		cleanVolumeNewspaperRelationship(res.getId());
 		for(Newspaper n : res.getNewspapers()){
 			n.getVolumes().add(res);

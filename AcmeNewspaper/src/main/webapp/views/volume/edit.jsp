@@ -24,9 +24,10 @@
 		<lib:input type="text" name='title'/>
 		<lib:input type="text" name='description'/>
 		
-		<div id="app">
-			<h2><spring:message code="volume.newspapers"/></h2>
-			<div class="well col-md-6">
+		<h5><strong><spring:message code="volume.newspapers"/>:</strong></h5>
+		<div id="app" class="well well-sm col-md-12" style="background-color: white;">
+			
+			<div class="col-md-6">
 				<h4><spring:message code="volume.newspapers.all"/></h4>
 				<ol>
 					<li v-for="item in allNP">
@@ -34,7 +35,7 @@
 					</li>
 				</ol>
 			</div>
-			<div class="well col-md-6">
+			<div class="col-md-6">
 				<h4><spring:message code="volume.newspapers.selected"/></h4>
 				<ol>
 					<li v-for="item in selectedNP">

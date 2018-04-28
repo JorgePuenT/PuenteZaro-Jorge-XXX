@@ -49,15 +49,22 @@ public class AdvertisementService {
 		}
 
 		public Advertisement save(final Advertisement advertisement) {
+			Assert.notNull(advertisement);
+			Assert.isTrue(advertisement.getId()==0);
+			
 			Agent agent = agentService.findByPrincipal();
 			Assert.notNull(agent);
 			advertisement.setAgent(agent);
+			
+			//Verificación de tarjeta de credito vigente
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
 			int month = cal.get(Calendar.MONTH)+1; //Current month(Month starts in 0)
 			int year = cal.get(Calendar.YEAR);
 			Assert.isTrue(advertisement.getCreditCard().getExpirationYear() >= year);
-			if(advertisement.getCreditCard().getExpirationYear() == year)Assert.isTrue(advertisement.getCreditCard().getExpirationMonth() > month);
+			if(advertisement.getCreditCard().getExpirationYear() == year)
+				Assert.isTrue(advertisement.getCreditCard().getExpirationMonth() > month);
+			
 			return this.advertisementRepository.save(advertisement);
 		}
 		

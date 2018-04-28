@@ -9,7 +9,7 @@
 <div class="container-fluid">
 <jstl:out value="${error}"/>
  
-<div class="col-md-2">
+<div class="well well-sm col-md-2">
 
 <!--  system folders -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
@@ -25,10 +25,10 @@
 </display:table>
 
 <!-- to create a new folder in the same view -->
-<button type="button" style="width:95%" class="btn btn-primary btn-group-justified" id="newFolderButton"><spring:message code="folder.new"/></button>
+<button type="button" style="width:100%" class="btn btn-primary btn-group-justified" id="newFolderButton"><spring:message code="folder.new"/></button>
 
 <!-- form to create a new folder -->
-<div id="newFolderDiv" style="display:none">
+<div id="newFolderDiv" style="display:none; padding-left:10px;">
 	<form:form action="profile/message/newFolder.do" modelAttribute="newFolder" style="width:95%">
 	
 	<form:hidden path="system"/>
@@ -104,14 +104,15 @@
 
 </div> 
 <div class="col-md-10">
+<div class="col-md-12 well well-sm">
 
 <!-- form to write a new message -->
 <!-- if show message is null, it shows the form to write a message(you have to click on the button to see this form) and the table of messages -->
 <jstl:choose>
 <jstl:when test="${showMessage eq null}">
-<button type="button" class="btn btn-primary btn-group-justified" style="width:95%" id="writeButton"><spring:message code="message.write"/></button>
+<button type="button" class="btn btn-primary btn-group-justified" id="writeButton"><spring:message code="message.write"/></button>
 
-<div id="writeDiv" style="display:none; width:95%">
+<div id="writeDiv" class="well well-sm" style="display:none; background-color: #e6e6e6">
 	<form:form action="profile/message/send.do" modelAttribute="newMessage">
 	
 	
@@ -360,6 +361,7 @@
 </div>
 
 
+</div>
 </div>
 
 <script>
