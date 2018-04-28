@@ -47,8 +47,10 @@ public class RegisterController extends AbstractController {
 	@RequestMapping(value = "user", method = RequestMethod.POST, params = "save")
 	public ModelAndView saveUser(@Valid final User user, final BindingResult binding) {
 		ModelAndView result;
-		if (binding.hasErrors())
+		if (binding.hasErrors()){
+			System.out.println("111111111: " + binding.getAllErrors());
 			result = this.newEditModelAndViewUser(user);
+		}
 		else
 			try {
 				User saved = userService.save(user);

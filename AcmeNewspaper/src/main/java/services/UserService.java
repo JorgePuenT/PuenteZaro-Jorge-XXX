@@ -16,6 +16,7 @@ import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
 import domain.Chirp;
+import domain.Folder;
 import domain.Newspaper;
 import domain.User;
 import domain.Volume;
@@ -33,6 +34,9 @@ public class UserService {
 
 	@Autowired
 	private ActorService		actorService;
+	
+	@Autowired
+	private FolderService		folderService;
 
 
 	//CRUD Methods -------------------------
@@ -49,6 +53,7 @@ public class UserService {
 		Collection<User> followedBy = new ArrayList<User>();
 		Collection<Chirp> chirps = new ArrayList<Chirp>();
 		Collection<Volume> volumes = new ArrayList<Volume>();
+		Collection<Folder> folders = new ArrayList<Folder>();
 
 		res.setEmailss(emailss);
 		res.setAddressess(addressess);
@@ -58,6 +63,7 @@ public class UserService {
 		res.setFollowedBy(followedBy);
 		res.setChirps(chirps);
 		res.setVolumes(volumes);
+		res.setFolders(folders);
 
 		//UserAccount
 		UserAccount userAccount = new UserAccount();
@@ -94,6 +100,35 @@ public class UserService {
 		Assert.notNull(user);
 		Assert.isTrue(user.getId() == 0); 				// No puede ser modificado
 		Assert.isTrue(!this.actorService.isLogged());	// No haya usuario logueado
+		
+		if (user.getId() == 0) {
+
+			Folder inbox = folderService.create();
+			inbox.setName("Inbox");
+			inbox.setSystem(true);
+
+			Folder outbox = folderService.create();
+			outbox.setName("Outbox");
+			outbox.setSystem(true);
+
+			Folder trashbox = folderService.create();
+			trashbox.setName("Trashbox");
+			trashbox.setSystem(true);
+
+			Folder spambox = folderService.create();
+			spambox.setName("Spambox");
+			spambox.setSystem(true);
+
+			Folder notificationbox = folderService.create();
+			notificationbox.setName("Notificationbox");
+			notificationbox.setSystem(true);
+
+			folderService.save(inbox, user);
+			folderService.save(outbox, user);
+			folderService.save(trashbox, user);
+			folderService.save(spambox, user);
+			folderService.save(notificationbox, user);
+		}
 
 		//Password
 		Md5PasswordEncoder password = new Md5PasswordEncoder();
