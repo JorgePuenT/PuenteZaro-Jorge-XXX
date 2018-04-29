@@ -42,7 +42,7 @@ public class UserArticleController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		result = new ModelAndView("article/list");
-		result.addObject("articles",articleService.findMyArticles());
+		result.addObject("articles",articleService.findAll());
 		result.addObject("requestUri", "user/article/list.do");
 		return result;
 	}
