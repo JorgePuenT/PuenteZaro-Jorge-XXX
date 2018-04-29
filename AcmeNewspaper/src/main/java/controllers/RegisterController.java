@@ -112,7 +112,7 @@ public class RegisterController extends AbstractController {
 
 	//Save Delete POST
 	@RequestMapping(value = "agent", method = RequestMethod.POST, params = "save")
-	public ModelAndView saveAgent(@Valid final Agent agent, final BindingResult binding) {
+	public ModelAndView saveAgent(final Agent agent, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.newEditModelAndViewAgent(agent);
