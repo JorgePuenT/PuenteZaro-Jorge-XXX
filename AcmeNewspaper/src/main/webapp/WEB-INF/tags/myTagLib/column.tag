@@ -62,7 +62,13 @@
 </jstl:when>
 <jstl:otherwise>
 	<spring:message code="${model}.${name}" var="Header" />
-	<display:column property="${name}" title="${Header}" sortable="${sortable}" style="${style}" format="${format}" group="${group}"/>
+	<jstl:if test="${empty group}">
+	<display:column property="${name}" title="${Header}" sortable="${sortable}" style="${style}" format="${format}" />
+	</jstl:if>
+	
+	<jstl:if test="${not empty group}">
+	<display:column property="${name}" title="${Header}" sortable="${sortable}" style="${style}" format="${format}" group="${group}" />
+	</jstl:if>
 </jstl:otherwise>
 
 </jstl:choose>
