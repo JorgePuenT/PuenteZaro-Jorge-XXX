@@ -137,7 +137,7 @@
 	</form:label>
 	<div class="form-group">
 		<select class="selectpicker" data-live-search="true" name="actorTo">
-			<option value="" >alskdjf</option>
+			<option value="" ><spring:message code="message.actorToSelect"/></option>
 			<jstl:forEach items="${actorsTo}" var="receiver">
 				<option value="${receiver.id}">${receiver.userAccount.username}</option>
 			</jstl:forEach>

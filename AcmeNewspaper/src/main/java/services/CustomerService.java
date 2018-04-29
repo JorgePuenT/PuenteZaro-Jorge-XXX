@@ -16,6 +16,7 @@ import security.LoginService;
 import security.UserAccount;
 import security.UserAccountService;
 import domain.Customer;
+import domain.Folder;
 import domain.Newspaper;
 import domain.Subscription;
 import domain.Volume;
@@ -31,6 +32,8 @@ public class CustomerService {
 	//Supporting Services -------------------
 	@Autowired
 	private UserAccountService	userAccountService;
+	@Autowired
+	private FolderService		folderService;
 	//CRUD Methods -------------------------
 
 	public Customer create() {
@@ -38,6 +41,7 @@ public class CustomerService {
 
 		//Collections
 		res.setSubscriptionss(new ArrayList<Subscription>());
+		res.setFolders(new ArrayList<Folder>());
 		//UserAccount
 		UserAccount userAccount = new UserAccount();
 		Collection<Authority> authorities = userAccount.getAuthorities();
@@ -71,15 +75,44 @@ public class CustomerService {
 
 	public Customer save(final Customer customer) {
 		Assert.notNull(customer);
+		Assert.isTrue(customer.getId() == 0);
 
-		if (customer.getId() == 0) {
-			Md5PasswordEncoder password = new Md5PasswordEncoder();
-			String encodedPassword = password.encodePassword(customer.getUserAccount().getPassword(), null);
-			customer.getUserAccount().setPassword(encodedPassword);
-			customer.setUserAccount(this.userAccountService.save(customer.getUserAccount()));
-		}
+		Folder inbox = folderService.create();
+		inbox.setName("Inbox");
+		inbox.setSystem(true);
 
-		return this.customerRepository.save(customer);
+		Folder outbox = folderService.create();
+		outbox.setName("Outbox");
+		outbox.setSystem(true);
+
+		Folder trashbox = folderService.create();
+		trashbox.setName("Trashbox");
+		trashbox.setSystem(true);
+
+		Folder spambox = folderService.create();
+		spambox.setName("Spambox");
+		spambox.setSystem(true);
+
+		Folder notificationbox = folderService.create();
+		notificationbox.setName("Notificationbox");
+		notificationbox.setSystem(true);
+
+		
+
+		Md5PasswordEncoder password = new Md5PasswordEncoder();
+		String encodedPassword = password.encodePassword(customer.getUserAccount().getPassword(), null);
+		customer.getUserAccount().setPassword(encodedPassword);
+		customer.setUserAccount(this.userAccountService.save(customer.getUserAccount()));
+
+		Customer res = this.customerRepository.saveAndFlush(customer);
+		
+		folderService.save(inbox, res);
+		folderService.save(outbox, res);
+		folderService.save(trashbox, res);
+		folderService.save(spambox, res);
+		folderService.save(notificationbox, res);
+		
+		return res;
 	}
 
 	public Customer findByUserAccount(final UserAccount userAccount) {

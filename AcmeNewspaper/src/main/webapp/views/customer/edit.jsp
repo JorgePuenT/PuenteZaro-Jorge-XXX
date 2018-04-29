@@ -19,7 +19,7 @@
 			<jstl:set var="model" value="customer" scope="request" />
 
 			<!-- Hidden attributes -->
-			<lib:input name="subscriptionss" type="hidden" />			
+			<lib:input name="subscriptionss,folders" type="hidden" />			
 			
 			<!-- Attributes -->
 			<!-- ------------- ACCOUNT DATA -----------------  -->

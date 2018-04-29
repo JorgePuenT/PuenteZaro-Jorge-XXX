@@ -17,6 +17,7 @@ import security.UserAccount;
 import security.UserAccountService;
 import domain.Advertisement;
 import domain.Agent;
+import domain.Folder;
 
 @Service
 @Transactional
@@ -29,6 +30,8 @@ public class AgentService {
 	//Supporting Services -------------------
 	@Autowired
 	private UserAccountService	userAccountService;
+	@Autowired
+	private FolderService		folderService;
 	//CRUD Methods -------------------------
 
 	public Agent create() {
@@ -36,6 +39,7 @@ public class AgentService {
 
 		//Collections
 		res.setAdvertisements(new ArrayList<Advertisement>());
+		res.setFolders(new ArrayList<Folder>());
 		//UserAccount
 		UserAccount userAccount = new UserAccount();
 		Collection<Authority> authorities = userAccount.getAuthorities();
@@ -69,15 +73,42 @@ public class AgentService {
 
 	public Agent save(final Agent agent) {
 		Assert.notNull(agent);
+		Assert.isTrue(agent.getId() == 0);
+		
+		Folder inbox = folderService.create();
+		inbox.setName("Inbox");
+		inbox.setSystem(true);
 
-		if (agent.getId() == 0) {
-			Md5PasswordEncoder password = new Md5PasswordEncoder();
-			String encodedPassword = password.encodePassword(agent.getUserAccount().getPassword(), null);
-			agent.getUserAccount().setPassword(encodedPassword);
-			agent.setUserAccount(this.userAccountService.save(agent.getUserAccount()));
-		}
+		Folder outbox = folderService.create();
+		outbox.setName("Outbox");
+		outbox.setSystem(true);
 
-		return this.agentRepository.save(agent);
+		Folder trashbox = folderService.create();
+		trashbox.setName("Trashbox");
+		trashbox.setSystem(true);
+
+		Folder spambox = folderService.create();
+		spambox.setName("Spambox");
+		spambox.setSystem(true);
+
+		Folder notificationbox = folderService.create();
+		notificationbox.setName("Notificationbox");
+		notificationbox.setSystem(true);
+
+		Md5PasswordEncoder password = new Md5PasswordEncoder();
+		String encodedPassword = password.encodePassword(agent.getUserAccount().getPassword(), null);
+		agent.getUserAccount().setPassword(encodedPassword);
+		agent.setUserAccount(this.userAccountService.save(agent.getUserAccount()));
+
+		Agent res = this.agentRepository.saveAndFlush(agent);
+		
+		folderService.save(inbox, res);
+		folderService.save(outbox, res);
+		folderService.save(trashbox, res);
+		folderService.save(spambox, res);
+		folderService.save(notificationbox, res);
+		
+		return res;
 	}
 
 	public Agent findByUserAccount(final UserAccount userAccount) {

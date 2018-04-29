@@ -19,7 +19,7 @@
 			<jstl:set var="model" value="agent" scope="request" />
 
 			<!-- Hidden attributes -->
-			<lib:input name="advertisements" type="hidden" />			
+			<lib:input name="advertisements,folders" type="hidden" />			
 			
 			<!-- Attributes -->
 			<!-- ------------- ACCOUNT DATA -----------------  -->

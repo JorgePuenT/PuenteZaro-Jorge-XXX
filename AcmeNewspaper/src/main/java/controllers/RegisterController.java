@@ -138,6 +138,7 @@ public class RegisterController extends AbstractController {
 
 	protected ModelAndView newEditModelAndViewUser(final User user, final String message) {
 		ModelAndView result;
+		user.getUserAccount().setPassword(null);
 		result = new ModelAndView("register/user");
 		result.addObject("user", user);
 		result.addObject("message", message);
@@ -153,6 +154,7 @@ public class RegisterController extends AbstractController {
 
 	protected ModelAndView newEditModelAndViewCustomer(final Customer customer, final String message) {
 		ModelAndView result;
+		customer.getUserAccount().setPassword(null);
 		result = new ModelAndView("register/customer");
 		result.addObject("customer", customer);
 		result.addObject("message", message);
@@ -168,6 +170,7 @@ public class RegisterController extends AbstractController {
 
 	protected ModelAndView newEditModelAndViewAgent(final Agent agent, final String message) {
 		ModelAndView result;
+		agent.getUserAccount().setPassword(null);
 		result = new ModelAndView("register/agent");
 		result.addObject("agent", agent);
 		result.addObject("message", message);

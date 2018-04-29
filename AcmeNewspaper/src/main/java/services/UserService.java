@@ -100,35 +100,27 @@ public class UserService {
 		Assert.notNull(user);
 		Assert.isTrue(user.getId() == 0); 				// No puede ser modificado
 		Assert.isTrue(!this.actorService.isLogged());	// No haya usuario logueado
-		
-		if (user.getId() == 0) {
 
-			Folder inbox = folderService.create();
-			inbox.setName("Inbox");
-			inbox.setSystem(true);
+		Folder inbox = folderService.create();
+		inbox.setName("Inbox");
+		inbox.setSystem(true);
 
-			Folder outbox = folderService.create();
-			outbox.setName("Outbox");
-			outbox.setSystem(true);
+		Folder outbox = folderService.create();
+		outbox.setName("Outbox");
+		outbox.setSystem(true);
 
-			Folder trashbox = folderService.create();
-			trashbox.setName("Trashbox");
-			trashbox.setSystem(true);
+		Folder trashbox = folderService.create();
+		trashbox.setName("Trashbox");
+		trashbox.setSystem(true);
 
-			Folder spambox = folderService.create();
-			spambox.setName("Spambox");
-			spambox.setSystem(true);
+		Folder spambox = folderService.create();
+		spambox.setName("Spambox");
+		spambox.setSystem(true);
 
-			Folder notificationbox = folderService.create();
-			notificationbox.setName("Notificationbox");
-			notificationbox.setSystem(true);
+		Folder notificationbox = folderService.create();
+		notificationbox.setName("Notificationbox");
+		notificationbox.setSystem(true);
 
-			folderService.save(inbox, user);
-			folderService.save(outbox, user);
-			folderService.save(trashbox, user);
-			folderService.save(spambox, user);
-			folderService.save(notificationbox, user);
-		}
 
 		//Password
 		Md5PasswordEncoder password = new Md5PasswordEncoder();
@@ -136,7 +128,15 @@ public class UserService {
 		user.getUserAccount().setPassword(encodedPassword);
 		user.setUserAccount(this.userAccountService.save(user.getUserAccount()));
 
-		return this.userRepository.save(user);
+		User res = this.userRepository.saveAndFlush(user);
+			
+		folderService.save(inbox, res);
+		folderService.save(outbox, res);
+		folderService.save(trashbox, res);
+		folderService.save(spambox, res);
+		folderService.save(notificationbox, res);
+		
+		return res;
 	}
 
 	public void delete(final int userId) {
