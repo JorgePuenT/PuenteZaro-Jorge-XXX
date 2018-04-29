@@ -106,6 +106,7 @@
 				</li>
 				<li><a href="systemConfig/edit.do"><spring:message code="master.page.systemConfig" /></a></li>
 				<li><a href="admin/dashboard.do"><spring:message code="master.page.dashboard" /></a></li>
+				<button onClick="javascript:window.location.href = 'admin/broadcast.do'" class="btn btn-success navbar-btn"><spring:message code="master.page.broadcast" /></button>
 			</security:authorize>
 		</ul>
 	

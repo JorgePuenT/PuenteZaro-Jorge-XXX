@@ -16,4 +16,9 @@
 	<definition name="" extends="master.page">
 		<put-attribute name="title" value="Visualizacion de Admin" />
 		<put-attribute name="body" value="/views/admin/display.jsp" />
-	</definition></tiles-definitions>
+	</definition>
+	<definition name="admin/broadcast" extends="master.page">
+		<put-attribute name="title" value="Difusión" />
+		<put-attribute name="body" value="/views/admin/broadcast.jsp" />
+	</definition>
+	</tiles-definitions>

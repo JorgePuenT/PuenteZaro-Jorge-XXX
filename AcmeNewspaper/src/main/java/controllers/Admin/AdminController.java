@@ -7,9 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.AdminService;
 import services.AdvertisementService;
 import services.ArticleService;
 import services.ChirpService;
@@ -35,10 +37,32 @@ public class AdminController extends AbstractController {
 	private AdvertisementService advertisementService;
 	@Autowired
 	private VolumeService volumeService;
+	@Autowired
+	private AdminService adminService;
 
 	//Constructor
 	public AdminController() {
 		super();
+	}
+	
+	//Broadcast Message
+	@RequestMapping(value = "/broadcast", method = RequestMethod.GET)
+	public ModelAndView broadcastGet() {
+		ModelAndView result = new ModelAndView("admin/broadcast");
+		return result;
+	}
+
+	@RequestMapping(value = "/broadcast", method = RequestMethod.POST)
+	public ModelAndView broadcastPost(final String subject, final String messageBody) {
+		ModelAndView result;
+		try {
+			adminService.broadcastMessage(subject, messageBody);
+			result = new ModelAndView("redirect:/");
+		} catch (Throwable oops) {
+			result = new ModelAndView("admin/broadcast");
+		}
+
+		return result;
 	}
 
 	@RequestMapping("/article/inappropriate")
