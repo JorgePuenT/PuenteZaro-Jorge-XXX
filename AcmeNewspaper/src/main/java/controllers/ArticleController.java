@@ -66,7 +66,7 @@ public class ArticleController extends AbstractController {
 		ModelAndView result;
 		try{
 			Article a = articleService.findOne(articleId);
-			Advertisement ad = advertisementService.getRandomNonInappropriateForNewspaper(a.getNewspaper());
+			Advertisement ad = advertisementService.getRandomForNewspaper(a.getNewspaper());
 			if(!articleService.isPublished(a)) throw new Exception();
 			if(a.getNewspaper().getIsPrivate())
 				if(!customerService.isSubscribed(a.getNewspaper())) throw new Exception();

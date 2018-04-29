@@ -88,8 +88,8 @@ public class AdvertisementService {
 			return res == null ? 0 : res;
 		}
 		
-		public Advertisement getRandomNonInappropriateForNewspaper(Newspaper newspaper){
-			List<Advertisement> advertisements = new ArrayList<Advertisement>(advertisementRepository.getNonInappropriateForNewspaper(newspaper));
+		public Advertisement getRandomForNewspaper(Newspaper newspaper){
+			List<Advertisement> advertisements = new ArrayList<Advertisement>(newspaper.getAdvertisements());
 			if(advertisements.isEmpty()) return null;
 			Advertisement res = advertisements.get((int)Math.round(Math.random()*advertisements.size()-1));
 			return res;
