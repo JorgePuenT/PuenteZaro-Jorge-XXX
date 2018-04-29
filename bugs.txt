@@ -1,0 +1,5 @@
+Bug #1: Removed @Valid from agent register
+Bug #2: Inappropriate advertisements show up in article display
+Bug #3: Removed Spanish Message for Login from header
+Bug #4: Broadcast Message is now sent to the admin himself too
+Bug #5: My-Articles list displays all articles
