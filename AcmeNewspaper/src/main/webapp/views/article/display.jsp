@@ -16,7 +16,7 @@
 <div class="container col-sm-8 col-sm-offset-2 well">
 	<div class="col-sm-12">
 	<jstl:if test="${not empty advertisement}">
-		<a href="${advertisement.targetUrl}"><img src="${advertisement.bannerUrl}" alt="${advertisement.title}"/></a>
+		<a href="${advertisement.targetUrl}"><img style="max-height:200px" src="${advertisement.bannerUrl}" alt="${advertisement.title}"/></a>
 	</jstl:if>
 	<fmt:formatDate var="publicationMoment" type = "date" dateStyle = "long" value="${article.publicationMoment}"/>
 	

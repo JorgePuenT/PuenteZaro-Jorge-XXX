@@ -12,7 +12,7 @@
 		<jstl:set var='model' value='newspaper' scope='request'/>
 
 		<jstl:if test="${newspaper.id eq 0 or empty newspaper.id }">
-			<lib:input name="version,subscriptionss,user,inappropriate,articless" type="hidden" />
+			<lib:input name="version,subscriptionss,user,inappropriate,articless,volumes,advertisements" type="hidden" />
 
 			<lib:input type="text" name='title'/>
 		</jstl:if>
