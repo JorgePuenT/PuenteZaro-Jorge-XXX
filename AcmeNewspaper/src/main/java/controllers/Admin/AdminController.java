@@ -44,7 +44,7 @@ public class AdminController extends AbstractController {
 	@RequestMapping("/article/inappropriate")
 	public ModelAndView setArticleInappropriate(@RequestParam(required=true) final int articleId){
 		articleService.markAsInappropriate(articleId);
-		return new ModelAndView("redirect:list.do");
+		return new ModelAndView("redirect:/article/list.do");
 	}
 
 	@RequestMapping("/article/taboo-list")
@@ -64,7 +64,7 @@ public class AdminController extends AbstractController {
 	@RequestMapping("/newspaper/inappropriate")
 	public ModelAndView setNewspaperInappropriate(@RequestParam(required=true) final int newspaperId){
 		newspaperService.markAsInappropriate(newspaperId);
-		return new ModelAndView("redirect:list.do");
+		return new ModelAndView("redirect:/newspaper/list.do");
 	}
 
 	@RequestMapping("/newspaper/taboo-list")
@@ -83,7 +83,7 @@ public class AdminController extends AbstractController {
 	@RequestMapping("/chirp/inappropriate")
 	public ModelAndView setChirpInappropriate(@RequestParam(required=true) final int chirpId){
 		chirpService.markAsInappropriate(chirpId);
-		return new ModelAndView("redirect:list.do");
+		return new ModelAndView("redirect:/admin/chirp/list.do");
 	}
 
 
@@ -142,7 +142,7 @@ public class AdminController extends AbstractController {
 	@RequestMapping("/advertisement/inappropriate")
 	public ModelAndView setAdvertisementInappropriate(@RequestParam(required=true) final int advertisementId){
 		advertisementService.markAsInappropriate(advertisementId);
-		return new ModelAndView("redirect:list.do");
+		return new ModelAndView("redirect:/admin/advertisement/list.do");
 	}
 
 	@RequestMapping("/dashboard")
