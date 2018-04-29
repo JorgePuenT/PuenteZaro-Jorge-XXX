@@ -65,7 +65,6 @@ public class AdminService {
 		Admin ad = findByPrincipal();
 		Assert.notNull(ad);
 		Collection<Actor> actors = actorService.findAll();
-		actors.remove(ad);
 		for (Actor a : actors) {
 			Message m = messageService.create();
 			m.setActorTo(a);
