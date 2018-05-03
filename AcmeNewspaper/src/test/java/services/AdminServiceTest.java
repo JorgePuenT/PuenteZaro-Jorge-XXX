@@ -190,4 +190,60 @@ public class AdminServiceTest extends AbstractTest {
 
 	}
 
+	@Test
+	public void templateBroadcastMessage() {
+
+		System.out.println("===============================================================================================================");
+		System.out.println("=====================================TEST templateBroadcastMessage ==================================================");
+		System.out.println("===============================================================================================================\r");
+
+		Object testingData[][] = {
+
+			//Positive test
+			{
+				"admin", "SBJ", "MSG", null, "Broadcast correcto"
+			},
+
+			{
+				"admin", null, "MSG", IllegalArgumentException.class, "asunto nulo"
+			},
+			//FindByPrincipal being anonymous
+			{
+				null, "SBJ", "MSG", IllegalArgumentException.class, "Se intenta enviar sin loguearse"
+			}
+
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateBroadcastMessage((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Class<?>) testingData[i][3], (String) testingData[i][4]);
+	}
+
+	protected void templateBroadcastMessage(String rol, String sbj, String msg, Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+		try {
+
+			this.authenticate(rol);
+			adminService.broadcastMessage(sbj, msg);
+			this.unauthenticate();
+
+		} catch (Throwable oops) {
+
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("Username: " + rol);
+
+		System.out.println("\r¿Correcto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
 }
