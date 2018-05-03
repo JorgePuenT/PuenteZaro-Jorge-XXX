@@ -2,6 +2,7 @@
 package services;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,10 @@ public class CustomerServiceTest extends AbstractTest {
 	//Supporting services -----------------------------------------------------
 	@Autowired
 	private UserAccountService	userAccountService;
+	@Autowired
+	private NewspaperService	nwService;
+	@Autowired
+	private VolumeService		vService;
 
 
 	// Tests ------------------------------------------------------------------
@@ -225,4 +230,169 @@ public class CustomerServiceTest extends AbstractTest {
 		System.out.println("-----------------------------------------------------------------\r");
 
 	}
+
+	@Test
+	public void driverCreate() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				null, "Creacion correcta del Customer"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateCreate((Class<?>) testingData[i][0], (String) testingData[i][1]);
+	}
+
+	protected void templateCreate(Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			customerService.create();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("ExplicaciÛn: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverSave() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				0, "name", ConstraintViolationException.class, "Creacion correcta del customer"
+			}, {
+				getEntityId("customer1"), "name", IllegalArgumentException.class, "No se puede modificar"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateSave((Integer) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
+	}
+
+	protected void templateSave(Integer aId, String name, Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			if (aId > 0) {
+				domain.Customer c = customerService.findOne(aId);
+				c.setName(name);
+				customerService.save(c);
+			} else {
+				Customer c = customerService.create();
+				customerService.save(c);
+			}
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverisSubscribed() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				null, "Creacion correcta", getEntityId("newspaper1"), "customer1"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateisSubscribed((Class<?>) testingData[i][0], (String) testingData[i][1], (Integer) testingData[i][2], (String) testingData[i][3]);
+	}
+
+	protected void templateisSubscribed(Class<?> expected, String explanation, Integer nwId, String rol) {
+
+		Class<?> caught = null;
+
+		try {
+			this.authenticate(rol);
+			customerService.isSubscribed(nwService.findOne(nwId));
+			this.unauthenticate();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("ExplicaciÛn: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverisSubscribedVolume() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				null, "Creacion correcta", getEntityId("volume1"), "customer1"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateisSubscribedVolume((Class<?>) testingData[i][0], (String) testingData[i][1], (Integer) testingData[i][2], (String) testingData[i][3]);
+	}
+
+	protected void templateisSubscribedVolume(Class<?> expected, String explanation, Integer nwId, String rol) {
+
+		Class<?> caught = null;
+
+		try {
+			this.authenticate(rol);
+			customerService.isSubscribedVolume(vService.findOne(nwId));
+			this.unauthenticate();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("ExplicaciÛn: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
 }
