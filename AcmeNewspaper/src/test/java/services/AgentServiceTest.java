@@ -2,6 +2,7 @@
 package services;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,7 @@ public class AgentServiceTest extends AbstractTest {
 
 	// System under test ------------------------------------------------------
 	@Autowired
-	private AgentService			agentService;
+	private AgentService		agentService;
 
 	//Supporting services -----------------------------------------------------
 	@Autowired
@@ -168,6 +169,144 @@ public class AgentServiceTest extends AbstractTest {
 			System.out.println("---------------------------- NEGATIVO ---------------------------");
 		System.out.println("Explicación: " + explanation);
 		System.out.println("\r¿Correcto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverFindByUserAccount() {
+
+		System.out.println("===============================================================================================================");
+		System.out.println("=====================================TEST FINDBYUSERACCOUNT ADMIN==================================================");
+		System.out.println("===============================================================================================================\r");
+
+		Object testingData[][] = {
+			//Positive test
+			{
+				getEntityId("userAccount17"), null, "FindByUserAccount correcto"
+			},
+			//UserAccount param is null
+			{
+				null, NullPointerException.class, "Se intenta buscar un userAccount nulo"
+			},
+
+			{
+				getEntityId("userAccount2"), IllegalArgumentException.class, "Se intenta buscar un userAccount que no es de Agent"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateFindByUserAccount((Integer) testingData[i][0], (Class<?>) testingData[i][1], (String) testingData[i][2]);
+	}
+
+	protected void templateFindByUserAccount(Integer entityId, Class<?> expected, String explanation) {
+		Class<?> caught = null;
+
+		try {
+			UserAccount userAccount = null;
+
+			userAccount = userAccountService.findOne(entityId);
+			Agent res = agentService.findByUserAccount(userAccount);
+			Assert.notNull(res);
+
+		} catch (Throwable oops) {
+
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("UserAccount: " + entityId);
+		System.out.println("\r¿Correcto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverCreate() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				null, "Creacion correcta del agent"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateCreate((Class<?>) testingData[i][0], (String) testingData[i][1]);
+	}
+
+	protected void templateCreate(Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			agentService.create();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("ExplicaciÛn: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverSave() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				0, "name", ConstraintViolationException.class, "Creacion correcta del agent"
+			}, {
+				getEntityId("agent1"), "name", IllegalArgumentException.class, "No se puede modificar"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateSave((Integer) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
+	}
+
+	protected void templateSave(Integer aId, String name, Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			if (aId > 0) {
+				domain.Agent a = agentService.findOne(aId);
+				a.setName(name);
+				agentService.save(a);
+			} else {
+				Agent a = agentService.create();
+				agentService.save(a);
+			}
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
 		System.out.println("-----------------------------------------------------------------\r");
 
 	}
