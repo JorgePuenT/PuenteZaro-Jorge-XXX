@@ -90,23 +90,21 @@ public class SubscriptionServiceTest extends AbstractTest {
 		Object testingData[][] = {
 			//Test positivo
 			{
-				"user1", getEntityId("newspaper1"), null, "Creación correcta de una suscripción"
+				"user1", getEntityId("newspaper1"), null, null, "Creación correcta de una suscripción"
 			}, {
-				"user1", getEntityId("article1"), IllegalArgumentException.class, "el id no es de un articulo"
-			}, {
-				"user1", -3, IllegalArgumentException.class, "id de un objeto que no existe"
-			},
+				"user1", null, null, IllegalArgumentException.class, "Dos nulos en create"
+			}
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			templateCreate((String) testingData[i][0], (Integer) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
+			templateCreate((String) testingData[i][0], (Integer) testingData[i][1], (Integer) testingData[i][2], (Class<?>) testingData[i][3], (String) testingData[i][4]);
 	}
-	protected void templateCreate(String rol, Integer idnwp, Class<?> expected, String explanation) {
+	protected void templateCreate(String rol, Integer idnwp, Integer idvolume, Class<?> expected, String explanation) {
 		Class<?> caught = null;
 
 		try {
 			super.authenticate(rol);
-			subscriptionService.create(idnwp);
+			subscriptionService.create(idnwp, idvolume);
 			super.unauthenticate();
 		} catch (Throwable oops) {
 			caught = oops.getClass();
@@ -181,12 +179,12 @@ public class SubscriptionServiceTest extends AbstractTest {
 
 			//Try to save one Subscription using another entity
 			{
-				getEntityId("newspaper1"), IllegalArgumentException.class, "Intento de guardar un Actor usando otra id de entidad"
+				null, IllegalArgumentException.class, "Intento de guardar con una id nula"
 			},
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			templateSave((int) testingData[i][0], (Class<?>) testingData[i][1], (String) testingData[i][2]);
+			templateSave((Integer) testingData[i][0], (Class<?>) testingData[i][1], (String) testingData[i][2]);
 	}
 
 	protected void templateSave(int subscriptionId, Class<?> expected, String explanation) {
@@ -195,10 +193,11 @@ public class SubscriptionServiceTest extends AbstractTest {
 
 		try {
 			Subscription subscription = subscriptionService.findOne(subscriptionId);
-			Subscription subscription2 = subscriptionService.findOne(getEntityId("subscription4"));
+			Subscription subscription2 = subscriptionService.findOne(getEntityId("subscription2"));
 
 			subscription.setCreditCard(subscription2.getCreditCard());
 			subscriptionService.save(subscription);
+			System.out.println("holaa");
 
 		} catch (Throwable oops) {
 			caught = oops.getClass();
@@ -206,15 +205,15 @@ public class SubscriptionServiceTest extends AbstractTest {
 
 		checkExceptions(expected, caught);
 
-		if (expected == null)
+		if (expected == null) {
 			System.out.println("---------------------------- POSITIVO ---------------------------");
-		else
+		} else {
 			System.out.println("---------------------------- NEGATIVO ---------------------------");
-		System.out.println("Explicación: " + explanation);
-		System.out.println("Subscription: " + subscriptionId);
-		System.out.println("\r¿Correcto? " + (expected == caught));
-		System.out.println("-----------------------------------------------------------------\r");
-
+			System.out.println("Explicación: " + explanation);
+			System.out.println("Subscription: " + subscriptionId);
+			System.out.println("\r¿Correcto? " + (expected == caught));
+			System.out.println("-----------------------------------------------------------------\r");
+		}
 	}
 
 }
