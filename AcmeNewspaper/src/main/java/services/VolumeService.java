@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.VolumeRepository;
+import domain.Advertisement;
 import domain.Newspaper;
 import domain.Subscription;
 import domain.User;
@@ -28,7 +29,10 @@ public class VolumeService {
 
 
 	public Volume findOne(int volumeId) {
-		return volumeRepository.findOne(volumeId);
+		Assert.isTrue(volumeId != 0);
+		Volume res = this.volumeRepository.findOne(volumeId);
+		Assert.notNull(res);
+		return res;
 	}
 
 	public Collection<Volume> findAll() {
@@ -92,6 +96,10 @@ public class VolumeService {
 	
 	public void cleanVolumeNewspaperRelationship(int volumeId){
 		volumeRepository.cleanVolumeNewspaperRelationship(volumeId);
+	}
+	
+	public void flush(){
+		volumeRepository.flush();
 	}
 
 }
