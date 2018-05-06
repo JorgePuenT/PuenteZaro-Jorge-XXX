@@ -3,8 +3,6 @@ package services;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,17 +22,17 @@ public class MessageService {
 
 	// Managed repository -----------------------------------------------------	
 	@Autowired
-	private MessageRepository		messageRepository;
+	private MessageRepository	messageRepository;
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private FolderService			folderService;
+	private FolderService		folderService;
 	@Autowired
 	private SystemConfigService	systemConfigService;
 	@Autowired
-	private ActorService			actorService;
+	private ActorService		actorService;
 	@Autowired
-	private AdminService			adminService;
+	private AdminService		adminService;
 
 
 	// Simple CRUD methods ----------------------------------------------------
@@ -175,6 +173,11 @@ public class MessageService {
 		m.getFolder().getMessages().remove(m);
 		m.setFolder(f);
 		messageRepository.save(m);
+
+	}
+
+	public void flush() {
+		messageRepository.flush();
 
 	}
 

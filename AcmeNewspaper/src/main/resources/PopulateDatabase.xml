@@ -213,6 +213,8 @@
 				<ref bean="folder3"/>
 				<ref bean="folder4"/>
 				<ref bean="folder5"/>
+				<ref bean="folder71"/>
+				
 			</list>
 		</property>
 	</bean>
@@ -1396,6 +1398,7 @@
 		</property>
 		<property name="volumes">
 			<list>
+				<ref bean="volume1" />
 			</list>
 		</property>
 
@@ -1433,7 +1436,6 @@
 		</property>
 		<property name="volumes">
 			<list>
-				<ref bean="volume1"/>
 			</list>
 		</property>
 
@@ -1543,7 +1545,7 @@
 		<property name="user" ref="user1"/>
 		<property name="newspapers">
 			<list>
-				<ref bean="newspaper2" />
+				<ref bean="newspaper1" />
 			</list>
 		</property>
 		<property name="subscriptions">
@@ -1608,6 +1610,7 @@
 		</property>
 		<property name="messages">
 			<list>
+			<ref bean="message6" />
 			</list>
 		</property>
 		<property name="folders">
@@ -1668,6 +1671,7 @@
 		</property>
 		<property name="messages">
 			<list>
+			<ref bean="message6" />
 			</list>
 		</property>
 		<property name="folders">
@@ -1683,6 +1687,10 @@
 		</property>
 		<property name="messages">
 			<list>
+				<ref bean="message1" />
+				<ref bean="message2" />
+				<ref bean="message3" />
+				<ref bean="message4" />
 			</list>
 		</property>
 		<property name="folders">
@@ -1743,6 +1751,8 @@
 		</property>
 		<property name="messages">
 			<list>
+			<ref bean="message1" />
+			<ref bean="message2" />
 			</list>
 		</property>
 		<property name="folders">
@@ -1758,6 +1768,7 @@
 		</property>
 		<property name="messages">
 			<list>
+			<ref bean="message5" />
 			</list>
 		</property>
 		<property name="folders">
@@ -1878,6 +1889,8 @@
 		</property>
 		<property name="messages">
 			<list>
+			<ref bean="message3" />
+			<ref bean="message4" />
 			</list>
 		</property>
 		<property name="folders">
@@ -1893,6 +1906,7 @@
 		</property>
 		<property name="messages">
 			<list>
+			<ref bean="message5" />
 			</list>
 		</property>
 		<property name="folders">
@@ -2637,5 +2651,82 @@
 			</list>
 		</property>
 	</bean>
+	
+		<bean id="folder71" class="domain.Folder">
+		<property name="name" value="Trabajo" />
+		<property name="system" value="false" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- Messages -->
+	<bean id="message1" class="domain.Message">
+		<property name="sentTime" value="01/25/2016 12:01" />
+		<property name="subject" value="tennis 20:00" />
+		<property name="body" value="GG! I win in two set" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="folder" ref="folder7" />
+		<property name="actorFrom" ref="user1" />
+		<property name="actorTo" ref="user2" />
+	</bean>
+	<bean id="message2" class="domain.Message">
+		<property name="sentTime" value="01/25/2016 12:01" />
+		<property name="subject" value="tennis 20:00" />
+		<property name="body" value="GG! I win in two set" />
+		<property name="priority" value="NEUTRAL" />
+		<property name="folder" ref="folder7" />
+		<property name="actorFrom" ref="user1" />
+		<property name="actorTo" ref="user2" />
+	</bean>
+	<bean id="message3" class="domain.Message">
+		<property name="sentTime" value="07/12/2017 10:05" />
+		<property name="subject" value="Hello" />
+		<property name="body" value="Hi, i want buy many viagra" />
+		<property name="priority" value="HIGH" />
+		<property name="folder" ref="folder7" />
+		<property name="actorFrom" ref="user1" />
+		<property name="actorTo" ref="user3" />
+	</bean>
+	<bean id="message4" class="domain.Message">
+		<property name="sentTime" value="07/12/2017 10:05" />
+		<property name="subject" value="Hello" />
+		<property name="body" value="Hi, i want buy many viagra" />
+		<property name="priority" value="HIGH" />
+		<property name="folder" ref="folder12" />
+		<property name="actorFrom" ref="user1" />
+		<property name="actorTo" ref="user3" />
+	</bean>
+	<bean id="message5" class="domain.Message">
+		<property name="sentTime" value="10/11/2017 12:01" />
+		<property name="subject" value="RM-FCB" />
+		<property name="body" value="we will win sure" />
+		<property name="priority" value="LOW" />
+		<property name="folder" ref="folder12" />
+		<property name="actorFrom" ref="user2" />
+		<property name="actorTo" ref="user4" />
+	</bean>
+	
+		<bean id="message6" class="domain.Message">
+		<property name="sentTime" value="10/11/2017 12:01" />
+		<property name="subject" value="RM-FCB" />
+		<property name="body" value="Today classic" />
+		<property name="priority" value="LOW" />
+		<property name="folder" ref="folder2" />
+		<property name="actorFrom" ref="admin" />
+		<property name="actorTo" ref="user1" />
+	</bean>
+	
+	
+	
 	
 </beans>
