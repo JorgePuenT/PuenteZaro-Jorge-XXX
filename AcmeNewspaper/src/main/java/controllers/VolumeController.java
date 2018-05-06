@@ -44,15 +44,15 @@ public class VolumeController {
 	public ModelAndView display(@RequestParam(required=true) int volumeId) {
 		ModelAndView res = new ModelAndView("volume/display");
 		Volume volume = null;
-		try {
-			volume = volumeService.findOne(volumeId);
-		} catch (Throwable oops) {
-			return new ModelAndView("redirect:list.do");
-		}
 
 		try {
 			res.addObject("isSubscribed", customerService.isSubscribedVolume(volume));
 		} catch (Throwable oops) {
+		}
+		try {
+			volume = volumeService.findOne(volumeId);
+		} catch (Throwable oops) {
+			return new ModelAndView("redirect:list.do");
 		}
 		res.addObject("volume", volume);
 		res.addObject("newspapers",volume.getNewspapers());
