@@ -172,4 +172,8 @@ public class FolderService {
 		return a.getFolders().contains(folder);
 	}
 
+	public void flush() {
+		folderRepository.flush();
+	}
+
 }
