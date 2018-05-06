@@ -2,6 +2,7 @@
 package services;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -209,6 +210,216 @@ public class UserServiceTest extends AbstractTest {
 
 		try {
 			userService.findAll();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("\r¿Correcto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverCreate() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				null, "Creacion correcta de un user"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateCreate((Class<?>) testingData[i][0], (String) testingData[i][1]);
+	}
+
+	protected void templateCreate(Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			userService.create();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("ExplicaciÛn: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverSave() {
+
+		Object testingData[][] = {
+			//Positive test
+
+			{
+				0, "name", ConstraintViolationException.class, "Creacion correcta del agent"
+			}, {
+				getEntityId("user1"), "name", IllegalArgumentException.class, "No se puede modificar"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateSave((Integer) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
+	}
+
+	protected void templateSave(Integer aId, String name, Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			if (aId > 0) {
+				User u = userService.findOne(aId);
+				u.setName(name);
+				userService.save(u);
+			} else {
+				User u = userService.create();
+				userService.save(u);
+			}
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("\røCorrecto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverFollow() {
+
+		Object testingData[][] = {
+			//Positive test
+			{
+				"user4", getEntityId("user1"), null, "Follow correcto"
+			}, {
+				"user4", getEntityId("admin"), IllegalArgumentException.class, "seguir a alguien que no es user"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateFollow((String) testingData[i][0], (Integer) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
+	}
+
+	protected void templateFollow(String rol, Integer id, Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			this.authenticate(rol);
+			userService.follow(id);
+			this.unauthenticate();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("\r¿Correcto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverUnFollow() {
+
+		Object testingData[][] = {
+			//Positive test
+			{
+				"user1", getEntityId("user2"), null, "Follow correcto"
+			}, {
+				"user4", getEntityId("admin"), IllegalArgumentException.class, "seguir a alguien que no es user"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateUnFollow((String) testingData[i][0], (Integer) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
+	}
+
+	protected void templateUnFollow(String rol, Integer id, Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			this.authenticate(rol);
+			userService.unFollow(id);
+			this.unauthenticate();
+
+		} catch (Throwable oops) {
+			caught = oops.getClass();
+		}
+
+		checkExceptions(expected, caught);
+
+		if (expected == null)
+			System.out.println("---------------------------- POSITIVO ---------------------------");
+		else
+			System.out.println("---------------------------- NEGATIVO ---------------------------");
+		System.out.println("Explicación: " + explanation);
+		System.out.println("\r¿Correcto? " + (expected == caught));
+		System.out.println("-----------------------------------------------------------------\r");
+
+	}
+
+	@Test
+	public void driverDashboard() {
+		System.out.println("===============================================================================================================");
+		System.out.println("=====================================TEST Dashboard=======================================================");
+		System.out.println("===============================================================================================================\r");
+		Object testingData[][] = {
+			//Positive test
+			{
+				null, "Find correcto"
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			templateDashboard((Class<?>) testingData[i][0], (String) testingData[i][1]);
+	}
+
+	protected void templateDashboard(Class<?> expected, String explanation) {
+
+		Class<?> caught = null;
+
+		try {
+			userService.getAvgRatioOfNewspapersPerPublisher();
+			userService.getRatioOfUsersWhoHaveCreatedNewspapers();
+			userService.getRatioOfUsersWhoHavePostedMOreChirpsThan75Avg();
+			userService.getStatsOfArticlesPerUser();
+			userService.getStatsOfChirpsPerUser();
+			userService.getStatsOfNewspapersPerUser();
 
 		} catch (Throwable oops) {
 			caught = oops.getClass();

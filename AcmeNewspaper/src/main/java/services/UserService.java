@@ -34,7 +34,7 @@ public class UserService {
 
 	@Autowired
 	private ActorService		actorService;
-	
+
 	@Autowired
 	private FolderService		folderService;
 
@@ -121,7 +121,6 @@ public class UserService {
 		notificationbox.setName("Notificationbox");
 		notificationbox.setSystem(true);
 
-
 		//Password
 		Md5PasswordEncoder password = new Md5PasswordEncoder();
 		String encodedPassword = password.encodePassword(user.getUserAccount().getPassword(), null);
@@ -129,19 +128,14 @@ public class UserService {
 		user.setUserAccount(this.userAccountService.save(user.getUserAccount()));
 
 		User res = this.userRepository.saveAndFlush(user);
-			
+
 		folderService.save(inbox, res);
 		folderService.save(outbox, res);
 		folderService.save(trashbox, res);
 		folderService.save(spambox, res);
 		folderService.save(notificationbox, res);
-		
-		return res;
-	}
 
-	public void delete(final int userId) {
-		Assert.isTrue(userId != 0);
-		this.userRepository.delete(userId);
+		return res;
 	}
 
 	//Other Business Methods --------------------------------
@@ -165,6 +159,8 @@ public class UserService {
 	public void follow(final int userId) {
 		User u = this.findOne(userId);
 		User principal = this.findByPrincipal();
+		Assert.isTrue(principal instanceof User);
+		Assert.isTrue(u instanceof User);
 		u.getFollowedBy().add(principal);
 		principal.getFollows().add(u);
 		this.userRepository.save(u);
@@ -179,28 +175,28 @@ public class UserService {
 		this.userRepository.save(u);
 		this.userRepository.save(principal);
 	}
-	
-	public	Double[] getStatsOfNewspapersPerUser(){
+
+	public Double[] getStatsOfNewspapersPerUser() {
 		return userRepository.getStatsOfNewspapersPerUser();
 	}
 
-	public Double[] getStatsOfArticlesPerUser(){
+	public Double[] getStatsOfArticlesPerUser() {
 		return userRepository.getStatsOfArticlesPerUser();
 	}
 
-	public Double getRatioOfUsersWhoHaveCreatedNewspapers(){
+	public Double getRatioOfUsersWhoHaveCreatedNewspapers() {
 		return userRepository.getRatioOfUsersWhoHaveCreatedNewspapers();
 	}
 
-	public Double[] getStatsOfChirpsPerUser(){
+	public Double[] getStatsOfChirpsPerUser() {
 		return userRepository.getStatsOfChirpsPerUser();
 	}
 
-	public Double getRatioOfUsersWhoHavePostedMOreChirpsThan75Avg(){
+	public Double getRatioOfUsersWhoHavePostedMOreChirpsThan75Avg() {
 		return userRepository.getRatioOfUsersWhoHavePostedMOreChirpsThan75Avg();
 	}
 
-	public Double getAvgRatioOfNewspapersPerPublisher(){
+	public Double getAvgRatioOfNewspapersPerPublisher() {
 		return userRepository.getAvgRatioOfNewspapersPerPublisher();
 	}
 }
