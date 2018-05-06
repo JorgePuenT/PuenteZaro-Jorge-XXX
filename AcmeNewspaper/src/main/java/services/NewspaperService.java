@@ -118,6 +118,8 @@ public class NewspaperService {
 			newspaper.setSubscriptionss(db.getSubscriptionss());
 			newspaper.setTitle(db.getTitle());
 			newspaper.setUser(db.getUser());
+			newspaper.setVolumes(db.getVolumes());
+			newspaper.setAdvertisements(db.getAdvertisements());
 			validator.validate(newspaper, binding);			
 		}
 		return newspaper;
