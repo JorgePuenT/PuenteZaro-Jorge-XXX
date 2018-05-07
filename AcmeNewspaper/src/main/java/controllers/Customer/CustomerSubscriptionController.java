@@ -42,7 +42,7 @@ public class CustomerSubscriptionController extends AbstractController {
 			@RequestParam(required = false) final Integer volumeId) {
 		ModelAndView result;
 		try {
-			if (newspaperId!=null && customerService.isSubscribed(newspaperService.findOne(newspaperId)))
+			if (newspaperId!=null && customerService.isSubscribedNewspaper(newspaperService.findOne(newspaperId)))
 				throw new Exception("Already subscribed");
 			if (volumeId!=null && customerService.isSubscribedVolume(volumeService.findOne(volumeId)))
 				throw new Exception("Already subscribed");
@@ -73,7 +73,6 @@ public class CustomerSubscriptionController extends AbstractController {
 				if(validated.getNewspaper()!=null)
 					result = new ModelAndView("redirect:/newspaper/display.do?newspaperId=" + validated.getNewspaper().getId());
 				else {
-					subscriptionService.createSubscriptionsFromVolume(validated.getVolume(),validated.getCreditCard());
 					result = new ModelAndView("redirect:/volume/display.do?volumeId=" + validated.getVolume().getId());
 				}		
 			} catch (Throwable oops) {

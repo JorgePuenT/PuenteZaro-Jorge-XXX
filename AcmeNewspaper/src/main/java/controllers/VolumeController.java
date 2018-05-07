@@ -46,7 +46,7 @@ public class VolumeController {
 		Volume volume = null;
 
 		try {
-			res.addObject("isSubscribed", customerService.isSubscribedVolume(volume));
+			res.addObject("isSubscribed", customerService.isSubscribedVolume(volumeService.findOne(volumeId)));
 		} catch (Throwable oops) {
 		}
 		try {

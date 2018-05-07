@@ -58,6 +58,7 @@ public class NewspaperController extends AbstractController {
 		}
 		try {
 			res.addObject("isSubscribed", customerService.isSubscribed(newspaper));
+			res.addObject("isSubscribedNewspaper", customerService.isSubscribedNewspaper(newspaper));
 		} catch (Throwable oops) {
 		}
 		if(newspaper.getInappropriate()==false){

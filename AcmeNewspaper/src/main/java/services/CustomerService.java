@@ -134,6 +134,10 @@ public class CustomerService {
 	public boolean isSubscribed(final Newspaper newspaper) {
 		return this.customerRepository.isSubscribed(newspaper,this.findByPrincipal()) > 0 ? true : false;
 	}
+	
+	public boolean isSubscribedNewspaper(final Newspaper newspaper) {
+		return this.customerRepository.isSubscribedNewspaper(newspaper,this.findByPrincipal()) > 0 ? true : false;
+	}
 
 	public boolean isSubscribedVolume(Volume volume) {
 		return this.customerRepository.isSubscribedVolume(volume,this.findByPrincipal()) > 0 ? true : false;
