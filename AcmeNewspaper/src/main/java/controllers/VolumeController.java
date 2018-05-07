@@ -55,7 +55,7 @@ public class VolumeController {
 			return new ModelAndView("redirect:list.do");
 		}
 		res.addObject("volume", volume);
-		res.addObject("newspapers",volume.getNewspapers());
+		res.addObject("newspapers",volumeService.getNewspapersNotInappropriate(volume));
 		res.addObject("requestUri", "volume/display.do");
 		return res;
 	}

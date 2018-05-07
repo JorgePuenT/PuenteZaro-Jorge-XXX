@@ -1,11 +1,14 @@
 package repositories;
 
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import domain.Newspaper;
 import domain.Volume;
 
 @Repository
@@ -20,4 +23,7 @@ public interface VolumeRepository extends JpaRepository<Volume, Integer>{
 	@Modifying
 	@Query(value="delete from volume_newspaper where volumes_id = ?1", nativeQuery = true)
 	void cleanVolumeNewspaperRelationship(int volumeId);
+
+	@Query("select distinct n from Newspaper n join n.volumes v where n.inappropriate=false and v=?1")
+	Collection<Newspaper> getNewspapersNotInappropriate(Volume volume);
 }
