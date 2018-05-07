@@ -29,7 +29,7 @@
 		
 		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" />
 
-		<security:intercept-url pattern="/security/login.do" access="permitAll" requires-channel="https"/>
+		<security:intercept-url pattern="/security/login.do" access="permitAll"/>
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" />
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" />
@@ -40,7 +40,7 @@
 		<security:intercept-url pattern="/customer/**" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/agent/**" access="hasRole('AGENT')"/>
 
-		<security:intercept-url pattern="/register/**" access="isAnonymous()" requires-channel="https"/>
+		<security:intercept-url pattern="/register/**" access="isAnonymous()"/>
 		<security:intercept-url pattern="/newspaper/**" access="permitAll"/>
 		<security:intercept-url pattern="/article/**" access="permitAll"/>
 		<security:intercept-url pattern="/volume/**" access="permitAll"/>

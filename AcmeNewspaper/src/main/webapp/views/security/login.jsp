@@ -16,8 +16,6 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<script type="text/javascript" src="scripts/md5.min.js"></script>
-
 <div class="col-sm-4 col-sm-offset-4">
 <form:form id="loginForm" action="j_spring_security_check" modelAttribute="credentials" >
 	<div class="form-group">
