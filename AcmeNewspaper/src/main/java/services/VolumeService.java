@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import repositories.NewspaperRepository;
 import repositories.VolumeRepository;
 import domain.Advertisement;
 import domain.Newspaper;
@@ -100,6 +101,10 @@ public class VolumeService {
 	
 	public void flush(){
 		volumeRepository.flush();
+	}
+
+	public Collection<Newspaper> getNewspapersNotInappropriate(Volume volume) {
+		return volumeRepository.getNewspapersNotInappropriate(volume);
 	}
 
 }
