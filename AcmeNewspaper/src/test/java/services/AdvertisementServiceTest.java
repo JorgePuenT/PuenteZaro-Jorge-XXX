@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import utilities.AbstractTest;
+import domain.Advertisement;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -160,60 +161,67 @@ public class AdvertisementServiceTest extends AbstractTest {
 
 	}
 
-	/*
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * @Test
-	 * public void driverSave() {
-	 * System.out.println("===============================================================================================================");
-	 * System.out.println("=====================================TEST SAVE ADVERTISEMENT==================================================");
-	 * System.out.println("===============================================================================================================\r");
-	 * 
-	 * Object testingData[][] = {
-	 * //Test positivo
-	 * {
-	 * 0, "agent1", null, "Guardado correcto de un advertisement"
-	 * }
-	 * 
-	 * , {
-	 * getEntityId("advertisement2"), "agent1", IllegalArgumentException.class, "Se intenta gusradar algo con id distinta de 0"
-	 * }, {
-	 * 0, null, IllegalArgumentException.class, "nadie logueado"
-	 * }
-	 * 
-	 * 
-	 * };
-	 * for (int i = 0; i < testingData.length; i++)
-	 * templateSave((Integer) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
-	 * }
-	 * 
-	 * protected void templateSave(Integer idAd, String rol, Class<?> expected, String explanation) {
-	 * Class<?> caught = null;
-	 * try {
-	 * authenticate(rol);
-	 * if (idAd == 0) {
-	 * advertisementService.save(advertisementService.create());
-	 * } else {
-	 * advertisementService.save(advertisementService.findOne(idAd));
-	 * }
-	 * authenticate(null);
-	 * this.advertisementService.flush();
-	 * } catch (Throwable oops) {
-	 * caught = oops.getClass();
-	 * }
-	 * 
-	 * checkExceptions(expected, caught);
-	 * if (expected == null)
-	 * System.out.println("---------------------------- POSITIVO ---------------------------");
-	 * else
-	 * System.out.println("---------------------------- NEGATIVO ---------------------------");
-	 * System.out.println("Explicación: " + explanation);
-	 * System.out.println("id: " + idAd);
-	 * System.out.println("Rol: " + rol);
-	 * System.out.println("\r¿Correcto? " + (expected == caught));
-	 * System.out.println("-----------------------------------------------------------------\r");
-	 * }
-	 */
+	 
+	 @Test
+	 public void driverSave() {
+	 System.out.println("===============================================================================================================");
+	 System.out.println("=====================================TEST SAVE ADVERTISEMENT==================================================");
+	 System.out.println("===============================================================================================================\r");
+	 
+	 Object testingData[][] = {
+	 //Test positivo
+	 {
+	 0, "agent1", null, "Guardado correcto de un advertisement"
+	 }
+	 
+	 , {
+	 getEntityId("advertisement2"), "agent1", IllegalArgumentException.class, "Se intenta guardar algo con id distinta de 0"
+	 }, {
+	 0, null, IllegalArgumentException.class, "nadie logueado"
+	 }
+	 
+	 
+	 };
+	 for (int i = 0; i < testingData.length; i++)
+	 templateSave((Integer) testingData[i][0], (String) testingData[i][1], (Class<?>) testingData[i][2], (String) testingData[i][3]);
+	 }
+	 
+	 protected void templateSave(Integer idAd, String rol, Class<?> expected, String explanation) {
+	 Class<?> caught = null;
+	 try {
+	 authenticate(rol);
+	 if (idAd == 0) {
+	 Advertisement adv = advertisementService.findOne(getEntityId("advertisement1"));
+	 
+     Advertisement advNew = advertisementService.create();
+     advNew.setTitle("Test");
+     advNew.setBannerUrl("https://www.google.es/");
+     advNew.setTargetUrl("https://www.google.es/");
+     advNew.setCreditCard(adv.getCreditCard());
+     advNew.setNewspaper(nwService.findOne(getEntityId("newspaper1")));
+     
+	 advertisementService.save(advNew);
+	 } else {
+	 advertisementService.save(advertisementService.findOne(idAd));
+	 }
+	 authenticate(null);
+	 this.advertisementService.flush();
+	 } catch (Throwable oops) {
+	 caught = oops.getClass();
+	 }
+	 
+	 checkExceptions(expected, caught);
+	 if (expected == null)
+	 System.out.println("---------------------------- POSITIVO ---------------------------");
+	 else
+	 System.out.println("---------------------------- NEGATIVO ---------------------------");
+	 System.out.println("Explicación: " + explanation);
+	 System.out.println("id: " + idAd);
+	 System.out.println("Rol: " + rol);
+	 System.out.println("\r¿Correcto? " + (expected == caught));
+	 System.out.println("-----------------------------------------------------------------\r");
+	 }
+	 
 	@Test
 	public void driverMarkAsInappropriate() {
 

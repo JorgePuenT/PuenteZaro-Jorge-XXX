@@ -63,28 +63,23 @@ public class SubscriptionService {
 		return subscriptionRepository.findAll();
 	}
 
-	public Subscription save(final Subscription subscription) {
+	public Subscription save(final Subscription subscription) 
+	{
 		Assert.notNull(subscription);
-		if(subscription.getNewspaper()!=null)
-			Assert.isTrue(!customerService.isSubscribed(subscription.getNewspaper()));
+		if(subscription.getNewspaper()!=null){
+			Assert.isTrue(!customerService.isSubscribedNewspaper(subscription.getNewspaper()));
+		}
 		else
 			Assert.isTrue(!customerService.isSubscribedVolume(subscription.getVolume()));
-			
-
+					
 		//Comprobación fecha
 		Date cardDate = new Date();
 		String date =subscription.getCreditCard().getExpirationYear() + "/"+ subscription.getCreditCard().getExpirationMonth() + "/00";
 		try {
 			cardDate = new SimpleDateFormat("yyyy/MM/dd").parse(date);
 		} catch (ParseException e) {
-
 		}
-
 		Assert.isTrue(cardDate.after(new Date()));
-
-
-
-
 		return subscriptionRepository.save(subscription);
 	}
 
@@ -95,15 +90,4 @@ public class SubscriptionService {
 		return subscription;
 	}
 
-	public void createSubscriptionsFromVolume(Volume volume,CreditCard cc) {
-		for(Newspaper n: volume.getNewspapers())
-			if(!customerService.isSubscribed(n)) {
-				Subscription s = create(n.getId(),null);
-				s.setCreditCard(cc);
-				s.setCustomer(customerService.findByPrincipal());
-				SchemaPrinter.print(s);
-				save(s);
-			}
-				
-	}
 }

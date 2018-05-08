@@ -15,7 +15,6 @@
 
 <div class="container col-sm-8 col-sm-offset-2 well">
 
-	
 	<security:authorize access="hasRole('CUSTOMER')">
 		<jstl:if test="${not isSubscribed}">
 			<a class="btn btn-primary btn-block" href="customer/subscription/create.do?volumeId=${volume.id}"><spring:message code="volume.subscribe"/></a>

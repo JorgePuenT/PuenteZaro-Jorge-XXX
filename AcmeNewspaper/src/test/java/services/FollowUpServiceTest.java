@@ -174,7 +174,7 @@ public class FollowUpServiceTest extends AbstractTest {
 		Class<?> caught = null;
 		try {
 
-			authenticate("user1");
+			authenticate("user2");
 			FollowUp follup = followUpService.findOne(followUpId);
 			follup.setTitle(title);
 			follup.setSummary(summary);
