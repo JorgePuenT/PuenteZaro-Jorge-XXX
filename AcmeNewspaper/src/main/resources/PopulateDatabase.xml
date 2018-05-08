@@ -801,7 +801,7 @@
 		<property name="newspaper" ref="newspaper2" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="customer" ref="customer1" />
-		<property name="volume" ref="volume2" />
+		<property name="volume" ref="volume1" />
 	</bean>
 
 	<bean id="subscription3" class="domain.Subscription">
@@ -1552,6 +1552,8 @@
 		</property>
 		<property name="subscriptions">
 			<list>
+				<ref bean="subscription1"/>
+				<ref bean="subscription2"/>
 			</list>
 		</property>
 	</bean>
