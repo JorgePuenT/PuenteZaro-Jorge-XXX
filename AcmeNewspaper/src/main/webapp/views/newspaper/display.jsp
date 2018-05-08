@@ -55,7 +55,7 @@
 		<lib:column name="publicationMoment" format="{0,date,dd/MM/yyyy}" group="1"></lib:column>
 		
 		<jstl:choose>
-			<jstl:when test="${not row2.newspaper.isPrivate or isSubscribed}">
+			<jstl:when test="${not row2.newspaper.isPrivate or isSubscribed or (row2.newspaper.user.userAccount.username eq pageContext.request.userPrincipal.name)}">
 				<lib:column name="title" link="article/display.do?articleId=${row2.id}" linkName="${row2.title}"></lib:column>
 			</jstl:when>
 			<jstl:otherwise>
