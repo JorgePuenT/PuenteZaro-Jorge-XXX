@@ -26,6 +26,8 @@ public class MessageServiceTest extends AbstractTest {
 	//Supporting services -----------------------------------------------------
 	@Autowired
 	private FolderService	folderService;
+	@Autowired
+	private ActorService	actorService;
 
 
 	// Tests ------------------------------------------------------------------
@@ -115,7 +117,6 @@ public class MessageServiceTest extends AbstractTest {
 		System.out.println("\r¿Correcto? " + (expected == caught));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void driverSave() {
 		System.out.println("===============================================================================================================");
@@ -162,7 +163,6 @@ public class MessageServiceTest extends AbstractTest {
 		System.out.println("-----------------------------------------------------------------\r");
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void driverSaveBroadcast() {
 		System.out.println("===============================================================================================================");
@@ -174,7 +174,7 @@ public class MessageServiceTest extends AbstractTest {
 			{
 				"admin", "Body", "Subject", null, "Guardado correcto de un message"
 			}, {
-				"user2", "summary", "body", IllegalArgumentException.class, "Intento de guardar un message sin un actor loguedo"
+				"user2", "summary", "body", IllegalArgumentException.class, "Intento de guardar un message sin un actor logeado"
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -189,6 +189,7 @@ public class MessageServiceTest extends AbstractTest {
 			Message m = messageService.create();
 			m.setBody(body);
 			m.setSubject(title);
+			m.setActorTo(actorService.findOne(getEntityId("customer1")));
 			this.messageService.saveBroadcast(m);
 			authenticate(null);
 			this.messageService.flush();
@@ -208,7 +209,6 @@ public class MessageServiceTest extends AbstractTest {
 		System.out.println("-----------------------------------------------------------------\r");
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void driverNotification() {
 		System.out.println("===============================================================================================================");
@@ -235,6 +235,7 @@ public class MessageServiceTest extends AbstractTest {
 			Message m = messageService.create();
 			m.setBody(body);
 			m.setSubject(title);
+			m.setActorTo(actorService.findOne(getEntityId("customer2")));
 			if (rol == "user2") {
 				this.messageService.saveNotification(null);
 			} else {

@@ -174,30 +174,30 @@ public class SubscriptionServiceTest extends AbstractTest {
 		Object testingData[][] = {
 			//Positive test
 			{
-				getEntityId("subscription1"), null, "Guardado de suscripción correctamente"
+				getEntityId("subscription1"), null, "Guardado de suscripción correctamente", "customer2"
 			},
 
 			//Try to save one Subscription using another entity
 			{
-				null, IllegalArgumentException.class, "Intento de guardar con una id nula"
+				getEntityId("user1"), IllegalArgumentException.class, "Intento de guardar con una id nula", "customer2"
 			},
 		};
 
 		for (int i = 0; i < testingData.length; i++)
-			templateSave((Integer) testingData[i][0], (Class<?>) testingData[i][1], (String) testingData[i][2]);
+			templateSave((Integer) testingData[i][0], (Class<?>) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3]);
 	}
 
-	protected void templateSave(int subscriptionId, Class<?> expected, String explanation) {
+	protected void templateSave(int subscriptionId, Class<?> expected, String explanation, String rol) {
 
 		Class<?> caught = null;
 
 		try {
 			Subscription subscription = subscriptionService.findOne(subscriptionId);
 			Subscription subscription2 = subscriptionService.findOne(getEntityId("subscription2"));
-
+			authenticate(rol);
 			subscription.setCreditCard(subscription2.getCreditCard());
 			subscriptionService.save(subscription);
-			System.out.println("holaa");
+			authenticate(null);
 
 		} catch (Throwable oops) {
 			caught = oops.getClass();

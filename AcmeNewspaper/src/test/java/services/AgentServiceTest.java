@@ -115,7 +115,8 @@ public class AgentServiceTest extends AbstractTest {
 		try {
 
 			this.authenticate(username);
-			agentService.findByPrincipal();
+			Agent agent = agentService.findByPrincipal();
+			Assert.notNull(agent);
 			this.unauthenticate();
 
 		} catch (Throwable oops) {

@@ -154,7 +154,7 @@ public class CustomerServiceTest extends AbstractTest {
 
 			//FindByPrincipal with a different role than Customer
 			{
-				"user1", null, "Se intenta logear con un user"
+				"user1", IllegalArgumentException.class, "Se intenta logear con un user"
 			},
 			//FindByPrincipal being anonymous
 			{
@@ -173,7 +173,8 @@ public class CustomerServiceTest extends AbstractTest {
 		try {
 
 			this.authenticate(username);
-			customerService.findByPrincipal();
+			Customer customer = customerService.findByPrincipal();
+			Assert.notNull(customer);
 			this.unauthenticate();
 
 		} catch (Throwable oops) {
@@ -322,7 +323,7 @@ public class CustomerServiceTest extends AbstractTest {
 			//Positive test
 
 			{
-				null, "Creacion correcta", getEntityId("newspaper1"), "customer1"
+				null, "Creación correcta", getEntityId("newspaper1"), "user1"
 			}
 		};
 
@@ -330,13 +331,13 @@ public class CustomerServiceTest extends AbstractTest {
 			templateisSubscribed((Class<?>) testingData[i][0], (String) testingData[i][1], (Integer) testingData[i][2], (String) testingData[i][3]);
 	}
 
-	protected void templateisSubscribed(Class<?> expected, String explanation, Integer nwId, String rol) {
+	protected void templateisSubscribed(Class<?> expected, String explanation, Integer newspaperId, String rol) {
 
 		Class<?> caught = null;
 
 		try {
 			this.authenticate(rol);
-			customerService.isSubscribed(nwService.findOne(nwId));
+			customerService.isSubscribed(nwService.findOne(newspaperId));
 			this.unauthenticate();
 
 		} catch (Throwable oops) {
@@ -370,13 +371,13 @@ public class CustomerServiceTest extends AbstractTest {
 			templateisSubscribedVolume((Class<?>) testingData[i][0], (String) testingData[i][1], (Integer) testingData[i][2], (String) testingData[i][3]);
 	}
 
-	protected void templateisSubscribedVolume(Class<?> expected, String explanation, Integer nwId, String rol) {
+	protected void templateisSubscribedVolume(Class<?> expected, String explanation, Integer vId, String rol) {
 
 		Class<?> caught = null;
 
 		try {
 			this.authenticate(rol);
-			customerService.isSubscribedVolume(vService.findOne(nwId));
+			customerService.isSubscribedVolume(vService.findOne(vId));
 			this.unauthenticate();
 
 		} catch (Throwable oops) {

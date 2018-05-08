@@ -794,12 +794,14 @@
 		<property name="newspaper" ref="newspaper1" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="customer" ref="customer1" />
+		<property name="volume" ref="volume1" />
 	</bean>
 
 	<bean id="subscription2" class="domain.Subscription">
 		<property name="newspaper" ref="newspaper2" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="customer" ref="customer1" />
+		<property name="volume" ref="volume2" />
 	</bean>
 
 	<bean id="subscription3" class="domain.Subscription">
@@ -1371,7 +1373,7 @@
 		<property name="title" value="MarcaMotor" />
 		<property name="publicationDate" value="11/26/2017 12:22" />
 		<property name="description"
-			value="esta revista trata sobre los mejores coches del mundo" />
+			value="Esta revista trata sobre los mejores coches del mundo" />
 		<property name="picture"
 			value="http://crucerosensevilla.com/wp-content/uploads/2015/09/Sevilla4.jpg" />
 		<property name="price" value="1.00" />

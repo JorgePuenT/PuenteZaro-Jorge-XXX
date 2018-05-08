@@ -63,13 +63,15 @@ public class SubscriptionService {
 		return subscriptionRepository.findAll();
 	}
 
-	public Subscription save(final Subscription subscription) {
+	public Subscription save(final Subscription subscription) 
+	{
 		Assert.notNull(subscription);
-		if(subscription.getNewspaper()!=null)
+		if(subscription.getNewspaper()!=null){
 			Assert.isTrue(!customerService.isSubscribedNewspaper(subscription.getNewspaper()));
+		}
 		else
 			Assert.isTrue(!customerService.isSubscribedVolume(subscription.getVolume()));
-			
+					
 		//Comprobación fecha
 		Date cardDate = new Date();
 		String date =subscription.getCreditCard().getExpirationYear() + "/"+ subscription.getCreditCard().getExpirationMonth() + "/00";
