@@ -15,6 +15,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
+import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -40,6 +42,7 @@ public class Message extends DomainEntity {
 		this.priority = priority;
 	}
 
+	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getSubject() {
 		return this.subject;
 	}
@@ -48,6 +51,7 @@ public class Message extends DomainEntity {
 		this.subject = subject;
 	}
 
+	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getBody() {
 		return this.body;
 	}

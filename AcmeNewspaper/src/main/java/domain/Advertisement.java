@@ -8,7 +8,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
+import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -21,6 +23,7 @@ public class Advertisement extends DomainEntity{
 	private Boolean inappropriate;
 	
 	@NotBlank
+	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getTitle() {
 		return title;
 	}
@@ -31,6 +34,7 @@ public class Advertisement extends DomainEntity{
 	
 	@NotBlank
 	@URL
+	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getBannerUrl() {
 		return bannerUrl;
 	}
@@ -41,6 +45,7 @@ public class Advertisement extends DomainEntity{
 	
 	@NotBlank
 	@URL
+	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getTargetUrl() {
 		return targetUrl;
 	}

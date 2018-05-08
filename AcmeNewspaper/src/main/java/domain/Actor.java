@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 import security.UserAccount;
 import cz.jirutka.validator.collection.constraints.EachEmail;
@@ -39,6 +41,7 @@ public abstract class Actor extends DomainEntity {
 
 	@NotBlank
 	@NotNull
+	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getName() {
 		return this.name;
 	}
@@ -49,6 +52,7 @@ public abstract class Actor extends DomainEntity {
 
 	@NotNull
 	@NotBlank
+	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getSurnames() {
 		return this.surnames;
 	}
