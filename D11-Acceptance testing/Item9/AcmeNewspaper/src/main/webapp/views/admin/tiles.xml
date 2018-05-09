@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	<definition name="admin/dashboard" extends="master.page">
+		<put-attribute name="title" value="Dashboard" />
+		<put-attribute name="body" value="/views/admin/dashboard.jsp" />
+	</definition>
+	<definition name="" extends="master.page">
+		<put-attribute name="title" value="Admin Edit" />
+		<put-attribute name="body" value="/views/admin/list.jsp" />
+	</definition>
+	<definition name="" extends="master.page">
+		<put-attribute name="title" value="Admin Display" />
+		<put-attribute name="body" value="/views/admin/list.jsp" />
+	</definition>
+	<definition name="admin/broadcast" extends="master.page">
+		<put-attribute name="title" value="Broadcast" />
+		<put-attribute name="body" value="/views/admin/broadcast.jsp" />
+	</definition>
+	</tiles-definitions>
