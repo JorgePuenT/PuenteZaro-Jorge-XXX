@@ -246,6 +246,7 @@
 			<list>
 				<ref bean="newspaper1"/>
 				<ref bean="newspaper2"/>
+				<ref bean="newspaper6"/>
 			</list>
 		</property>
 		<property name="follows">
@@ -758,6 +759,7 @@
 		<property name="advertisements">
 			<list>
 				<ref bean="advertisement3" />
+				<ref bean="advertisement4"/>
 			</list>
 		</property>
 	</bean>
@@ -1350,7 +1352,7 @@
 		<property name="body"
 			value="Este jugador se caracteriza por su defensa agresiva, y por su mecánica en los tiros de 3" />
 		<property name="finalMode" value="true" />
-		<property name="newspaper" ref="newspaper1" />
+		<property name="newspaper" ref="newspaper6" />
 		<property name="picturess">
 			<list>
 			</list>
@@ -1362,7 +1364,7 @@
 				
 			</list>
 		</property>
-		<property name="inappropriate" value="true"/>
+		<property name="inappropriate" value="false"/>
 	</bean>
 
 
@@ -1389,18 +1391,15 @@
 		</property>
 		<property name="articless">
 			<list>
-				<ref bean="article8"/>
 			</list>
 		</property>
 		<property name="advertisements">
 			<list>
-				<ref bean="advertisement1"/>
-				<ref bean="advertisement2"/>
 			</list>
 		</property>
 		<property name="volumes">
 			<list>
-				<ref bean="volume1" />
+
 			</list>
 		</property>
 
@@ -1434,10 +1433,12 @@
 		<property name="advertisements">
 			<list>
 				<ref bean="advertisement2"/>
+				<ref bean="advertisement1"/>
 			</list>
 		</property>
 		<property name="volumes">
 			<list>
+				<ref bean="volume1" />
 			</list>
 		</property>
 
@@ -1467,6 +1468,7 @@
 		</property>
 		<property name="advertisements">
 			<list>
+				<ref bean="advertisement3"/>
 			</list>
 		</property>
 		<property name="volumes">
@@ -1500,6 +1502,7 @@
 		</property>
 		<property name="advertisements">
 			<list>
+				<ref bean="advertisement4"/>
 			</list>
 		</property>
 		<property name="volumes">
@@ -1539,6 +1542,37 @@
 		</property>
 
 	</bean>
+	<bean id="newspaper6" class="domain.Newspaper">
+		<property name="title" value="Sevilla informa" />
+		<property name="publicationDate" value="03/11/2017 12:22" />
+		<property name="description" value="Actualidad sobre la capital andaluza" />
+		<property name="picture"
+			value="" />
+		<property name="price" value="2.0" />
+		<property name="isPrivate" value="false" />
+		<property name="inappropriate" value="false" />
+		<property name="user" ref="user1" />
+		<property name="subscriptionss">
+			<list>
+				<ref bean="subscription5" />
+			</list>
+		</property>
+		<property name="articless">
+			<list>
+				<ref bean="article8"/>
+			</list>
+		</property>
+		<property name="advertisements">
+			<list>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<ref bean="volume1"/>
+			</list>
+		</property>
+
+	</bean>
 	
 	<bean id="volume1" class="domain.Volume">
 		<property name="title" value="Volumen 1" />
@@ -1547,7 +1581,8 @@
 		<property name="user" ref="user1"/>
 		<property name="newspapers">
 			<list>
-				<ref bean="newspaper1" />
+				<ref bean="newspaper2" />
+				<ref bean="newspaper6"/>
 			</list>
 		</property>
 		<property name="subscriptions">
@@ -1558,6 +1593,25 @@
 		</property>
 	</bean>
 	
+	<bean id="volume2" class="domain.Volume">
+		<property name="title" value="Volumen 2" />
+		<property name="description" value="Descripcion Volume 2" />
+		<property name="year" value="2018" />
+		<property name="user" ref="user2"/>
+		<property name="newspapers">
+			<list>
+				<ref bean="newspaper3" />
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<ref bean="subscription1"/>
+				<ref bean="subscription2"/>
+			</list>
+		</property>
+	</bean>
+	
+	
 	<!-- Advertisements 2 -->
 	
 	<bean id="advertisement1" class="domain.Advertisement">
@@ -1567,7 +1621,7 @@
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="inappropriate" value="false"/>
 		<property name="agent" ref ="agent1"/>
-		<property name="newspaper" ref="newspaper1"/>
+		<property name="newspaper" ref="newspaper2"/>
 	</bean>
 	
 	<bean id="advertisement2" class="domain.Advertisement">
@@ -1577,7 +1631,7 @@
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="inappropriate" value="false"/>
 		<property name="agent" ref ="agent1"/>
-		<property name="newspaper" ref="newspaper1"/>
+		<property name="newspaper" ref="newspaper2"/>
 	</bean>
 	
 	<bean id="advertisement3" class="domain.Advertisement">
@@ -1587,7 +1641,17 @@
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="inappropriate" value="false"/>
 		<property name="agent" ref ="agent2"/>
-		<property name="newspaper" ref="newspaper2"/>
+		<property name="newspaper" ref="newspaper3"/>
+	</bean>
+	
+		<bean id="advertisement4" class="domain.Advertisement">
+		<property name="title" value="Sexo, viagra" />
+		<property name="bannerUrl" value="https://vignette.wikia.nocookie.net/zeldaeu/images/b/b1/Zelda.png/revision/latest?cb=20170416190604" />
+		<property name="targetUrl" value="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Target_logo.svg/1200px-Target_logo.svg.png" />
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="inappropriate" value="false"/>
+		<property name="agent" ref ="agent2"/>
+		<property name="newspaper" ref="newspaper4"/>
 	</bean>
 
 	<!-- Folders -->
