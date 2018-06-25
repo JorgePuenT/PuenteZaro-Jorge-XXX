@@ -13,6 +13,7 @@ import org.springframework.validation.Validator;
 import repositories.NewspaperRepository;
 import domain.Agent;
 import domain.Article;
+import domain.ExamEntity;
 import domain.Newspaper;
 import domain.Subscription;
 import domain.Volume;
@@ -45,62 +46,63 @@ public class NewspaperService {
 		res.setArticless(new ArrayList<Article>());
 		res.setSubscriptionss(new ArrayList<Subscription>());
 		res.setVolumes(new ArrayList<Volume>());
+		res.setExamEntities(new ArrayList<ExamEntity>());
 
 		res.setInappropriate(false);
 		Assert.isTrue(userService.findByPrincipal() instanceof domain.User);
-		res.setUser(this.userService.findByPrincipal());
+		res.setUser(userService.findByPrincipal());
 		return res;
 	}
 
 	public Newspaper findOne(final int newspaperId) {
 		Assert.isTrue(newspaperId != 0);
-		Newspaper res = this.newspaperRepository.findOne(newspaperId);
+		Newspaper res = newspaperRepository.findOne(newspaperId);
 		Assert.notNull(res);
 		return res;
 	}
 
 	public Collection<Newspaper> findAll() {
-		return this.newspaperRepository.findAll();
+		return newspaperRepository.findAll();
 	}
-	
+
 	public Collection<Newspaper> findAllNotInappropriate() {
-		return this.newspaperRepository.findAllNotInappropriate();
+		return newspaperRepository.findAllNotInappropriate();
 	}
 
 	public Newspaper save(final Newspaper newspaper) {
 		Assert.notNull(newspaper);
 		Assert.isTrue(newspaper.getUser().equals(userService.findByPrincipal()));
-		Assert.notNull(this.userService.findByPrincipal());
+		Assert.notNull(userService.findByPrincipal());
 		Assert.isTrue(newspaper.getPublicationDate().after(new Date()));
 		if(newspaper.getIsPrivate()) Assert.notNull(newspaper.getPrice());
 		else newspaper.setPrice(null);
-		return this.newspaperRepository.save(newspaper);
+		return newspaperRepository.save(newspaper);
 	}
 
 	public Collection<Newspaper> findByKeyword(final String keyword){
-		return this.newspaperRepository.findByKeyword(keyword);
+		return newspaperRepository.findByKeyword(keyword);
 	}
 	public void markAsInappropriate(final int newspaperId) {
-		Assert.notNull(this.adminService.findByPrincipal());
-		Newspaper n = this.findOne(newspaperId);
+		Assert.notNull(adminService.findByPrincipal());
+		Newspaper n = findOne(newspaperId);
 		n.setInappropriate(true);
-		this.newspaperRepository.save(n);
-		this.articleService.markInappropriateArticlesOfNewspaper(n);
+		newspaperRepository.save(n);
+		articleService.markInappropriateArticlesOfNewspaper(n);
 	}
 
 	public Collection<Newspaper> findMyNonPublished() {
-		Assert.notNull(this.userService.findByPrincipal());
-		return this.newspaperRepository.findMyNonPublished(this.userService.findByPrincipal());
+		Assert.notNull(userService.findByPrincipal());
+		return newspaperRepository.findMyNonPublished(userService.findByPrincipal());
 	}
 
 	public Collection<Newspaper> findAllTaboo() {
 		return newspaperRepository.findAllTaboo();
 	}
-	
+
 	public void flush(){
 		newspaperRepository.flush();
 	}
-	
+
 	public Newspaper reconstruct(Newspaper newspaper, BindingResult binding) {
 		if(newspaper.getId() == 0){
 			newspaper.setId(0);
@@ -120,7 +122,8 @@ public class NewspaperService {
 			newspaper.setUser(db.getUser());
 			newspaper.setVolumes(db.getVolumes());
 			newspaper.setAdvertisements(db.getAdvertisements());
-			validator.validate(newspaper, binding);			
+			newspaper.setExamEntities(db.getExamEntities());
+			validator.validate(newspaper, binding);
 		}
 		return newspaper;
 	}
@@ -166,8 +169,8 @@ public class NewspaperService {
 		Collection<Newspaper> result = findAllNotInappropriate();
 		result.removeAll(advertised);
 		return result;
-	}	
-	
+	}
+
 	public Double getRatioAdvertisedNewspapers(){
 		Double res = newspaperRepository.getRatioAdvertisedNewspapers();
 		return res == null ? 0 : res;

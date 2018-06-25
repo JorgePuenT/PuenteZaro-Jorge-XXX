@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.validation.BindingResult;
 
 import utilities.AbstractTest;
 import domain.ExamEntity;
@@ -30,6 +31,8 @@ public class ExamEntityServiceTest extends AbstractTest {
 	//Supporting services -----------------------------------------------------
 	@Autowired
 	private NewspaperService	newspaperService;
+	@Autowired
+	private AdminService	adminService;
 
 
 	// Tests ------------------------------------------------------------------
@@ -44,7 +47,7 @@ public class ExamEntityServiceTest extends AbstractTest {
 			//Test positivo
 			{"Increible periódico","Periódico fantástico","Un periódico sin igual", null, 1, "admin", "newspaper4", null, "Creación y edición correcta."},
 			//Test negativo
-			{"Increible periódico",null,"Un periódico sin igual", null, 1, "admin", "newspaper4", null, "Creación correcta pero título al modificar nulo."},
+			{"Increible periódico",null,"Un periódico sin igual", null, 1, "admin2", "newspaper4", IllegalArgumentException.class, "Creación correcta pero título al modificar nulo."},
 		};
 
 		for (int i = 0; i < testingData.length; i++)
@@ -55,19 +58,24 @@ public class ExamEntityServiceTest extends AbstractTest {
 		Class<?> caught = null;
 
 		if (expected == null)
-			System.out.println("-----------------POSITIVO------------");
+			System.out.println("-----------------------------------POSITIVO-----------------------------------");
 		else
-			System.out.println("-----------------NEGATIVO------------");
+			System.out.println("-----------------------------------NEGATIVO-----------------------------------");
 		System.out.println("Explicacion: " + explanation);
 		System.out.println("User: " + userBean);
 		System.out.println("Newspaper: " + newspaperBean);
 		System.out.println("First title: " + title);
 		System.out.println("Second title: " + secondTitle);
+		System.out.println("Description: " + description);
+		System.out.println("Display Moment: " + displayMoment);
+		System.out.println("Gauge: " + gauge);
 
 		try {
 
 			super.authenticate(userBean);
 			Newspaper newspaper = newspaperService.findOne(getEntityId(newspaperBean));
+			BindingResult binding = null;
+
 
 			/////// Object creation ///////
 			ExamEntity object = examEntityService.create();
@@ -78,17 +86,29 @@ public class ExamEntityServiceTest extends AbstractTest {
 			object.setDraft(true);
 			object.setNewspaper(newspaper);
 
-			ExamEntity saved = examEntityService.save(object);
+			ExamEntity reconstructed = examEntityService.reconstruct(object, binding);
+
+			System.out.println("antes de guardar primero.");
+
+			ExamEntity saved = examEntityService.save(reconstructed);
 
 			/////// Object modification ///////
+			System.out.println("1");
 			saved.setTitle(secondTitle);
+			System.out.println("2");
 			saved.setDraft(false);
-			examEntityService.save(saved);
+
+			binding = null;
+			reconstructed = examEntityService.reconstruct(saved, binding);
+
+			System.out.println("antes de guardar finalmente.");
+			examEntityService.save(reconstructed);
 
 			super.unauthenticate();
 
 		} catch (Throwable oops) {
 			caught = oops.getClass();
+			oops.printStackTrace();
 		}
 
 		checkExceptions(expected, caught);
