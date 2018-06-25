@@ -10,9 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -28,7 +26,8 @@ public class ExamEntity extends DomainEntity{
 	private String description;
 	private int gauge;
 	private Date displayMoment;
-	
+	private boolean draft;
+
 
 	@NotNull
 	@Column(unique=true)
@@ -38,7 +37,7 @@ public class ExamEntity extends DomainEntity{
 	public void setTicker(String ticker) {
 		this.ticker = ticker;
 	}
-	
+
 	@NotBlank
 	@NotNull
 	@SafeHtml(whitelistType=WhiteListType.NONE)
@@ -48,7 +47,7 @@ public class ExamEntity extends DomainEntity{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	@NotBlank
 	@NotNull
 	@SafeHtml(whitelistType=WhiteListType.NONE)
@@ -58,14 +57,14 @@ public class ExamEntity extends DomainEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public int getGauge() {
 		return gauge;
 	}
 	public void setGauge(int gauge) {
 		this.gauge = gauge;
 	}
-	
+
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getDisplayMoment() {
@@ -74,29 +73,40 @@ public class ExamEntity extends DomainEntity{
 	public void setDisplayMoment(Date displayMoment) {
 		this.displayMoment = displayMoment;
 	}
-	
+
+
+	public boolean getDraft() {
+		return draft;
+	}
+	public void setDraft(boolean draft) {
+		this.draft = draft;
+	}
+
+
+	//Relationships
+
 	private Newspaper newspaper;
 	private Admin admin;
 
 	@Valid
-	@ManyToOne(optional = true)	
+	@ManyToOne(optional = true)
 	public Newspaper getNewspaper() {
 		return newspaper;
 	}
 	public void setNewspaper(Newspaper newspaper) {
 		this.newspaper = newspaper;
 	}
-	
+
 	@NotNull
 	@Valid
-	@ManyToOne(optional = false)	
+	@ManyToOne(optional = false)
 	public Admin getAdmin() {
 		return admin;
 	}
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	
-	
-	
+
+
+
 }

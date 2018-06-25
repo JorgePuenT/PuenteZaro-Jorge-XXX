@@ -213,8 +213,11 @@
 				<ref bean="folder3"/>
 				<ref bean="folder4"/>
 				<ref bean="folder5"/>
-				<ref bean="folder71"/>
-				
+				<ref bean="folder71"/>				
+			</list>
+		</property>
+		<property name="examEntities">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -1402,6 +1405,10 @@
 
 			</list>
 		</property>
+		<property name="examEntities">
+			<list>
+			</list>
+		</property>
 
 	</bean>
 
@@ -1441,6 +1448,10 @@
 				<ref bean="volume1" />
 			</list>
 		</property>
+		<property name="examEntities">
+			<list>
+			</list>
+		</property>
 
 	</bean>
 
@@ -1472,6 +1483,10 @@
 			</list>
 		</property>
 		<property name="volumes">
+			<list>
+			</list>
+		</property>
+		<property name="examEntities">
 			<list>
 			</list>
 		</property>
@@ -1509,6 +1524,10 @@
 			<list>
 			</list>
 		</property>
+		<property name="examEntities">
+			<list>
+			</list>
+		</property>
 
 	</bean>
 	
@@ -1537,6 +1556,10 @@
 			</list>
 		</property>
 		<property name="volumes">
+			<list>
+			</list>
+		</property>
+		<property name="examEntities">
 			<list>
 			</list>
 		</property>
@@ -1569,6 +1592,10 @@
 		<property name="volumes">
 			<list>
 				<ref bean="volume1"/>
+			</list>
+		</property>
+		<property name="examEntities">
+			<list>
 			</list>
 		</property>
 
