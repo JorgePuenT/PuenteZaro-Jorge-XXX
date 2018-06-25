@@ -18,7 +18,19 @@
     
 
 
-	<jstl:set var='model' value='subscription' scope='request'/>
-		<lib:column name='creditCard'/>
+	<jstl:set var='model' value='examEntity' scope='request'/>
+		<lib:column name='ticker'/>
+		<lib:column name='title'/>
+		<lib:column name='description'/>
+		<lib:column name='gauge'/>
+		<lib:column name='displayMoment'/>
+		<lib:column name="newspaper" link='/newspaper/display.do?newspaperId=${row.newspaper.id}' linkName='${row.newspaper.title}'/>
+		<jstl:if test="${row.draft}">
+			<lib:column name="edit" link="/admin/examEntity/edit.do?examEntityId=${row.id}" linkSpringName="examEntity.edit"/>
+			<lib:column name="delete" link="/admin/examEntity/delete.do?examEntityId=${row.id}" linkSpringName="examEntity.delete"/>
+		</jstl:if>
+		<jstl:if test="${not row.draft}">
+			<lib:column name="assignNewspaper" link="/admin/examEntity/edit.do?examEntityId=${row.id}" linkSpringName="examEntity.assignNewspaper"/>
+		</jstl:if>
 </display:table>
 </div>
