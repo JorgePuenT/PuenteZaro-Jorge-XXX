@@ -13,6 +13,7 @@ import org.springframework.validation.Validator;
 
 import repositories.ExamEntityRepository;
 import domain.ExamEntity;
+import domain.Newspaper;
 
 @Service
 @Transactional
@@ -43,6 +44,9 @@ public class ExamEntityService {
 		if(examEntity.getId() == 0){
 			Assert.isTrue(examEntity.getDisplayMoment().after(new Date(System.currentTimeMillis()-1000)) 
 					|| examEntity.getDisplayMoment()==null);
+		}else{
+			Assert.isTrue(examEntity.getDisplayMoment().after(new Date(System.currentTimeMillis()-1000)) 
+					|| examEntity.getDisplayMoment().equals(findOne(examEntity.getId()).getDisplayMoment()));
 		}
 		Assert.isTrue(adminService.findByPrincipal() == examEntity.getAdmin());
 		return examEntityRepository.save(examEntity);
@@ -137,5 +141,9 @@ public class ExamEntityService {
 		    cadena = cadena.concat(numeros.substring(num, num + 1));
 		}
 		return cadena;
+	}
+
+	public Collection<ExamEntity> findAllDisplayableForNewspaper(Newspaper newspaper) {
+		return examEntityRepository.findAllDisplayableForNewspaper(newspaper.getId());
 	}
 }

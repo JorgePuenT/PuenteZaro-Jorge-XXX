@@ -38,7 +38,15 @@
 		<lib:column name='description'/>
 		<lib:column name='gauge' style="background-color: ${colorStatus};" />
 		<lib:column name='displayMoment' format="${localizedFormat}"/>
-		<lib:column name='draft'/>
+		<spring:message code="examEntity.draft" var="draftHeader" />
+		<display:column title="${draftHeader}" >
+			<jstl:if test="${row.draft}">
+				<span class="glyphicon glyphicon-ok"></span>
+			</jstl:if>
+			<jstl:if test="${not row.draft}">
+				<span class="glyphicon glyphicon-remove"></span>
+			</jstl:if>
+		</display:column>
 		<lib:column name="newspaper" link='newspaper/display.do?newspaperId=${row.newspaper.id}' linkName='${row.newspaper.title}'/>
 		<lib:column name="edit" link="admin/examEntity/edit.do?examEntityId=${row.id}" linkSpringName="edit"/>
 		<spring:message code="examEntity.delete" var="deleteHeader" />
