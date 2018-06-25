@@ -84,3 +84,44 @@
 		</security:authorize>
 	</display:table>
 </div>
+
+<div class="col-sm-10 col-sm-offset-1 well">
+	<display:table pagesize="10" class="displaytag" keepStatus="true" name="examEntities" requestURI="${requestUri}" id="row3">
+		<display:setProperty name="paging.banner.onepage" value=""/>
+	    <display:setProperty name="paging.banner.placement" value="bottom"/>
+	    <display:setProperty name="paging.banner.all_items_found" value=""/>
+	    <display:setProperty name="paging.banner.one_item_found" value=""/>
+	    <display:setProperty name="paging.banner.no_items_found" value=""/>
+    
+			<spring:message code="examEntity.localizedFormat" var="localizedFormat"/>
+		
+			<jstl:set var='model' value='examEntity' scope='request'/>
+				<jstl:choose>
+					<jstl:when test="${row3.gauge eq 1}">
+				      <jstl:set var = "colorStatus" value = "lightYellow" />
+				    </jstl:when>
+				    <jstl:when test="${row3.gauge eq 2}">
+				      <jstl:set var = "colorStatus" value = "Moccasin" />
+				    </jstl:when>
+				    <jstl:when test="${row3.gauge eq 3}">
+				      <jstl:set var = "colorStatus" value = "Blue" />
+				    </jstl:when>
+			    </jstl:choose>
+			
+				<lib:column name='ticker'/>
+				<lib:column name='title'/>
+				<lib:column name='description'/>
+				<lib:column name='gauge' style="background-color: ${colorStatus};" />
+				<lib:column name='displayMoment' format="${localizedFormat}"/>
+				<spring:message code="examEntity.draft" var="draftHeader" />
+				<display:column title="${draftHeader}" >
+					<jstl:if test="${row3.draft}">
+						<span class="glyphicon glyphicon-ok"></span>
+					</jstl:if>
+					<jstl:if test="${not row3.draft}">
+						<span class="glyphicon glyphicon-remove"></span>
+					</jstl:if>
+				</display:column>
+				<lib:column name="admin" value="${row3.admin.name} ${row3.admin.surnames}" />
+		</display:table>
+</div>

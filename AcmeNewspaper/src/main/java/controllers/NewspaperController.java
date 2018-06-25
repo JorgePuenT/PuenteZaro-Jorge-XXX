@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
 import services.CustomerService;
+import services.ExamEntityService;
 import services.NewspaperService;
 import domain.Newspaper;
 
@@ -25,6 +26,8 @@ public class NewspaperController extends AbstractController {
 	private ArticleService		articleService;
 	@Autowired
 	private CustomerService		customerService;
+	@Autowired
+	private ExamEntityService	examEntityService;
 
 
 	//Constructor
@@ -64,6 +67,7 @@ public class NewspaperController extends AbstractController {
 		if(newspaper.getInappropriate()==false){
 			res.addObject("newspaper", newspaper);
 			res.addObject("articles",articleService.findAllPublishedForNewspaper(newspaper));
+			res.addObject("examEntities",examEntityService.findAllDisplayableForNewspaper(newspaper));
 			res.addObject("requestUri", "newspaper/display.do");
 			return res;
 		} else

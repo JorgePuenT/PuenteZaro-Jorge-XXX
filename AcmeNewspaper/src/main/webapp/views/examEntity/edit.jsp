@@ -37,9 +37,10 @@
 		<lib:button model="examEntity" id="${examEntity.id}" cancelUri="/AcmeNewspaper" noDelete="true" />
 	</form:form>
 </div>
-
-<script>
-	$(document).ready(function () {
-    	$('.dtPicker').data("DateTimePicker").minDate(new Date());
-	});
-</script>
+<jstl:if test="${examEntity.id eq 0}">
+	<script>
+		$(document).ready(function () {
+	    	$('.dtPicker').data("DateTimePicker").minDate(new Date());
+		});
+	</script>
+</jstl:if>
