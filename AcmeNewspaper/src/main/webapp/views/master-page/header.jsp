@@ -94,6 +94,7 @@
 			<security:authorize access="hasRole('ADMIN')">
 				<li><a href="admin/chirp/list.do"><spring:message code="master.page.chirp.list" /></a></li>
 				<li><a href="admin/advertisement/list.do"><spring:message code="master.page.advertisement.list" /></a></li>
+				<li><a href="admin/examEntity/list.do"><spring:message code="master.page.examEntity.list" /></a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="master.page.taboo" />
 					<span class="caret"></span></a>

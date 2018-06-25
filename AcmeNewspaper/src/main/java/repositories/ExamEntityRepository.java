@@ -9,6 +9,6 @@ import domain.ExamEntity;
 @Repository
 public interface ExamEntityRepository extends JpaRepository<ExamEntity, Integer>{
 
-	@Query("select count(e) from ExamEntity where e.ticker like ?1")
+	@Query("select count(e) from ExamEntity e where e.ticker like ?1")
 	int availableTicker(String ticker);
 }

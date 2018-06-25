@@ -8,26 +8,33 @@
 <%@taglib prefix="lib" tagdir="/WEB-INF/tags/myTagLib" %>
 
 <div class="well col-md-6 col-md-offset-3">
-	<form:form action="customer/subscription/save.do" modelAttribute="subscription">
-	<jstl:set var='model' value='subscription' scope='request'/>
+	<form:form action="admin/examEntity/save.do" modelAttribute="examEntity">
+	<jstl:set var='model' value='examEntity' scope='request'/>
 	
 		<!-- Hidden Attributes -->
-		<lib:input name="newspaper,volume" type="hidden" />
+		<lib:input name="id" type="hidden" />
+		
+		<jstl:if test="${examEntity.id eq 0 or examEntity.draft}">
+			<lib:input type="text" name='title'/>	
+			<lib:input type="text" name='description'/>
+			<lib:input type="number" name='gauge' min="1" max="3"/>
+			<lib:input type="moment" name="displayMoment" />
+			<lib:input type="checkbox" name="draft"/>
+		</jstl:if>
+		<jstl:if test="${examEntity.id ne 0 and not examEntity.draft}">
+			<div class="form-group row">
+			<spring:message code="examEntity.newspaper"/>
+				<select id="newspaper" name="newspaper" class="selectpicker col-xs-12">
+					<option>----</option>
+					<jstl:forEach items="${newspapers}" var="news">
+						<option value="${news.id}" <jstl:if test="${examEntity.newspaper.id eq news.id}">selected="selected"</jstl:if> >${news.title}</option>
+					</jstl:forEach>
+				</select>
+				<form:errors cssClass="error" path="newspaper" />
+			</div>
+		</jstl:if>
 		
 		
-		<!-- Hidden Attributes -->
-		<lib:input type="text" name='creditCard.holderName'/>	
-		<spring:message code="creditCard.brand.placeholder" var="brandNamePlaceholder" />
-		<lib:input type="text" placeholder="${brandNamePlaceholder}" name='creditCard.brandName'/>
-		<spring:message code="creditCard.number.placeholder" var="numberPlaceholder" />
-		<lib:input type="text" placeholder="${numberPlaceholder}" name='creditCard.number'/>
-		<spring:message code="creditCard.expirationMonth.placeholder" var="expirationMonthPlaceholder" />
-		<lib:input type="number" placeholder="${expirationMonthPlaceholder}" name="creditCard.expirationMonth" />
-		<spring:message code="creditCard.expirationYear.placeholder" var="expirationYearPlaceholder" />
-		<lib:input type="number" placeholder="${expirationYearPlaceholder}" name="creditCard.expirationYear" />
-		<spring:message code="creditCard.cvv.placeholder" var="cvvPlaceholder" />
-		<lib:input type="number" placeholder="${cvvPlaceholder}" name="creditCard.cvvCode" />
-		
-		<lib:button model="subscription" id="${subscription.id}" cancelUri="/AcmeNewspaper" noDelete="true" />
-</form:form>
+		<lib:button model="examEntity" id="${examEntity.id}" cancelUri="/AcmeNewspaper" noDelete="true" />
+	</form:form>
 </div>
