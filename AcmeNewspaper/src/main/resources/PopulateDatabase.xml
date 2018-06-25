@@ -2972,8 +2972,6 @@
 		<property name="gauge" value="2" />		
 		<property name="displayMoment" value="04/22/2017 12:08" />
 		<property name="draft" value="true"/>
-		
-		<property name="newspaper" ref="newspaper2" />
 		<property name="admin" ref="admin" />
 	</bean>
 	

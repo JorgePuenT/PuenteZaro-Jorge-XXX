@@ -69,7 +69,7 @@ public class ExamEntity extends DomainEntity{
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getDisplayMoment() {
 		return displayMoment;
 	}

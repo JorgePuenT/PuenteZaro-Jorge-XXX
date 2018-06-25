@@ -53,26 +53,30 @@ public class ExamEntityService {
 			examEntity.setId(0);
 			examEntity.setAdmin(adminService.findByPrincipal());
 			examEntity.setTicker(createTicker());
-			validator.validate(examEntity, binding);
-		} else if(examEntity.getDraft()){
+		} else{
 			ExamEntity db = findOne(examEntity.getId());
-			examEntity.setVersion(db.getVersion());
-			examEntity.setAdmin(db.getAdmin());
-			examEntity.setNewspaper(null);
-		} else {
-			ExamEntity db = findOne(examEntity.getId());
-			examEntity.setVersion(db.getVersion());
-			examEntity.setAdmin(db.getAdmin());
-			examEntity.setTicker(db.getTicker());
-			examEntity.setTitle(db.getTitle());
-			examEntity.setDescription(db.getDescription());
-			examEntity.setGauge(db.getGauge());
-			examEntity.setDisplayMoment(db.getDisplayMoment());
+			if(db.getDraft()){
+				examEntity.setVersion(db.getVersion());
+				examEntity.setAdmin(db.getAdmin());
+				examEntity.setTicker(db.getTicker());
+				examEntity.setNewspaper(null);
+			} else {
+				examEntity.setVersion(db.getVersion());
+				examEntity.setAdmin(db.getAdmin());
+				examEntity.setTicker(db.getTicker());
+				examEntity.setTitle(db.getTitle());
+				examEntity.setDescription(db.getDescription());
+				examEntity.setGauge(db.getGauge());
+				examEntity.setDisplayMoment(db.getDisplayMoment());
+				examEntity.setDraft(db.getDraft());
+			}
 		}
+		validator.validate(examEntity, binding);
 		return examEntity;
 	}
 	
-	public void delete(ExamEntity examEntity) {
+	public void delete(int examEntityId) {
+		ExamEntity examEntity = findOne(examEntityId);
 		Assert.isTrue(examEntity.getDraft());
 		Assert.isTrue(adminService.findByPrincipal()==examEntity.getAdmin());
 		examEntityRepository.delete(examEntity);
@@ -103,9 +107,9 @@ public class ExamEntityService {
 			dd = String.valueOf(day); 
 		}
 		
-		//*************************
+		//TODO:Ajustar Ticker a lo pedido *************************
 		
-//		res = 
+		res = cadenaNumerica(2)+cadenaAlfabetica(3)+yy+mm+dd;
 		
 		//*************************
 		if(availableTicker(res)){
@@ -115,7 +119,7 @@ public class ExamEntityService {
 		}
 	}
 
-	private String cadenaAlfabética(int size){
+	private String cadenaAlfabetica(int size){
 		String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String cadena = "";
 		for (int i = 0; i < size; i++) {
@@ -125,7 +129,7 @@ public class ExamEntityService {
 		return cadena;
 	}
 
-	private String cadenaNumérica(int size){
+	private String cadenaNumerica(int size){
 		String numeros = "0123456789";
 		String cadena = "";
 		for (int i = 0; i < size; i++) {

@@ -14,14 +14,14 @@
 		<!-- Hidden Attributes -->
 		<lib:input name="id" type="hidden" />
 		
-		<jstl:if test="${examEntity.id eq 0 or examEntity.draft}">
+		<jstl:if test="${examEntity.id eq 0 or isDraft}">
 			<lib:input type="text" name='title'/>	
 			<lib:input type="text" name='description'/>
 			<lib:input type="number" name='gauge' min="1" max="3"/>
 			<lib:input type="moment" name="displayMoment" />
-			<lib:input type="checkbox" name="draft"/>
+			<lib:input type="checkBox" name="draft"/>
 		</jstl:if>
-		<jstl:if test="${examEntity.id ne 0 and not examEntity.draft}">
+		<jstl:if test="${examEntity.id ne 0 and not isDraft}">
 			<div class="form-group row">
 			<spring:message code="examEntity.newspaper"/>
 				<select id="newspaper" name="newspaper" class="selectpicker col-xs-12">
@@ -34,7 +34,12 @@
 			</div>
 		</jstl:if>
 		
-		
 		<lib:button model="examEntity" id="${examEntity.id}" cancelUri="/AcmeNewspaper" noDelete="true" />
 	</form:form>
 </div>
+
+<script>
+	$(document).ready(function () {
+    	$('.dtPicker').data("DateTimePicker").minDate(new Date());
+	});
+</script>
