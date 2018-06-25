@@ -18,3 +18,12 @@ Objetos creados (Añadidos al principio; relaciones en el objeto correspondiente)
 	·examEntities
 -Cambiar el ticker y ajustar a lo que pidan (está dentro del TODO)
 -Revisar las anotaciones dependiendo de lo que pidan para cada campo
+
+
+---------------*Orden de cosas*--------------------------------
+
+1.Cambios en el UML
+2.Cambios en el proyecto
+3.Rehacer el SQL dump
+4.ReExportar el war
+5.Rehacer el test de rendimiento y adjuntar el archivo
