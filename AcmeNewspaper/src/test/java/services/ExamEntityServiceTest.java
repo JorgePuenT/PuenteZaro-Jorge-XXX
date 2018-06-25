@@ -10,11 +10,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.validation.BindingResult;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindException;
+import org.springframework.validation.Errors;
 
 import utilities.AbstractTest;
 import domain.ExamEntity;
-import domain.Newspaper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -29,10 +30,6 @@ public class ExamEntityServiceTest extends AbstractTest {
 
 
 	//Supporting services -----------------------------------------------------
-	@Autowired
-	private NewspaperService	newspaperService;
-	@Autowired
-	private AdminService	adminService;
 
 
 	// Tests ------------------------------------------------------------------
@@ -47,7 +44,7 @@ public class ExamEntityServiceTest extends AbstractTest {
 			//Test positivo
 			{"Increible periódico","Periódico fantástico","Un periódico sin igual", null, 1, "admin", "newspaper4", null, "Creación y edición correcta."},
 			//Test negativo
-			{"Increible periódico",null,"Un periódico sin igual", null, 1, "admin2", "newspaper4", IllegalArgumentException.class, "Creación correcta pero título al modificar nulo."},
+			{"Increible periódico",null,"Un periódico sin igual", null, 1, "admin2", "newspaper4", IllegalArgumentException.class, "Creación correcta pero al modificar se introduce un título nulo."},
 		};
 
 		for (int i = 0; i < testingData.length; i++)
@@ -71,11 +68,7 @@ public class ExamEntityServiceTest extends AbstractTest {
 		System.out.println("Gauge: " + gauge);
 
 		try {
-
 			super.authenticate(userBean);
-			Newspaper newspaper = newspaperService.findOne(getEntityId(newspaperBean));
-			BindingResult binding = null;
-
 
 			/////// Object creation ///////
 			ExamEntity object = examEntityService.create();
@@ -84,31 +77,31 @@ public class ExamEntityServiceTest extends AbstractTest {
 			object.setDisplayMoment(displayMoment);
 			object.setGauge(gauge);
 			object.setDraft(true);
-			object.setNewspaper(newspaper);
 
+			/////// Validation ///////
+			Errors binding = new BindException(object, "ExamEntity");
 			ExamEntity reconstructed = examEntityService.reconstruct(object, binding);
+			Assert.isTrue(!binding.hasErrors());
 
-			System.out.println("antes de guardar primero.");
-
+			/////// Save ///////
 			ExamEntity saved = examEntityService.save(reconstructed);
 
 			/////// Object modification ///////
-			System.out.println("1");
 			saved.setTitle(secondTitle);
-			System.out.println("2");
 			saved.setDraft(false);
 
-			binding = null;
+			/////// Second Validation ///////
+			binding = new BindException(object, "ExamEntity");
 			reconstructed = examEntityService.reconstruct(saved, binding);
+			Assert.isTrue(!binding.hasErrors());
 
-			System.out.println("antes de guardar finalmente.");
+			/////// Final save ///////
 			examEntityService.save(reconstructed);
 
 			super.unauthenticate();
 
 		} catch (Throwable oops) {
 			caught = oops.getClass();
-			oops.printStackTrace();
 		}
 
 		checkExceptions(expected, caught);
