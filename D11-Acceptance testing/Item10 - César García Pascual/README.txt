@@ -1,2 +1,0 @@
-Este Item es una de las dos entregas que ha de realizar el alumno César García Pascual para poder aprobar la asignatura.
-En barra de navegación de la página web hay un botón que lleva a la vista de busqueda.
