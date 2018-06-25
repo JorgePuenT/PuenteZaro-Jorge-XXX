@@ -20,8 +20,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -179,11 +179,11 @@ public class Newspaper extends DomainEntity {
 		return examEntities;
 	}
 
-	public void setExamEntity(Collection<ExamEntity> examEntities) {
+	public void setExamEntities(Collection<ExamEntity> examEntities) {
 		this.examEntities = examEntities;
 	}
-	
-	
+
+
 
 
 }

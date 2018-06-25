@@ -14,18 +14,18 @@ import javax.validation.constraints.NotNull;
 public class Admin extends Actor {
 
 	//Attributes----------------
-	
+
 	private Collection<ExamEntity> examEntities;
 
 	@NotNull
 	@Valid
-	@OneToMany(mappedBy = "newspaper")
+	@OneToMany(mappedBy = "admin")
 	public Collection<ExamEntity> getExamEntities() {
 		return examEntities;
 	}
 
-	public void setExamEntity(Collection<ExamEntity> examEntities) {
+	public void setExamEntities(Collection<ExamEntity> examEntities) {
 		this.examEntities = examEntities;
 	}
-	
+
 }

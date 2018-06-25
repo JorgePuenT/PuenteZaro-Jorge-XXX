@@ -9,8 +9,181 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	">
+	
+	<!-- ########### BEANS EXAM ########### -->
+	
+	<!-- Admin 2 -->
+	
+	<bean id="userAccount19" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="admin2" class="domain.Admin">
+		<property name="userAccount" ref="userAccount19" />
+		<property name="name" value="Juan" />
+		<property name="surnames" value="Romero Navarro" />
+		<property name="emailss" value="rnavarro@correo.com" />
+		<property name="addressess" value="Avda. Reina Mercedes no.2 4D" />
+		<property name="phoness">
+			<list>
+				<value>+34618234563</value>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder72"/>
+				<ref bean="folder73"/>
+				<ref bean="folder74"/>
+				<ref bean="folder75"/>
+				<ref bean="folder76"/>				
+			</list>
+		</property>
+		<property name="examEntities">
+			<list>
+				<ref bean="examEntity3"/>	
+				<ref bean="examEntity4"/>	
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- Admin folders -->
+	
+	<bean id="folder72" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder73" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder74" class="domain.Folder">
+		<property name="name" value="Trashbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder75" class="domain.Folder">
+		<property name="name" value="Notificationbox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="folder76" class="domain.Folder">
+		<property name="name" value="Spambox" />
+		<property name="system" value="true" />
+		<property name="parent">
+			<null />
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+	</bean>
 
 
+	<!-- Exam Entitites -->
+	
+	<bean id="examEntity1" class="domain.ExamEntity">
+		<property name="ticker" value="ASDF12341" />
+		<property name="title" value="Periódico de 10" />
+		<property name="description" value="Es un periódico genial, me encanta." />
+		<property name="gauge" value="1" />		
+		<property name="displayMoment" value="04/22/2018 07:32" />
+		<property name="draft" value="false"/>
+		
+		<property name="newspaper" ref="newspaper4" />
+		<property name="admin" ref="admin" />
+	</bean>
+	
+	<bean id="examEntity2" class="domain.ExamEntity">
+		<property name="ticker" value="ASDF12342" />
+		<property name="title" value="Un periódico excepcional" />
+		<property name="description" value="Este periódico merece un premio." />
+		<property name="gauge" value="2" />		
+		<property name="displayMoment" value="04/22/2017 12:08" />
+		<property name="draft" value="false"/>
+		
+		<property name="newspaper" ref="newspaper2" />
+		<property name="admin" ref="admin" />
+	</bean>
+	
+	<bean id="examEntity3" class="domain.ExamEntity">
+		<property name="ticker" value="ASDF12343" />
+		<property name="title" value="Puede mejorar pero es muy bueno" />
+		<property name="description" value="Es una idea muy buena pero le falta tiempo para ser de los mejores." />
+		<property name="gauge" value="3" />		
+		<property name="displayMoment" value="04/25/2018 21:16" />
+		<property name="draft" value="false"/>
+		
+		<property name="newspaper" ref="newspaper2" />
+		<property name="admin" ref="admin2" />
+	</bean>
+	
+	<bean id="examEntity4" class="domain.ExamEntity">
+		<property name="ticker" value="ASDF12344" />
+		<property name="title" value="De los mejores" />
+		<property name="description" value="Potencial en bruto, es fantástico el trabajo." />
+		<property name="gauge" value="1" />		
+		<property name="displayMoment" value="11/22/2020 22:22" />
+		<property name="draft" value="false"/>
+		
+		<property name="newspaper" ref="newspaper5" />
+		<property name="admin" ref="admin2" />
+	</bean>
+	
 	<!-- Useraccount 10 -->
 
 	<bean id="userAccount1" class="security.UserAccount">
@@ -213,8 +386,13 @@
 				<ref bean="folder3"/>
 				<ref bean="folder4"/>
 				<ref bean="folder5"/>
-				<ref bean="folder71"/>
-				
+				<ref bean="folder71"/>				
+			</list>
+		</property>
+		<property name="examEntities">
+			<list>
+				<ref bean="examEntity1"/>
+				<ref bean="examEntity2"/>				
 			</list>
 		</property>
 	</bean>
@@ -1402,6 +1580,10 @@
 
 			</list>
 		</property>
+		<property name="examEntities">
+			<list>
+			</list>
+		</property>
 
 	</bean>
 
@@ -1441,6 +1623,12 @@
 				<ref bean="volume1" />
 			</list>
 		</property>
+		<property name="examEntities">
+			<list>
+				<ref bean="examEntity2" />
+				<ref bean="examEntity3" />
+			</list>
+		</property>
 
 	</bean>
 
@@ -1472,6 +1660,10 @@
 			</list>
 		</property>
 		<property name="volumes">
+			<list>
+			</list>
+		</property>
+		<property name="examEntities">
 			<list>
 			</list>
 		</property>
@@ -1509,6 +1701,11 @@
 			<list>
 			</list>
 		</property>
+		<property name="examEntities">
+			<list>
+				<ref bean="examEntity1" />
+			</list>
+		</property>
 
 	</bean>
 	
@@ -1540,6 +1737,11 @@
 			<list>
 			</list>
 		</property>
+		<property name="examEntities">
+			<list>
+				<ref bean="examEntity4" />
+			</list>
+		</property>
 
 	</bean>
 	<bean id="newspaper6" class="domain.Newspaper">
@@ -1569,6 +1771,10 @@
 		<property name="volumes">
 			<list>
 				<ref bean="volume1"/>
+			</list>
+		</property>
+		<property name="examEntities">
+			<list>
 			</list>
 		</property>
 
@@ -2720,7 +2926,7 @@
 		</property>
 	</bean>
 	
-		<bean id="folder71" class="domain.Folder">
+	<bean id="folder71" class="domain.Folder">
 		<property name="name" value="Trabajo" />
 		<property name="system" value="false" />
 		<property name="parent">
