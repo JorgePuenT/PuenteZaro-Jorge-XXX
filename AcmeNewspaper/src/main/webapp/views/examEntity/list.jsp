@@ -9,7 +9,7 @@
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="col-sm-10">
-	<display:table pagesize="10" class="displaytag" keepStatus="true" name="list" requestURI="${requestUri}" id="row">
+	<display:table pagesize="10" class="displaytag" keepStatus="true" name="examEntities" requestURI="${requestUri}" id="row">
 		<display:setProperty name="paging.banner.onepage" value=""/>
 	    <display:setProperty name="paging.banner.placement" value="bottom"/>
 	    <display:setProperty name="paging.banner.all_items_found" value=""/>
@@ -24,13 +24,13 @@
 		<lib:column name='description'/>
 		<lib:column name='gauge'/>
 		<lib:column name='displayMoment'/>
-		<lib:column name="newspaper" link='/newspaper/display.do?newspaperId=${row.newspaper.id}' linkName='${row.newspaper.title}'/>
+		<lib:column name="newspaper" link='newspaper/display.do?newspaperId=${row.newspaper.id}' linkName='${row.newspaper.title}'/>
 		<jstl:if test="${row.draft}">
-			<lib:column name="edit" link="/admin/examEntity/edit.do?examEntityId=${row.id}" linkSpringName="examEntity.edit"/>
-			<lib:column name="delete" link="/admin/examEntity/delete.do?examEntityId=${row.id}" linkSpringName="examEntity.delete"/>
+			<lib:column name="edit" link="admin/examEntity/edit.do?examEntityId=${row.id}" linkSpringName="edit"/>
+			<lib:column name="delete" link="admin/examEntity/delete.do?examEntityId=${row.id}" linkSpringName="delete"/>
 		</jstl:if>
 		<jstl:if test="${not row.draft}">
-			<lib:column name="assignNewspaper" link="/admin/examEntity/edit.do?examEntityId=${row.id}" linkSpringName="examEntity.assignNewspaper"/>
+			<lib:column name="assignNewspaper" link="admin/examEntity/edit.do?examEntityId=${row.id}" linkSpringName="assignNewspaper"/>
 		</jstl:if>
 </display:table>
 </div>

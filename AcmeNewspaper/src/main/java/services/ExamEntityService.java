@@ -27,10 +27,7 @@ public class ExamEntityService {
 	
 	public ExamEntity create() {
 		ExamEntity res = new ExamEntity();
-		
-		res.setTicker(createTicker());
 		res.setAdmin(adminService.findByPrincipal());
-
 		return res;
 	}
 	
@@ -43,10 +40,11 @@ public class ExamEntityService {
 	}
 	
 	public ExamEntity save(ExamEntity examEntity) {
-		Assert.isTrue(examEntity.getDisplayMoment().after(new Date(System.currentTimeMillis()-1000)) 
-				|| examEntity.getDisplayMoment()==null);
-		Assert.isTrue(examEntity.getDraft());
-		Assert.notNull(adminService.findByPrincipal());
+		if(examEntity.getId() == 0){
+			Assert.isTrue(examEntity.getDisplayMoment().after(new Date(System.currentTimeMillis()-1000)) 
+					|| examEntity.getDisplayMoment()==null);
+		}
+		Assert.isTrue(adminService.findByPrincipal() == examEntity.getAdmin());
 		return examEntityRepository.save(examEntity);
 	}
 	
@@ -54,22 +52,17 @@ public class ExamEntityService {
 		if(examEntity.getId()==0) {
 			examEntity.setId(0);
 			examEntity.setAdmin(adminService.findByPrincipal());
+			examEntity.setTicker(createTicker());
 			validator.validate(examEntity, binding);
 		} else if(examEntity.getDraft()){
 			ExamEntity db = findOne(examEntity.getId());
 			examEntity.setVersion(db.getVersion());
 			examEntity.setAdmin(db.getAdmin());
 			examEntity.setNewspaper(null);
-			examEntity.setTicker(db.getTicker());
-			examEntity.setTitle(examEntity.getTitle());
-			examEntity.setDescription(examEntity.getDescription());
-			examEntity.setGauge(examEntity.getGauge());
-			examEntity.setDisplayMoment(examEntity.getDisplayMoment());
 		} else {
 			ExamEntity db = findOne(examEntity.getId());
 			examEntity.setVersion(db.getVersion());
 			examEntity.setAdmin(db.getAdmin());
-			examEntity.setNewspaper(examEntity.getNewspaper());
 			examEntity.setTicker(db.getTicker());
 			examEntity.setTitle(db.getTitle());
 			examEntity.setDescription(db.getDescription());

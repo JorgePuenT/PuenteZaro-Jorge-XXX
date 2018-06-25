@@ -42,7 +42,7 @@ public class AdminExamEntityController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		result = new ModelAndView("examEntity/list");
-		result.addObject("examEntities",examEntityService.findMyExamEntitys());
+		result.addObject("examEntities",adminService.findByPrincipal().getExamEntities());
 		result.addObject("requestUri", "admin/examEntity/list.do");
 		return result;
 	}
@@ -65,7 +65,7 @@ public class AdminExamEntityController extends AbstractController {
 
 		try {
 			ExamEntity examEntity = examEntityService.findOne(examEntityId);
-			Assert.isTrue(examEntity.getAdmin() == (adminService.findByPrincipal()));
+			Assert.isTrue(examEntity.getAdmin() == adminService.findByPrincipal());
 			result = this.newEditModelAndView(examEntity);
 
 		} catch (Throwable oops) {
@@ -78,15 +78,15 @@ public class AdminExamEntityController extends AbstractController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(final ExamEntity examEntity, final BindingResult binding) {
 		ModelAndView result;
-		examEntity = examEntityService.reconstruct(examEntity);
+		ExamEntity reconstructed = examEntityService.reconstruct(examEntity, binding);
 		if (binding.hasErrors())
-			result = this.newEditModelAndView(examEntity);
+			result = this.newEditModelAndView(reconstructed);
 		else
 			try {
-				examEntityService.save(examEntity);
+				examEntityService.save(reconstructed);
 				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
-				result = this.newEditModelAndView(examEntity, "examEntity.commitError");
+				result = this.newEditModelAndView(reconstructed, "examEntity.commitError");
 				oops.printStackTrace();
 			}
 		return result;

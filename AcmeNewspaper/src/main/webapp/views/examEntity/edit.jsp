@@ -19,6 +19,7 @@
 			<lib:input type="text" name='description'/>
 			<lib:input type="number" name='gauge' min="1" max="3"/>
 			<lib:input type="moment" name="displayMoment" />
+			<lib:input type="checkbox" name="draft"/>
 		</jstl:if>
 		<jstl:if test="${examEntity.id ne 0 and not examEntity.draft}">
 			<div class="form-group row">
