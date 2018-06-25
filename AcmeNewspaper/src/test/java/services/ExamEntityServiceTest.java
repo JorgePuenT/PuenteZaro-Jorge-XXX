@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindException;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 
 import utilities.AbstractTest;
 import domain.ExamEntity;
@@ -79,7 +79,7 @@ public class ExamEntityServiceTest extends AbstractTest {
 			object.setDraft(true);
 
 			/////// Validation ///////
-			Errors binding = new BindException(object, "ExamEntity");
+			BindingResult binding = new BindException(object, "ExamEntity");
 			ExamEntity reconstructed = examEntityService.reconstruct(object, binding);
 			Assert.isTrue(!binding.hasErrors());
 

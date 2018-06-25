@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.ExamEntityRepository;
@@ -50,7 +50,7 @@ public class ExamEntityService {
 		return examEntityRepository.save(examEntity);
 	}
 
-	public ExamEntity reconstruct(ExamEntity examEntity, Errors binding) {
+	public ExamEntity reconstruct(ExamEntity examEntity, BindingResult binding) {
 		if(examEntity.getId()==0) {
 			examEntity.setId(0);
 			examEntity.setAdmin(adminService.findByPrincipal());
