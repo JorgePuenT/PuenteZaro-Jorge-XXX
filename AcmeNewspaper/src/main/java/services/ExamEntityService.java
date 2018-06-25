@@ -91,9 +91,6 @@ public class ExamEntityService {
 	
 	public String createTicker(){
 		String res = "";
-		
-		//**********************
-		//     Crear ticker
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		int year = cal.get(Calendar.YEAR) % 100;
@@ -112,11 +109,36 @@ public class ExamEntityService {
 		}else{
 			dd = String.valueOf(day); 
 		}
+		
+		//*************************
+		
+//		res = 
+		
 		//*************************
 		if(availableTicker(res)){
 			return res;
 		} else {
 			return createTicker();
 		}
+	}
+
+	private String cadenaAlfabética(int size){
+		String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String cadena = "";
+		for (int i = 0; i < size; i++) {
+			int num = (int) (Math.random() * 26);
+		    cadena = cadena.concat(caracteres.substring(num, num + 1));
+		}
+		return cadena;
+	}
+
+	private String cadenaNumérica(int size){
+		String numeros = "0123456789";
+		String cadena = "";
+		for (int i = 0; i < size; i++) {
+			int num = (int) (Math.random() * 10);
+		    cadena = cadena.concat(numeros.substring(num, num + 1));
+		}
+		return cadena;
 	}
 }
