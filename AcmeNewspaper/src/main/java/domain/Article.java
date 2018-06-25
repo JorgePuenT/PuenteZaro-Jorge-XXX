@@ -42,7 +42,7 @@ public class Article extends DomainEntity {
 	@NotNull
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public void setTitle(final String title) {
@@ -50,10 +50,10 @@ public class Article extends DomainEntity {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getPublicationMoment() {
-		return this.publicationMoment;
+		return publicationMoment;
 	}
 
 	public void setPublicationMoment(final Date publicationMoment) {
@@ -64,7 +64,7 @@ public class Article extends DomainEntity {
 	@NotNull
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
 
 	public void setSummary(final String summary) {
@@ -74,7 +74,7 @@ public class Article extends DomainEntity {
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getBody() {
-		return this.body;
+		return body;
 	}
 
 	public void setBody(final String body) {
@@ -85,7 +85,7 @@ public class Article extends DomainEntity {
 	@ElementCollection
 	@EachURL
 	public Collection<String> getPicturess() {
-		return this.picturess;
+		return picturess;
 	}
 
 	public void setPicturess(final Collection<String> picturess) {
@@ -94,7 +94,7 @@ public class Article extends DomainEntity {
 
 	@NotNull
 	public Boolean getFinalMode() {
-		return this.finalMode;
+		return finalMode;
 	}
 
 	public void setFinalMode(final Boolean finalMode) {
@@ -103,7 +103,7 @@ public class Article extends DomainEntity {
 
 
 	public Boolean getInappropriate() {
-		return this.inappropriate;
+		return inappropriate;
 	}
 
 	public void setInappropriate(final Boolean inappropriate) {
@@ -119,7 +119,7 @@ public class Article extends DomainEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	public Newspaper getNewspaper() {
-		return this.newspaper;
+		return newspaper;
 	}
 
 	public void setNewspaper(final Newspaper newspaper) {
@@ -130,7 +130,7 @@ public class Article extends DomainEntity {
 	@Valid
 	@OneToMany(mappedBy = "article")
 	public Collection<FollowUp> getFollowUps() {
-		return this.followUps;
+		return followUps;
 	}
 
 

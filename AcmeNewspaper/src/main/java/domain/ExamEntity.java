@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,6 +32,7 @@ public class ExamEntity extends DomainEntity{
 
 	@NotNull
 	@Column(unique=true)
+	//@Pattern()
 	public String getTicker() {
 		return ticker;
 	}
@@ -58,6 +60,7 @@ public class ExamEntity extends DomainEntity{
 		this.description = description;
 	}
 
+	@Range(min=1,max=3)
 	public int getGauge() {
 		return gauge;
 	}
@@ -65,8 +68,8 @@ public class ExamEntity extends DomainEntity{
 		this.gauge = gauge;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getDisplayMoment() {
 		return displayMoment;
 	}
