@@ -66,10 +66,8 @@ public class ExamEntity extends DomainEntity{
 		this.gauge = gauge;
 	}
 	
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@Future
 	public Date getDisplayMoment() {
 		return displayMoment;
 	}
@@ -80,7 +78,6 @@ public class ExamEntity extends DomainEntity{
 	private Newspaper newspaper;
 	private Admin admin;
 
-	@NotNull
 	@Valid
 	@ManyToOne(optional = true)	
 	public Newspaper getNewspaper() {
