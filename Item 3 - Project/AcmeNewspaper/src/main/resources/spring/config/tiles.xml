@@ -24,6 +24,6 @@
 		<value>/views/advertisement/tiles.xml</value>
 		<value>/views/volume/tiles.xml</value>
 		<value>/views/message/tiles.xml</value>
-		<value>/views/examEntity/tiles.xml</value>
+		<value>/views/purlet/tiles.xml</value>
 	</util:list>
 </beans>

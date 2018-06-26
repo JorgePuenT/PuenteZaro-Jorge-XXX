@@ -15,17 +15,17 @@ public class Admin extends Actor {
 
 	//Attributes----------------
 
-	private Collection<ExamEntity> examEntities;
+	private Collection<Purlet> purlets;
 
 	@NotNull
 	@Valid
 	@OneToMany(mappedBy = "admin")
-	public Collection<ExamEntity> getExamEntities() {
-		return examEntities;
+	public Collection<Purlet> getPurlets() {
+		return purlets;
 	}
 
-	public void setExamEntities(Collection<ExamEntity> examEntities) {
-		this.examEntities = examEntities;
+	public void setPurlets(Collection<Purlet> purlets) {
+		this.purlets = purlets;
 	}
 
 }

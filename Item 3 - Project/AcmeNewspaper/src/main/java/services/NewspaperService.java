@@ -13,7 +13,7 @@ import org.springframework.validation.Validator;
 import repositories.NewspaperRepository;
 import domain.Agent;
 import domain.Article;
-import domain.ExamEntity;
+import domain.Purlet;
 import domain.Newspaper;
 import domain.Subscription;
 import domain.Volume;
@@ -46,7 +46,7 @@ public class NewspaperService {
 		res.setArticless(new ArrayList<Article>());
 		res.setSubscriptionss(new ArrayList<Subscription>());
 		res.setVolumes(new ArrayList<Volume>());
-		res.setExamEntities(new ArrayList<ExamEntity>());
+		res.setPurlets(new ArrayList<Purlet>());
 
 		res.setInappropriate(false);
 		Assert.isTrue(userService.findByPrincipal() instanceof domain.User);
@@ -122,7 +122,7 @@ public class NewspaperService {
 			newspaper.setUser(db.getUser());
 			newspaper.setVolumes(db.getVolumes());
 			newspaper.setAdvertisements(db.getAdvertisements());
-			newspaper.setExamEntities(db.getExamEntities());
+			newspaper.setPurlets(db.getPurlets());
 			validator.validate(newspaper, binding);
 		}
 		return newspaper;

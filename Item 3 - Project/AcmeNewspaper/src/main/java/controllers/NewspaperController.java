@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
 import services.CustomerService;
-import services.ExamEntityService;
+import services.PurletService;
 import services.NewspaperService;
 import domain.Newspaper;
 
@@ -27,7 +27,7 @@ public class NewspaperController extends AbstractController {
 	@Autowired
 	private CustomerService		customerService;
 	@Autowired
-	private ExamEntityService	examEntityService;
+	private PurletService	purletService;
 
 
 	//Constructor
@@ -67,7 +67,7 @@ public class NewspaperController extends AbstractController {
 		if(newspaper.getInappropriate()==false){
 			res.addObject("newspaper", newspaper);
 			res.addObject("articles",articleService.findAllPublishedForNewspaper(newspaper));
-			res.addObject("examEntities",examEntityService.findAllDisplayableForNewspaper(newspaper));
+			res.addObject("purlets",purletService.findAllDisplayableForNewspaper(newspaper));
 			res.addObject("requestUri", "newspaper/display.do");
 			return res;
 		} else

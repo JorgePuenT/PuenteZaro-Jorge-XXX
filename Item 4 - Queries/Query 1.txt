@@ -1,1 +1,1 @@
-select coalesce(count(n)/(select count(n2)*1.0 from Newspaper n2),0) from Newspaper n  where n.examEntities.size > 0
+select coalesce(count(n)/(select count(n2)*1.0 from Newspaper n2),0) from Newspaper n  where n.purlets.size > 0

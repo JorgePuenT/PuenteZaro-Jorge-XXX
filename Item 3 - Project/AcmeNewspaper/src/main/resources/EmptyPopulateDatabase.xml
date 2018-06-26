@@ -48,7 +48,7 @@
 				<ref bean="folder5"/>		
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>			
 			</list>
 		</property>

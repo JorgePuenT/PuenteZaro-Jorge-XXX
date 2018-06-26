@@ -1,1 +1,1 @@
-select a from Admin a where a.examEntities.size = (select max(a2.examEntities.size) from Admin a2)
+select a from Admin a where a.purlets.size = (select max(a2.purlets.size) from Admin a2)

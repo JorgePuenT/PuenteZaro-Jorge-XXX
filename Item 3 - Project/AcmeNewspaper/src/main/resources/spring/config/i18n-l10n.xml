@@ -25,7 +25,7 @@
 		<value>/views/advertisement/messages</value>
 		<value>/views/volume/messages</value>
 		<value>/views/message/messages</value>
-		<value>/views/examEntity/messages</value>
+		<value>/views/purlet/messages</value>
 		
 	</util:list>
 </beans>

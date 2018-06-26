@@ -12,32 +12,32 @@
 <div class="well col-md-10 col-md-offset-1">
 	
 		<div class="col-md-2">
-			<a href="admin/examEntity/create.do" class="btn btn-primary"><spring:message
-					code="examEntity.create" /></a>
+			<a href="admin/purlet/create.do" class="btn btn-primary"><spring:message
+					code="purlet.create" /></a>
 		</div>
 	
 		<div class="col-md-12">
 			<display:table pagesize="10" class="displaytag" keepStatus="true"
-				name="examEntities" requestURI="${requestUri}" id="row">
+				name="purlets" requestURI="${requestUri}" id="row">
 				<display:setProperty name="paging.banner.onepage" value="" />
 				<display:setProperty name="paging.banner.placement" value="bottom" />
 				<display:setProperty name="paging.banner.all_items_found" value="" />
 				<display:setProperty name="paging.banner.one_item_found" value="" />
 				<display:setProperty name="paging.banner.no_items_found" value="" />
 	
-				<spring:message code="examEntity.localizedFormat"
+				<spring:message code="purlet.localizedFormat"
 					var="localizedFormat" />
 	
-				<jstl:set var='model' value='examEntity' scope='request' />
+				<jstl:set var='model' value='purlet' scope='request' />
 				<jstl:choose>
 					<jstl:when test="${row.gauge eq 1}">
-						<jstl:set var="colorStatus" value="lightYellow" />
+						<jstl:set var="colorStatus" value="lavenderBlush" />
 					</jstl:when>
 					<jstl:when test="${row.gauge eq 2}">
-						<jstl:set var="colorStatus" value="Moccasin" />
+						<jstl:set var="colorStatus" value="Coral" />
 					</jstl:when>
 					<jstl:when test="${row.gauge eq 3}">
-						<jstl:set var="colorStatus" value="Blue" />
+						<jstl:set var="colorStatus" value="rebeccaPurple" />
 					</jstl:when>
 				</jstl:choose>
 	
@@ -46,7 +46,7 @@
 				<lib:column name='description' />
 				<lib:column name='gauge' style="background-color: ${colorStatus};" />
 				<lib:column name='displayMoment' format="${localizedFormat}" />
-				<spring:message code="examEntity.draft" var="draftHeader" />
+				<spring:message code="purlet.draft" var="draftHeader" />
 				<display:column title="${draftHeader}">
 					<jstl:if test="${row.draft}">
 						<span class="glyphicon glyphicon-ok"></span>
@@ -59,12 +59,12 @@
 					link='newspaper/display.do?newspaperId=${row.newspaper.id}'
 					linkName='${row.newspaper.title}' />
 				<lib:column name="edit"
-					link="admin/examEntity/edit.do?examEntityId=${row.id}"
+					link="admin/purlet/edit.do?purletId=${row.id}"
 					linkSpringName="edit" />
-				<spring:message code="examEntity.delete" var="deleteHeader" />
+				<spring:message code="purlet.delete" var="deleteHeader" />
 				<display:column title="${deleteHeader}">
 					<jstl:if test="${row.draft}">
-						<a href="admin/examEntity/delete.do?examEntityId=${row.id}">
+						<a href="admin/purlet/delete.do?purletId=${row.id}">
 							${deleteHeader} </a>
 					</jstl:if>
 				</display:column>

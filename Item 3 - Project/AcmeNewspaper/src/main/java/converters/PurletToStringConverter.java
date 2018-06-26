@@ -14,20 +14,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.ExamEntity;
+import domain.Purlet;
 
 @Component
 @Transactional
-public class ExamEntityToStringConverter implements Converter<ExamEntity, String> {
+public class PurletToStringConverter implements Converter<Purlet, String> {
 
 	@Override
-	public String convert(final ExamEntity examEntity) {
+	public String convert(final Purlet purlet) {
 		String result;
 
-		if (examEntity == null) {
+		if (purlet == null) {
 			result = null;
 		} else {
-			result = String.valueOf(examEntity.getId());
+			result = String.valueOf(purlet.getId());
 		}
 
 		return result;

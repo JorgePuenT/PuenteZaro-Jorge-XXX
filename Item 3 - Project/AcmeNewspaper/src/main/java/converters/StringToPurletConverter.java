@@ -16,20 +16,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import services.ExamEntityService;
-import domain.ExamEntity;
+import services.PurletService;
+import domain.Purlet;
 
 @Component
 @Transactional
-public class StringToExamEntityConverter implements Converter<String, ExamEntity> {
+public class StringToPurletConverter implements Converter<String, Purlet> {
 
 	@Autowired
-	ExamEntityService	examEntityService;
+	PurletService	purletService;
 
 
 	@Override
-	public ExamEntity convert(final String text) {
-		ExamEntity result;
+	public Purlet convert(final String text) {
+		Purlet result;
 		int id;
 
 		if (text == "") {
@@ -38,9 +38,9 @@ public class StringToExamEntityConverter implements Converter<String, ExamEntity
 			try {
 				id = Integer.valueOf(text);
 				if (id == 0) {
-					result = examEntityService.create();
+					result = purletService.create();
 				} else {
-					result = examEntityService.findOne(id);
+					result = purletService.findOne(id);
 				}
 			} catch (final Throwable oops) {
 				throw new IllegalArgumentException(oops);

@@ -1,5 +1,5 @@
 #./src/main/resources/Entities.map
-#Tue Jun 26 01:54:19 CEST 2018
+#Tue Jun 26 16:37:26 CEST 2018
 followUp9=1357
 followUp8=1356
 message6=1337
@@ -158,11 +158,11 @@ userAccount3=1193
 userAccount2=1192
 userAccount1=1191
 admin2=1339
-examEntity4=1348
-examEntity3=1347
-examEntity2=1346
-examEntity1=1345
+purlet4=1348
+purlet3=1347
+purlet2=1346
 subscription8=1226
+purlet1=1345
 subscription7=1225
 subscription6=1224
 subscription5=1223

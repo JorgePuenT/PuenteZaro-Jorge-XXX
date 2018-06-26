@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class ExamEntity extends DomainEntity{
+public class Purlet extends DomainEntity{
 
 	private String ticker;
 	private String title;

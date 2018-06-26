@@ -215,10 +215,10 @@
 				<ref bean="folder71"/>				
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
-				<ref bean="examEntity1"/>
-				<ref bean="examEntity2"/>				
+				<ref bean="purlet1"/>
+				<ref bean="purlet2"/>				
 			</list>
 		</property>
 	</bean>
@@ -1406,7 +1406,7 @@
 
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
 			</list>
 		</property>
@@ -1449,10 +1449,10 @@
 				<ref bean="volume1" />
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
-				<ref bean="examEntity2" />
-				<ref bean="examEntity3" />
+				<ref bean="purlet2" />
+				<ref bean="purlet3" />
 			</list>
 		</property>
 
@@ -1489,7 +1489,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
 			</list>
 		</property>
@@ -1527,9 +1527,9 @@
 			<list>
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
-				<ref bean="examEntity1" />
+				<ref bean="purlet1" />
 			</list>
 		</property>
 
@@ -1563,9 +1563,9 @@
 			<list>
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
-				<ref bean="examEntity4" />
+				<ref bean="purlet4" />
 			</list>
 		</property>
 
@@ -1599,7 +1599,7 @@
 				<ref bean="volume1"/>
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
 			</list>
 		</property>
@@ -2863,10 +2863,10 @@
 				<ref bean="folder76"/>				
 			</list>
 		</property>
-		<property name="examEntities">
+		<property name="purlets">
 			<list>
-				<ref bean="examEntity3"/>	
-				<ref bean="examEntity4"/>	
+				<ref bean="purlet3"/>	
+				<ref bean="purlet4"/>	
 			</list>
 		</property>
 	</bean>
@@ -2953,7 +2953,7 @@
 
 	<!-- Exam Entitites -->
 	
-	<bean id="examEntity1" class="domain.ExamEntity">
+	<bean id="purlet1" class="domain.Purlet">
 		<property name="ticker" value="ASDF12341" />
 		<property name="title" value="Periódico de 10" />
 		<property name="description" value="Es un periódico genial, me encanta." />
@@ -2965,7 +2965,7 @@
 		<property name="admin" ref="admin" />
 	</bean>
 	
-	<bean id="examEntity2" class="domain.ExamEntity">
+	<bean id="purlet2" class="domain.Purlet">
 		<property name="ticker" value="ASDF12342" />
 		<property name="title" value="Un periódico excepcional" />
 		<property name="description" value="Este periódico merece un premio." />
@@ -2975,7 +2975,7 @@
 		<property name="admin" ref="admin" />
 	</bean>
 	
-	<bean id="examEntity3" class="domain.ExamEntity">
+	<bean id="purlet3" class="domain.Purlet">
 		<property name="ticker" value="ASDF12343" />
 		<property name="title" value="Puede mejorar pero es muy bueno" />
 		<property name="description" value="Es una idea muy buena pero le falta tiempo para ser de los mejores." />
@@ -2987,7 +2987,7 @@
 		<property name="admin" ref="admin2" />
 	</bean>
 	
-	<bean id="examEntity4" class="domain.ExamEntity">
+	<bean id="purlet4" class="domain.Purlet">
 		<property name="ticker" value="ASDF12344" />
 		<property name="title" value="De los mejores" />
 		<property name="description" value="Potencial en bruto, es fantástico el trabajo." />
