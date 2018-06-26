@@ -32,10 +32,11 @@ public class ExamEntity extends DomainEntity{
 
 	@NotNull
 	@Column(unique=true)
-	//@Pattern()
+	//@Pattern("/^([0][1-9]|[1-2][0-9]|[3][0-1])([0][1-9]|[1][0-2])\d{4}$/")
 	public String getTicker() {
 		return ticker;
 	}
+
 	public void setTicker(String ticker) {
 		this.ticker = ticker;
 	}

@@ -15,8 +15,8 @@
 		<lib:input name="id" type="hidden" />
 		
 		<jstl:if test="${examEntity.id eq 0 or isDraft}">
-			<lib:input type="text" name='title'/>	
-			<lib:input type="text" name='description'/>
+			<lib:input type="text" name='title' required="true"/>	
+			<lib:input type="text" name='description' required="true"/>
 			<lib:input type="number" name='gauge' min="1" max="3"/>
 			<lib:input type="moment" name="displayMoment" />
 			<lib:input type="checkBox" name="draft"/>

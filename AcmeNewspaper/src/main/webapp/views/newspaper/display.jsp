@@ -42,6 +42,7 @@
 </div>
 
 <div class="col-sm-10 col-sm-offset-1 well">
+	<h2><spring:message code="newspaper.article.title"/></h2>
 	<display:table pagesize="10" class="displaytag" keepStatus="true" name="articles" id="row2">
 	
 		<display:setProperty name="paging.banner.onepage" value=""/>
@@ -86,6 +87,7 @@
 </div>
 
 <div class="col-sm-10 col-sm-offset-1 well">
+<h2><spring:message code="newspaper.examEntity.title"/></h2>
 	<display:table pagesize="10" class="displaytag" keepStatus="true" name="examEntities" requestURI="${requestUri}" id="row3">
 		<display:setProperty name="paging.banner.onepage" value=""/>
 	    <display:setProperty name="paging.banner.placement" value="bottom"/>
