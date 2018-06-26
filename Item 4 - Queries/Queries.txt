@@ -1,7 +1,0 @@
-1.- A query that returns the ratio of newspapers with at least one XXXX. 
-
-	select coalesce(count(n)/(select count(n2)*1.0 from Newspaper n2),0) from Newspaper n  where n.examEntities.size > 0
-
-2.- A query that returns the administrator/s who has written more XXXX.
-
-	select a from Admin a where a.examEntities.size = (select max(a2.examEntities.size) from Admin a2)

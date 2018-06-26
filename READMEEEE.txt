@@ -38,16 +38,16 @@ Objetos creados (Añadidos al principio; relaciones en el objeto correspondiente)
 Ruta de SQL:
 	cd C:\Program Files\MySQL\MySQL Server 5.5\bin
 1.SqlDump(Entero, Para tests)
-mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\***\Item 5 - Deployment\databaseAcmeNewspaper.sql"
+mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\databaseAcmeNewspaper.sql"
 
 1b.SqlDump(Vacio, purgado)
-mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\***\Item 5 - Deployment\databaseAcmeNewspaperPurged.sql"
+mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\databaseAcmeNewspaperPurged.sql"
 
 2.SqlDrop
-mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < "Z:\***\Item 5 - Deployment\databaseDropScript.sql
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < "C:\Control\databaseDropScript.sql
 
 3.SqlCreate
-mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < "Z:\***\Item 5 - Deployment\databaseAcmeNewspaper.sql
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < "C:\Control\databaseAcmeNewspaper.sql
 
 
 
