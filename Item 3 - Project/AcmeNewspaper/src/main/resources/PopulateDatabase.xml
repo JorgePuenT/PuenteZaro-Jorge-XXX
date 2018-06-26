@@ -2954,7 +2954,7 @@
 	<!-- Exam Entitites -->
 	
 	<bean id="purlet1" class="domain.Purlet">
-		<property name="ticker" value="ASDF12341" />
+		<property name="ticker" value="17:ab:12:12345:18" />
 		<property name="title" value="Periódico de 10" />
 		<property name="description" value="Es un periódico genial, me encanta." />
 		<property name="gauge" value="1" />		
@@ -2966,7 +2966,7 @@
 	</bean>
 	
 	<bean id="purlet2" class="domain.Purlet">
-		<property name="ticker" value="ASDF12342" />
+		<property name="ticker" value="17:jk:01:98765:19" />
 		<property name="title" value="Un periódico excepcional" />
 		<property name="description" value="Este periódico merece un premio." />
 		<property name="gauge" value="2" />		
@@ -2976,7 +2976,7 @@
 	</bean>
 	
 	<bean id="purlet3" class="domain.Purlet">
-		<property name="ticker" value="ASDF12343" />
+		<property name="ticker" value="18:yt:05:96385:23" />
 		<property name="title" value="Puede mejorar pero es muy bueno" />
 		<property name="description" value="Es una idea muy buena pero le falta tiempo para ser de los mejores." />
 		<property name="gauge" value="3" />		
@@ -2988,7 +2988,7 @@
 	</bean>
 	
 	<bean id="purlet4" class="domain.Purlet">
-		<property name="ticker" value="ASDF12344" />
+		<property name="ticker" value="16:bb:12:14785:01" />
 		<property name="title" value="De los mejores" />
 		<property name="description" value="Potencial en bruto, es fantástico el trabajo." />
 		<property name="gauge" value="1" />		
