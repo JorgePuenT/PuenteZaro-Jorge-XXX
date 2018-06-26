@@ -1,2 +1,2 @@
 cd C:\Program Files\MySQL\MySQL Server 5.5\bin
-mysqldump -uroot -p V3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\DT-SecondControlCheck\Item 5 - Deployment\databaseAcmeNewspaper.sql"
+mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\DT-SecondControlCheck\Item 5 - Deployment\databaseAcmeNewspaper.sql"

@@ -23,7 +23,26 @@ Objetos creados (Añadidos al principio; relaciones en el objeto correspondiente)
 ---------------*Orden de cosas*--------------------------------
 
 1.Cambios en el UML
-2.Cambios en el proyecto
-3.Rehacer el SQL dump
-4.ReExportar el war
-5.Rehacer el test de rendimiento y adjuntar el archivo
+2.Cambios en el txt del Item4 (las queries)
+3.Cambios en el proyecto
+4.Rehacer el SQL dump
+5.ReExportar el war
+6.Rehacer el test de rendimiento y adjuntar el archivo
+
+
+--------------*Comandos Necesarios (en orden)*----------------
+!!!Cambiar *** por nombre del proyecto!!!
+
+Ruta de SQL:
+	cd C:\Program Files\MySQL\MySQL Server 5.5\bin
+1.SqlDump(Entero, Para tests)
+mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\***\Item 5 - Deployment\databaseAcmeNewspaper.sql"
+
+1b.SqlDump(Vacio, purgado)
+mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ AcmeNewspaper > "Z:\***\Item 5 - Deployment\databaseAcmeNewspaperPurged.sql"
+
+2.SqlDrop
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < "Z:\***\Item 5 - Deployment\databaseDropScript.sql
+
+3.SqlCreate
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < "Z:\***\Item 5 - Deployment\databaseAcmeNewspaper.sql
