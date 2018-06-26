@@ -11,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -43,6 +44,7 @@ public class Purlet extends DomainEntity{
 
 	@NotBlank
 	@NotNull
+	@Size(max=100)
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getTitle() {
 		return title;
@@ -54,6 +56,7 @@ public class Purlet extends DomainEntity{
 	@NotBlank
 	@NotNull
 	@SafeHtml(whitelistType=WhiteListType.NONE)
+	@Size(max=250)
 	public String getDescription() {
 		return description;
 	}
