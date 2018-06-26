@@ -11,13 +11,15 @@ Objetos creados (Añadidos al principio; relaciones en el objeto correspondiente)
 ----------------*CAMBIOS A REALIZAR Y COSAS A TENER EN CUENTA*--------------
 
 -Acordarse de cambiar los langs que están como ****** por el correspondiente nombre de la entidad(no todos tienen el mismo numero de asteriscos pero tienen bastantes, recomiendo buscar 3 asteriscos en todo el proyecto)
+-En messages de newspaper cambiar el atributo newspaper.examEntity.title por la clase indicada en ambos idiomas y los *******.
 -Acordarse de revisar la query que te devuelve los examEntities pa un newspaper por si la restricción no es solo la fecha de publicación (el draft/final va implicito ya que si tiene newspaper tiene que estar en final por huevos)
 -Palabras a cambiar(Search->File->replace...)[IMPORTANTE CASE SENSITIVE]:
 	·examEntity
 	·ExamEntity
 	·examEntities
 -Cambiar el ticker y ajustar a lo que pidan (está dentro del TODO)
--Revisar las anotaciones dependiendo de lo que pidan para cada campo
+-Revisar las anotaciones dependiendo de lo que pidan para cada campo (Pattern ticker)
+-BEANS: Revisar los tickers para que se acoplen a lo que piden.
 
 
 ---------------*Orden de cosas*--------------------------------
@@ -27,3 +29,14 @@ Objetos creados (Añadidos al principio; relaciones en el objeto correspondiente)
 3.Rehacer el SQL dump
 4.ReExportar el war
 5.Rehacer el test de rendimiento y adjuntar el archivo
+
+
+
+PATTERNS:
+
+[0][1-9]|[1-2][0-9]|[3][0-1]	DIA
+[0][1-9]|[1][0-2]		MES
+d{4}				AÑOS
+
+^([0][1-9]|[1-2][0-9]|[3][0-1])([0][1-9]|[1][0-2])\d{4}$	INICIO+ DIA+MES+AÑOs +FINAL para limitar
+/^([0][1-9]|[1-2][0-9]|[3][0-1])([0][1-9]|[1][0-2])\d{4}$/
